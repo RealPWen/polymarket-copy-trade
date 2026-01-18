@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment
+.env
+venv/
+.venv/
+env/
+
+# OS specific
+.DS_Store
+.flask_session/
+
+# Editor
+.vscode/
+.idea/
+
+# Custom data files (optional, depending on if you want to share data or just code)
+# *.csv
+# !example_data.csv
