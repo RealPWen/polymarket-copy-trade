@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from polymarket_data_fetcher import PolymarketDataFetcher
 
 
@@ -46,13 +47,15 @@ class TraderAnalyzer:
         pnl_events = []
         
         # 1. 第一遍扫描：计算 Realized PnL (主动交易产生的盈亏)
-        for _, row in df.iterrows():
-            cid = row['conditionId']
-            side = str(row['side']).strip().upper()
-            size = row['size']
-            amount = row['amount']
-            market_name = row.get('title', 'Unknown Market')
-            outcome = row.get('outcome', '-')
+        for row in df.itertuples():
+            cid = row.conditionId
+            side = str(row.side).strip().upper()
+            size = row.size
+            amount = row.amount
+            market_name = getattr(row, 'title', 'Unknown Market')
+            outcome = getattr(row, 'outcome', '-')
+            date = row.date
+            slug = getattr(row, 'slug', None)
             
             key = (cid, outcome)
             
@@ -61,12 +64,13 @@ class TraderAnalyzer:
                     'vol': 0, 
                     'cost': 0, 
                     'market_name': market_name, 
-                    'slug': row.get('slug'),
-                    'last_date': row['date']
+                    'slug': slug,
+                    'condition_id': cid,
+                    'last_date': date
                 }
                 
             pos = positions[key]
-            pos['last_date'] = row['date'] # 更新最后活动时间
+            pos['last_date'] = date # 更新最后活动时间
             
             pnl = 0
             is_close = False
@@ -90,12 +94,21 @@ class TraderAnalyzer:
             
             if is_close:
                 pnl_events.append({
-                    'date': row['date'],
+                    'date': date,
                     'pnl': pnl,
                     'market': market_name,
                     'outcome': outcome,
                     'type': 'Trade'
                 })
+
+        # --- 优化：并行预取所有需要的市场信息 ---
+        unique_markets = {}
+        for (cid, outcome), pos in positions.items():
+            if cid not in unique_markets:
+                unique_markets[cid] = pos.get('slug')
+        
+        self._prefetch_markets(unique_markets)
+        # ------------------------------------
 
         # 2. 第二遍扫描：计算 Settlement PnL (持有到期)
         # 检查所有剩余持仓，如果 Market 已关闭，则计算结算盈亏
@@ -191,51 +204,74 @@ class TraderAnalyzer:
             
         return result_df, active_pos_df
 
-    def _get_market_info_cached(self, condition_id, slug=None):
-        if condition_id in self.market_cache:
-            return self.market_cache[condition_id]
-            
+    def _prefetch_markets(self, market_dict: dict):
+        """
+        并行预取多个市场的信息
+        market_dict: {condition_id: slug}
+        """
+        todo = []
+        for cid, slug in market_dict.items():
+            if cid not in self.market_cache:
+                todo.append((cid, slug))
+        
+        if not todo:
+            return
+
+        print(f"🌐 正在并行获取 {len(todo)} 个市场的信息...")
+        
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            future_to_cid = {executor.submit(self._get_market_info_inner, cid, slug): cid for cid, slug in todo}
+            for future in as_completed(future_to_cid):
+                cid = future_to_cid[future]
+                try:
+                    info = future.result()
+                    self.market_cache[cid] = info
+                except Exception as e:
+                    print(f"⚠️ 预取 {cid} 失败: {e}")
+                    self.market_cache[cid] = None
+
+    def _get_market_info_inner(self, condition_id, slug=None):
+        """
+        实际执行获取市场信息的内部方法 (无缓存检查)
+        """
         try:
-            # 优先通过 slug 获取，因为 slug 更唯一且不易出错
+            # 优先通过 slug 获取
             df = pd.DataFrame()
             if slug:
                 df = self.fetcher.get_markets(slug=slug)
             
-            # 如果 slug 没搜到，再用 condition_id
             if df.empty:
                 df = self.fetcher.get_markets(condition_id=condition_id)
             
             if not df.empty:
-                # 验证：确保返回的市场 conditionId 真的匹配（防止 API 忽略参数返回默认列表）
                 match_row = None
                 for _, row in df.iterrows():
-                    # 无论 API 返回字段是 conditionId 还是 condition_id，都进行校验
                     fetched_cid = row.get('conditionId') or row.get('condition_id')
                     if fetched_cid and str(fetched_cid).lower() == str(condition_id).lower():
                         match_row = row
                         break
                 
                 if match_row is not None:
-                    info = match_row.to_dict()
-                    self.market_cache[condition_id] = info
-                    return info
-                else:
-                    print(f"⚠️ API 返回的市场列表中无匹配的 ConditionID: {condition_id}")
-            else:
-                print(f"⚠️ API 未返回任何市场数据: {condition_id} / {slug}")
-
-        except Exception as e:
-            print(f"⚠️ 获取 Market {condition_id} 失败: {e}")
+                    return match_row.to_dict()
+        except:
             pass
-        
-        self.market_cache[condition_id] = None
         return None
+
+    def _get_market_info_cached(self, condition_id, slug=None):
+        if condition_id in self.market_cache:
+            return self.market_cache[condition_id]
+            
+        # 如果缓存没有（可能是预取后漏掉的或者动态新增的），则同步获取一次
+        info = self._get_market_info_inner(condition_id, slug)
+        self.market_cache[condition_id] = info
+        return info
 
 if __name__ == "__main__":
     # 演示代码
     import sys
     ## 0xd235973291b2b75ff4070e9c0b01728c520b0f29 tyson
     ## 0x6022a1784a55b8070de42d19484bbff95fa7c60a tao
+    ## 0xdb27bf2ac5d428a9c63dbc914611036855a6c56e
 
     demo_addr = "0xd235973291b2b75ff4070e9c0b01728c520b0f29"
     if len(sys.argv) > 1:

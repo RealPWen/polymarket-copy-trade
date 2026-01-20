@@ -14,20 +14,25 @@ class TraderVisualizer:
     def __init__(self):
         self.analyzer = TraderAnalyzer()
 
-    def analyze_and_plot(self, address: str, limit: int = 50000):
+    def analyze_and_get_html(self, address: str, limit: int = 50000):
         print(f"📊 正在深度分析交易员: {address} ...")
         
         # 1. 使用 Analyzer 获取数据
         analysis_df, trades_df, active_df = self.analyzer.analyze_trader(address, limit)
         
-        # 2. 调用独立的 HTML 生成方法
-        filename = self.generate_professional_report(address, analysis_df, trades_df, active_df)
-        
-        print(f"\n✅ 报告已生成: {filename}")
-        print("💡 请双击该文件使用浏览器查看。")
+        # 2. 获取 HTML 内容
+        return self.get_professional_report_html(address, analysis_df, trades_df, active_df)
 
     def generate_professional_report(self, address, analysis_df, trades_df, active_df):
         """核心方法：接收数据并生成高度定制化的 HTML 文件"""
+        html_content = self.get_professional_report_html(address, analysis_df, trades_df, active_df)
+        filename = f"report_{address}.html"
+        with open(filename, 'w', encoding='utf-8') as f:
+            f.write(html_content)
+        return filename
+
+    def get_professional_report_html(self, address, analysis_df, trades_df, active_df):
+        """生成并返回 HTML 字符串"""
         
         # --- 数据预处理 ---
         # 1. 准备 PnL 折线图 (HTML Div)
@@ -453,10 +458,7 @@ class TraderVisualizer:
 </body>
 </html>
         """
-        filename = f"report_{address}.html"
-        with open(filename, 'w', encoding='utf-8') as f:
-            f.write(html_template)
-        return filename
+        return html_template
 
     # --- 辅助方法：生成各个部分的 HTML 片段 ---
 
@@ -561,8 +563,13 @@ if __name__ == "__main__":
         demo_addr = "0xdb27bf2ac5d428a9c63dbc914611036855a6c56e"
         print(f"Running demo with: {demo_addr}")
         visualizer = TraderVisualizer()
-        visualizer.analyze_and_plot(demo_addr)
+        # 对于 CLI，仍然生成文件并提示
+        analysis_df, trades_df, active_df = visualizer.analyzer.analyze_trader(demo_addr, limit=50000)
+        filename = visualizer.generate_professional_report(demo_addr, analysis_df, trades_df, active_df)
+        print(f"✅ Report generated: {filename}")
     else:
         address = sys.argv[1]
         visualizer = TraderVisualizer()
-        visualizer.analyze_and_plot(address)
+        analysis_df, trades_df, active_df = visualizer.analyzer.analyze_trader(address, limit=50000)
+        filename = visualizer.generate_professional_report(address, analysis_df, trades_df, active_df)
+        print(f"✅ Report generated: {filename}")
