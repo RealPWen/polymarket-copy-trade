@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polymarket Smart Trader Explorer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg: #0f172a;
+            --card-glass: rgba(255, 255, 255, 0.05);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            background-image:
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .navbar {
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid var(--border-glass);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #status-tag {
+            position: absolute;
+            right: 2rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .search-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            padding: 3rem;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: translateY(0);
+            transition: all 0.5s ease;
+        }
+
+        .search-card.moved {
+            transform: translateY(-20vh) scale(0.9);
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .input-group {
+            position: relative;
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-glass);
+            transition: border-color 0.3s;
+        }
+
+        .input-group:focus-within {
+            border-color: var(--primary);
+        }
+
+        input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 0.75rem 1rem;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            font-family: inherit;
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Result View */
+        .result-view {
+            position: absolute;
+            top: 65px;
+            /* space for navbar */
+            left: 0;
+            width: 100%;
+            height: calc(100% - 65px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .result-view.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        #report-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: white;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 2rem;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-glass);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            color: var(--text);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            display: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">Polymarket Smart Trader</div>
+        <div id="status-tag" style="font-size: 0.8rem; color: var(--text-muted);">Ready to analyze</div>
+    </nav>
+
+    <button class="back-btn" id="back-btn" onclick="resetView()">← Back</button>
+
+    <div class="main-container" id="main-container">
+        <div class="search-card" id="search-card">
+            <h1>Analyze Any Trader</h1>
+            <p class="subtitle">Enter a Polymarket wallet address to view their detailed performance report.</p>
+
+            <div class="input-group">
+                <input type="text" id="address-input" placeholder="0x..." spellcheck="false" autocomplete="off">
+                <button onclick="handleAnalyze()">Analyze</button>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <div style="color: var(--text-muted); font-size: 0.9rem;">Fetching data from Polymarket...</div>
+            </div>
+
+            <div id="error-msg" style="color: #ff4b4b; margin-top: 1rem; font-size: 0.9rem; display: none;"></div>
+        </div>
+    </div>
+
+    <div class="result-view" id="result-view">
+        <iframe id="report-frame"></iframe>
+    </div>
+
+    <script>
+        async function handleAnalyze() {
+            const address = document.getElementById('address-input').value.trim();
+            if (!address) return;
+
+            const searchCard = document.getElementById('search-card');
+            const loading = document.getElementById('loading');
+            const errorMsg = document.getElementById('error-msg');
+            const statusTag = document.getElementById('status-tag');
+
+            errorMsg.style.display = 'none';
+            loading.style.display = 'flex';
+            statusTag.innerText = 'Analyzing ' + address.slice(0, 6) + '...';
+
+            try {
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ address })
+                });
+
+                const data = await response.json();
+
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                // Success
+                const resultView = document.getElementById('result-view');
+                const reportFrame = document.getElementById('report-frame');
+                const backBtn = document.getElementById('back-btn');
+
+                // Set iframe content
+                const doc = reportFrame.contentWindow.document;
+                doc.open();
+                doc.write(data.html);
+                doc.close();
+
+                // UI Transition
+                searchCard.classList.add('moved');
+                resultView.classList.add('active');
+                backBtn.style.display = 'block';
+                statusTag.innerText = 'Report Generated';
+
+            } catch (err) {
+                errorMsg.innerText = 'Error: ' + err.message;
+                errorMsg.style.display = 'block';
+                statusTag.innerText = 'Error occurred';
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        function resetView() {
+            document.getElementById('search-card').classList.remove('moved');
+            document.getElementById('result-view').classList.remove('active');
+            document.getElementById('back-btn').style.display = 'none';
+            document.getElementById('status-tag').innerText = 'Ready to analyze';
+        }
+
+        // Support Enter key
+        document.getElementById('address-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleAnalyze();
+        });
+    </script>
+</body>
+
+</html>

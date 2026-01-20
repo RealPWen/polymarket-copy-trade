@@ -16,6 +16,7 @@ from collections import defaultdict
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm  # 进度条支持
+import json
 
 class SmartTraderFinder:
     def __init__(self, max_workers=10):
@@ -110,31 +111,34 @@ class SmartTraderFinder:
     def _calculate_stats(self, trades_df):
         """
         计算交易统计指标 (核心算法)
+        改进版：包含持有到期 (Held to Maturity) 的盈亏计算
         """
         if trades_df.empty:
             return {'win_rate': 0, 'total_pnl': 0, 'trade_count': 0, 'profit_factor': 0}
             
         trades_df = trades_df.copy()
-        # 优化：一次性转换，避免 SettingWithCopyWarning
+        # 优化：一次性转换
         trades_df[['size', 'price']] = trades_df[['size', 'price']].apply(pd.to_numeric, errors='coerce').fillna(0)
         trades_df['amount'] = trades_df['size'] * trades_df['price']
         
-        groups = trades_df.groupby('conditionId')
+        # 按 (Market, Outcome) 分组，因为不同 Outcome 是不同资产
+        groups = trades_df.groupby(['conditionId', 'outcome'])
         
         total_pnl = 0
         wins = 0
         losses = 0
         total_profit = 0
         total_loss = 0
-        participated_markets = 0
+        participated_markets = set()
         
-        for _, group in groups:
-            buys = group[group['side'] == 'BUY']
+        # 记录剩余持仓以便后续检查结算状态
+        # key: (conditionId, outcome), value: {'vol': float, 'cost': float}
+        remaining_positions = {}
+        
+        for (cid, outcome), group in groups:
+            participated_markets.add(cid)
             
-            # 如果没买过，跳过
-            if buys.empty:
-                continue
-                
+            buys = group[group['side'] == 'BUY']
             sells = group[group['side'] == 'SELL']
             
             buy_vol = buys['size'].sum()
@@ -142,26 +146,94 @@ class SmartTraderFinder:
             
             if buy_vol == 0: continue
             
-            participated_markets += 1
-            
-            # 计算盈亏
             buy_amt = buys['amount'].sum()
             sell_amt = sells['amount'].sum()
             
+            # 1. 计算已平仓部分的盈亏 (Realized PnL from Sells)
+            realized_pnl = 0
+            avg_buy_price = buy_amt / buy_vol
+            
             if sell_vol > 0:
-                avg_buy_price = buy_amt / buy_vol
                 cost_of_sold = sell_vol * avg_buy_price
-                pnl = sell_amt - cost_of_sold
+                realized_pnl = sell_amt - cost_of_sold
                 
-                total_pnl += pnl
+                total_pnl += realized_pnl
                 
-                if pnl > 0.01:
+                if realized_pnl > 0.01:
                     wins += 1
-                    total_profit += pnl
-                elif pnl < -0.01:
+                    total_profit += realized_pnl
+                elif realized_pnl < -0.01:
                     losses += 1
-                    total_loss += abs(pnl)
-        
+                    total_loss += abs(realized_pnl)
+            
+            # 2. 记录剩余持仓 (Remaining Position)
+            rem_vol = buy_vol - sell_vol
+            if rem_vol > 0.001: # 忽略微小尘埃
+                rem_cost = rem_vol * avg_buy_price
+                remaining_positions[(cid, outcome)] = {'vol': rem_vol, 'cost': rem_cost}
+
+        # 3. 处理持有到期 (Settlement PnL)
+        # 检查所有剩余持仓的市场是否已关闭并结算
+        if remaining_positions:
+            unique_cids = set(k[0] for k in remaining_positions.keys())
+            
+            for cid in unique_cids:
+                # 获取 Market Info (优先查缓存)
+                market_info = self._get_market_info_cached(cid)
+                
+                if not market_info:
+                    continue
+                    
+                # 检查是否已关闭
+                is_closed = market_info.get('closed', False)
+                if is_closed:
+                    # 获取结果
+                    try:
+                        outcomes = json.loads(market_info.get('outcomes', '[]'))
+                        prices = json.loads(market_info.get('outcomePrices', '[]'))
+                    except:
+                        continue
+                        
+                    if not outcomes or not prices or len(outcomes) != len(prices):
+                        continue
+                        
+                    # 确定赢家 (价格约为 1 的 outcome)
+                    # 注意：通常赢家价格是 "1" 或非常接近 1
+                    winner_outcome = None
+                    for idx, price_str in enumerate(prices):
+                        try:
+                            if float(price_str) > 0.95:
+                                winner_outcome = outcomes[idx]
+                                break
+                        except:
+                            pass
+                    
+                    # 检查此 CID 下该用户持有的 outcome
+                    for (r_cid, r_outcome), pos in remaining_positions.items():
+                        if r_cid != cid: continue
+                        
+                        pnl = 0
+                        vol = pos['vol']
+                        cost = pos['cost']
+                        
+                        if winner_outcome and r_outcome == winner_outcome:
+                            # 赢了：价值变为 $1.00 * vol
+                            settlement_value = vol * 1.0
+                            pnl = settlement_value - cost
+                            # print(f"  [Settlement Win] Match: {cid} | PnL: {pnl:.2f}")
+                        else:
+                            # 输了 (或者找不到赢家但市场关了)：价值归零
+                            pnl = 0 - cost
+                            # print(f"  [Settlement Loss] Match: {cid} | PnL: {pnl:.2f}")
+
+                        total_pnl += pnl
+                        if pnl > 0.01:
+                            wins += 1
+                            total_profit += pnl
+                        elif pnl < -0.01:
+                            losses += 1
+                            total_loss += abs(pnl)
+
         total_closed_trades = wins + losses
         win_rate = wins / total_closed_trades if total_closed_trades > 0 else 0
         profit_factor = total_profit / total_loss if total_loss > 0 else (999 if total_profit > 0 else 0)
@@ -172,14 +244,38 @@ class SmartTraderFinder:
             'total_profit': total_profit,
             'total_loss': total_loss,
             'profit_factor': profit_factor,
-            'trade_count': len(trades_df),
-            'market_count': participated_markets,
+            'trade_count': len(trades_df), # 这里仅作参考
+            'market_count': len(participated_markets),
             'closed_count': total_closed_trades
         }
 
-    def run(self, min_win_rate=0.5, min_trades=3, min_profit=0, active_scan=10, closed_scan=5):
+    def _get_market_info_cached(self, condition_id):
+        """Helper to fetch market info with caching"""
+        if not hasattr(self, 'market_cache'):
+            self.market_cache = {}
+            
+        if condition_id in self.market_cache:
+            return self.market_cache[condition_id]
+            
+        try:
+            # 使用 get_markets 筛选来获取详情，因为 get_market_by_id 对某些 ID 格式支持不好
+            df = self.fetcher.get_markets(condition_id=condition_id)
+            if not df.empty:
+                # 转换为 dict 并缓存
+                info = df.iloc[0].to_dict()
+                self.market_cache[condition_id] = info
+                return info
+        except Exception:
+            pass
+            
+        self.market_cache[condition_id] = None
+        return None
+
+    def run(self, min_win_rate=0.5, min_trades=3, min_profit=0, active_scan=10, closed_scan=5, testing=True):
         print("🚀 启动 Smart Trader 猎手 (高速多线程版)...")
         print(f"🎯 筛选目标: 胜率>{min_win_rate:.0%} | 场次>={min_trades} | 盈利>${min_profit}")
+        if testing:
+            print("🧪 测试模式: 开启 (将保存所有分析过的交易者数据)")
         print("==================================================")
         
         # 1.获取候选人
@@ -189,6 +285,7 @@ class SmartTraderFinder:
         print(f"\n🔬 开始深度分析 {len(candidates)} 位候选人...")
         
         smart_traders = []
+        all_traders_stats = [] # 用于测试模式，存储所有人
         
         with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
             future_to_addr = {executor.submit(self.analyze_trader_performance, addr): addr for addr in candidates}
@@ -196,50 +293,64 @@ class SmartTraderFinder:
             for future in tqdm(as_completed(future_to_addr), total=len(candidates), desc="分析 Traders"):
                 try:
                     stats = future.result()
-                    # 动态筛选
-                    if (stats 
-                        and stats['closed_count'] >= min_trades 
-                        and stats['win_rate'] >= min_win_rate
-                        and stats['total_pnl'] >= min_profit):
-                        smart_traders.append(stats)
+                    if stats:
+                        # 收集基础数据
+                        all_traders_stats.append(stats)
+                        
+                        # 动态筛选 smart traders
+                        if (stats['closed_count'] >= min_trades 
+                            and stats['win_rate'] >= min_win_rate
+                            and stats['total_pnl'] >= min_profit):
+                            smart_traders.append(stats)
                 except Exception:
                     pass
             
         print("\n✅ 分析完成!")
         
-        # 3. 排名和展示
-        if not smart_traders:
-            print("⚠️ 未找到符合条件的 Smart Trader。建议降低筛选标准。")
-            return
+        # 3. 决定要保存和展示的数据集
+        if testing:
+            target_list = all_traders_stats
+            print(f"🧪 测试模式: 共分析了 {len(target_list)} 位交易者，准备全部导出。")
+            csv_filename = "traders_debug_all.csv"
+        else:
+            if not smart_traders:
+                print("⚠️ 未找到符合条件的 Smart Trader。建议降低筛选标准 (或使用 --testing 查看所有分析结果)。")
+                return
+            target_list = smart_traders
+            csv_filename = "traders_pool.csv"
 
         # 评分算法优先按胜率排序
         ranked_traders = sorted(
-            smart_traders,
+            target_list,
             key=lambda x: (x['win_rate'], x['total_pnl']),
             reverse=True
         )
         
-        print(f"\n🏆 SMART TRADERS 排行榜 (Top 10) [共筛选出 {len(ranked_traders)} 人]")
+        print(f"\n🏆 SMART TRADERS 排行榜 (Top 15) [共筛选出 {len(ranked_traders)} 人]")
         print("="*90)
         print(f"{'排名':<5} {'地址':<44} {'胜率':<8} {'总盈亏($)':<12} {'盈亏比':<8} {'场次':<8}")
         print("-" * 90)
         
-        for rank, t in enumerate(ranked_traders[:10], 1):
+        # 展示 Top 15
+        top_n_traders = ranked_traders[:15]
+        
+        for rank, t in enumerate(top_n_traders, 1):
             addr_display = t['address']
             print(f"{rank:<5} {addr_display:<44} {t['win_rate']:.1%}    {t['total_pnl']:<12.2f} {t['profit_factor']:<8.2f} {t['closed_count']:<8}")
             
         # 导出结果
-        df = pd.DataFrame(ranked_traders)
-        filename = f"smart_traders_win{int(min_win_rate*100)}_trades{min_trades}.csv"
-        df.to_csv(filename, index=False)
-        print(f"\n💾 完整榜单已保存至: {filename}")
+        if ranked_traders:
+            df = pd.DataFrame(ranked_traders)
+            df.to_csv(csv_filename, index=False)
+            print(f"\n💾 榜单已保存至: {csv_filename}")
         
-        # 推荐最佳人选
-        best = ranked_traders[0]
-        print("\n🌟 最佳跟单推荐:")
-        print(f"地址: {best['address']}")
-        print(f"核心数据: 胜率 {best['win_rate']:.1%} | 盈亏 ${best['total_pnl']:.2f} | 盈亏比 {best['profit_factor']:.2f}")
-        print(f"Polymarket Profile: https://polymarket.com/profile/{best['address']}")
+        # 推荐最佳人选 (如果有的话)
+        if ranked_traders:
+            best = ranked_traders[0]
+            print("\n🌟 最佳跟单推荐:")
+            print(f"地址: {best['address']}")
+            print(f"核心数据: 胜率 {best['win_rate']:.1%} | 盈亏 ${best['total_pnl']:.2f} | 盈亏比 {best['profit_factor']:.2f}")
+            print(f"Polymarket Profile: https://polymarket.com/profile/{best['address']}")
 
 if __name__ == "__main__":
     import argparse
@@ -264,6 +375,10 @@ if __name__ == "__main__":
     parser.add_argument('--scan-closed', type=int, default=5, help='扫描已结束事件数量, 默认 5')
     parser.add_argument('--workers', type=int, default=10, help='并发线程数, 默认 10')
     
+    # 新增 testing 参数 (默认开启，使用 --no-testing 关闭)
+    parser.add_argument('--no-testing', action='store_false', dest='testing', help='关闭测试模式')
+    parser.set_defaults(testing=True)
+    
     args = parser.parse_args()
 
     finder = SmartTraderFinder(max_workers=args.workers)
@@ -272,5 +387,6 @@ if __name__ == "__main__":
         min_trades=args.min_trades,
         min_profit=args.min_profit,
         active_scan=args.scan_active,
-        closed_scan=args.scan_closed
+        closed_scan=args.scan_closed,
+        testing=args.testing
     )

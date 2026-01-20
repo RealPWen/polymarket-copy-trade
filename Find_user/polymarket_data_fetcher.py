@@ -211,28 +211,59 @@ class PolymarketDataFetcher:
     # ==================== Data API - Market Activity ====================
     
     def get_trades(self, market_id: Optional[str] = None, wallet_address: Optional[str] = None,
-                   limit: int = 100, offset: int = 0) -> pd.DataFrame:
+                   limit: int = 100, offset: int = 0, silent: bool = False) -> pd.DataFrame:
         """
-        获取交易记录
-        
-        参数:
-            market_id: 市场ID（可选）
-            wallet_address: 用户钱包地址（可选）
-            limit: 返回结果数量限制
-            offset: 分页偏移量
-        
-        返回:
-            pandas DataFrame 包含交易数据
+        获取交易记录 (支持自动分页)
         """
         url = f"{self.data_api_base}/trades"
-        params = {"limit": limit, "offset": offset}
+        all_trades = []
         
-        if market_id:
-            params["market"] = market_id
-        if wallet_address:
-            params["user"] = wallet_address
+        # 内部每次抓取 1000 条 (API 通常上限是 500-1000)
+        chunk_size = 1000
+        remaining = limit
+        current_offset = offset
         
-        return self._make_request(url, params, "交易")
+        while remaining > 0:
+            fetch_limit = min(chunk_size, remaining)
+            params = {"limit": fetch_limit, "offset": current_offset}
+            
+            if market_id:
+                params["market"] = market_id
+            if wallet_address:
+                params["user"] = wallet_address
+            
+            try:
+                # 不直接用 _make_request 里面的打印，为了静默分页
+                response = self.session.get(url, params=params)
+                response.raise_for_status()
+                data = response.json()
+                
+                # 处理不同格式
+                batch = []
+                if isinstance(data, list):
+                    batch = data
+                elif isinstance(data, dict):
+                    batch = data.get('data', [data] if data else [])
+                
+                if not batch:
+                    break
+                    
+                all_trades.extend(batch)
+                
+                if len(batch) < fetch_limit: # 到底了
+                    break
+                    
+                remaining -= len(batch)
+                current_offset += len(batch)
+                
+            except Exception as e:
+                print(f"❌ 分页抓取交易失败 at offset {current_offset}: {e}")
+                break
+        
+        df = pd.DataFrame(all_trades)
+        if not df.empty and not silent:
+            print(f"✅ 成功获取 {len(df)} 条交易数据 (Limit: {limit})")
+        return df
     
     def get_market_holders(self, market_id: str, limit: int = 100) -> pd.DataFrame:
         """
