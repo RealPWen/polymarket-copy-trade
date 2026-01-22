@@ -539,7 +539,7 @@ class TraderVisualizer:
                 <div class="toggle-container">
                     <span id="copy-trade-label">跟单 OFF</span>
                     <label class="switch">
-                        <input type="checkbox" id="copy-trade-toggle" onchange="toggleCopyTradeProcess()">
+                        <input type="checkbox" id="copy-trade-toggle" onclick="window.location.href='/copy-trade/setup?address=' + traderAddress; return false;">
                         <span class="slider"></span>
                     </label>
                 </div>

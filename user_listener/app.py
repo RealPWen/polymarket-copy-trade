@@ -223,6 +223,96 @@ def get_copy_trade_status(address):
         "is_running": is_running
     })
 
+@app.route('/copy-trade/setup')
+def copy_trade_setup():
+    return render_template('setup.html')
+
+@app.route('/copy-trade/launch', methods=['POST'])
+def launch_copy_trade():
+    try:
+        data = request.json
+        address = data.get('address')
+        strategy = data.get('strategy') # {"mode": 1, "param": 1.0}
+        
+        if not address or not strategy:
+            return jsonify({"error": "Missing parameters"}), 400
+            
+        address = address.lower()
+        
+        # 检查是否已运行
+        try:
+            find_cmd = f"ps aux | grep 'account_listener.py {address}' | grep -v grep"
+            result = subprocess.run(find_cmd, shell=True, capture_output=True, text=True)
+            if result.stdout.strip():
+                 return jsonify({"status": "already_running", "address": address}), 200
+        except:
+            pass
+
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        # 尝试获取 Python 路径，如果 which 失败则由 sys.executable 兜底
+        try:
+            python_path = subprocess.check_output(['which', 'python3.9']).decode().strip()
+        except:
+            import sys
+            python_path = sys.executable
+
+        listener_script = os.path.join(project_root, 'user_listener', 'account_listener.py')
+        
+        # 将策略配置转换为 Base64 字符串传递给 CLI (完美避开引号转义地狱)
+        import base64
+        strategy_json = json.dumps(strategy)
+        strategy_b64 = base64.b64encode(strategy_json.encode('utf-8')).decode('utf-8')
+        
+        applescript = f'''
+        tell application "Terminal"
+            do script "cd {project_root} && {python_path} {listener_script} {address} {strategy_b64}"
+            activate
+        end tell
+        '''
+        
+        subprocess.Popen(['osascript', '-e', applescript], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        
+        import time
+        time.sleep(2)
+        
+        return jsonify({"status": "launched", "address": address})
+    except Exception as e:
+        print(f"Start error: {e}")
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/copy-trade/dashboard')
+def copy_trade_dashboard():
+    address = request.args.get('address')
+    return render_template('dashboard.html', address=address)
+
+@app.route('/api/my-executions')
+def get_my_executions():
+    try:
+        trades = []
+        if os.path.exists("my_executions.jsonl"):
+            with open("my_executions.jsonl", "r") as f:
+                # 获取最后 50 条
+                lines = f.readlines()
+                if len(lines) > 50:
+                    lines = lines[-50:]
+                for line in reversed(lines):
+                    try:
+                        trades.append(json.loads(line))
+                    except: continue
+        return jsonify(trades)
+    except Exception as e:
+        return jsonify([])
+
+@app.route('/api/my-balance')
+def get_my_balance():
+    try:
+        import config
+        # 简单实例化 fetcher 获取余额
+        cash = fetcher.get_user_cash_balance(config.FUNDER_ADDRESS)
+        return jsonify({"cash": cash, "address": config.FUNDER_ADDRESS})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 if __name__ == '__main__':
     # Ensure templates directory exists
     os.makedirs('templates', exist_ok=True)

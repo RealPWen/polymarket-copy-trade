@@ -184,5 +184,26 @@ class RealExecutionHandler(BaseTradeHandler):
         try:
             result = self.trader.place_order(token_id, side, my_size, price, order_type="GTC")
             print(f"✅ [成交] 订单已提交: {json.dumps(result, ensure_ascii=False)}")
+            
+            # --- 记录我的成交日志 (供前端展示) ---
+            import time
+            log_entry = {
+                "timestamp": time.time(),
+                "date_str": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                "strategy": mode,
+                "trader_base_amount": trader_amount,
+                "my_target_amount": my_target_amount,
+                "side": side,
+                "size": my_size,
+                "price": price,
+                "market_token": token_id,
+                "tx_hash": result.get('transactionHash') or result.get('orderID') or "pending" 
+            }
+            try:
+                with open("my_executions.jsonl", "a", encoding="utf-8") as f:
+                    f.write(json.dumps(log_entry, ensure_ascii=False) + "\n")
+            except Exception as le:
+                print(f"⚠️ 日志写入失败: {le}")
+
         except Exception as e:
             print(f"❌ [错误] 链上下单失败: {e}")

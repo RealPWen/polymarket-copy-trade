@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>跟单仪表盘 - Polymarket Trader</title>
+    <!-- 引入 Plotly for 曲线 -->
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --surface: #1e1e1e;
+            --panel-bg: #252525;
+            --primary: #007bff;
+            --success: #00c853;
+            --danger: #d50000;
+            --text: #e0e0e0;
+            --border: #333;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: var(--surface);
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .status-badge {
+            background: rgba(0, 200, 83, 0.2);
+            color: var(--success);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--success);
+        }
+
+        /* 三列布局 */
+        .dashboard-container {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+            gap: 20px;
+            overflow: hidden;
+        }
+
+        /* 左右列宽固定，中间自适应 */
+        .col-left,
+        .col-right {
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .col-center {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .panel {
+            background: var(--panel-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            flex: 1;
+            /* 让面板填满列的高度 */
+        }
+
+        .panel-short {
+            flex: 0 0 auto;
+            /* 高度自适应内容 */
+        }
+
+        .panel-header {
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .panel-content {
+            padding: 15px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        /* 订单列表 */
+        .trade-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+            font-size: 12px;
+        }
+
+        .trade-item:last-child {
+            border-bottom: none;
+        }
+
+        .tag-buy {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .tag-sell {
+            color: var(--danger);
+            font-weight: bold;
+        }
+
+        .trade-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .trade-meta {
+            color: #888;
+            font-size: 11px;
+        }
+
+        /* 余额展示 */
+        .balance-box {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .balance-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .balance-label {
+            color: #888;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .addr-tag {
+            background: #333;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 11px;
+            color: #aaa;
+            margin-top: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <h3>Polymarket 跟单监控台</h3>
+            <div class="status-badge"><span class="dot"></span> 系统运行中</div>
+        </div>
+        <div style="font-size: 12px; color: #888;">
+            正在监控: <span id="target-addr" style="color: #fff; font-family: monospace;">...</span>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+
+        <!-- 左侧: 我的账户信息 -->
+        <div class="col-left">
+            <div class="panel panel-short">
+                <div class="panel-header">我的资金账户 (USDC)</div>
+                <div class="panel-content balance-box">
+                    <div class="balance-value" id="my-balance">Loading...</div>
+                    <div class="balance-label">可用余额</div>
+                    <div class="addr-tag" id="my-address">Loading...</div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">我的成交历史 (My Executions)</div>
+                <div class="panel-content" id="my-trades-list">
+                    <!-- JS 动态填充 -->
+                    <div style="text-align: center; color: #666; padding: 20px;">暂无跟单记录</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 中间: 收益曲线 -->
+        <div class="col-center">
+            <div class="panel">
+                <div class="panel-header">跟单实时收益表现 (PnL)</div>
+                <div class="panel-content" style="padding: 0; display: flex; flex-direction: column;">
+                    <div id="pnl-chart" style="flex: 1; width: 100%; min-height: 300px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧: 监测目标流 -->
+        <div class="col-right">
+            <div class="panel">
+                <div class="panel-header">目标交易员订单流 (Target Stream)</div>
+                <div class="panel-content" id="target-trades-list">
+                    <!-- JS 动态填充 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // URL 参数
+        const params = new URLSearchParams(window.location.search);
+        const targetAddress = params.get('address');
+        if (targetAddress) document.getElementById('target-addr').innerText = targetAddress;
+
+        // 定时刷新器
+        setInterval(() => {
+            fetchMyBalance();
+            fetchMyExecutions();
+            fetchTargetStream();
+        }, 2500);
+
+        // 1. 获取我的余额
+        async function fetchMyBalance() {
+            try {
+                const res = await fetch('/api/my-balance');
+                const data = await res.json();
+                if (data.cash !== undefined) {
+                    document.getElementById('my-balance').innerText = '$' + data.cash.toFixed(2);
+                    document.getElementById('my-address').innerText = data.address.slice(0, 6) + '...' + data.address.slice(-4);
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        // 2. 获取我的成交
+        async function fetchMyExecutions() {
+            try {
+                const res = await fetch('/api/my-executions');
+                const data = await res.json();
+                const container = document.getElementById('my-trades-list');
+
+                if (data.length === 0) return;
+
+                container.innerHTML = data.map(t => `
+                <div class="trade-item">
+                    <div class="trade-info">
+                        <span class="${t.side === 'BUY' ? 'tag-buy' : 'tag-sell'}">${t.side}</span>
+                        <span style="font-weight: bold;">${t.size} 股</span>
+                        <span class="trade-meta">@ $${t.price.toFixed(2)}</span>
+                    </div>
+                    <div style="text-align: right;">
+                        <span style="display:block; font-weight:bold;">$${t.my_target_amount.toFixed(2)}</span>
+                        <span class="trade-meta">${t.date_str.split(' ')[1]}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        // 3. 获取目标流 (复用之前的 API)
+        async function fetchTargetStream() {
+            if (!targetAddress) return;
+            try {
+                const res = await fetch(`/stream/${targetAddress}`);
+                const data = await res.json();
+                const container = document.getElementById('target-trades-list');
+
+                if (data.length === 0) return;
+
+                container.innerHTML = data.map(t => `
+                <div class="trade-item">
+                    <div class="trade-info">
+                        <span style="color: #fff;">${t.title.slice(0, 30)}...</span>
+                        <div style="margin-top:2px;">
+                            <span class="${t.side === 'BUY' ? 'tag-buy' : 'tag-sell'}">${t.side}</span>
+                            <span>${t.outcome}</span>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span style="display:block; font-weight:bold;">$${(t.size * t.price).toFixed(2)}</span>
+                        <span class="trade-meta">$${t.price.toFixed(2)} | ${t.date_str.split(' ')[1]}</span>
+                    </div>
+                </div>
+            `).join('');
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        // 初始化图表 (占位)
+        const trace = {
+            x: [new Date()],
+            y: [0],
+            type: 'scatter',
+            mode: 'lines+markers',
+            line: { color: '#00c853', width: 2 }
+        };
+        const layout = {
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            font: { color: '#888' },
+            margin: { t: 20, r: 20, l: 40, b: 40 },
+            xaxis: { gridcolor: '#333' },
+            yaxis: { gridcolor: '#333' }
+        };
+        Plotly.newPlot('pnl-chart', [trace], layout);
+
+        // 首次加载
+        fetchMyBalance();
+        fetchMyExecutions();
+        fetchTargetStream();
+
+    </script>
+
+</body>
+
+</html>

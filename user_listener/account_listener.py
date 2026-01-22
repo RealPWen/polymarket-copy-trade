@@ -203,43 +203,65 @@ if __name__ == "__main__":
     from trade_handlers import AutoCopyTradeHandler, FileLoggerHandler, RealExecutionHandler
     import config
     
-    # --- 交互式跟单策略选择 ---
-    print("\n" + "="*40)
-    print("🎯 请选择跟单策略方式:")
-    print("1. 按金额比例 (如: 对方下100，你下100 * 比例)")
-    print("2. 按仓位占比 (如: 对方下其仓位10%，你也下你仓位10%)")
-    print("3. 恒定金额   (如: 无论对方下多少，你固定下 USD 金额)")
-    print("="*40)
+    import json
+    import base64
     
-    try:
-        choice = input("请输入编号 (1/2/3, 默认1): ").strip() or "1"
-        strategy_mode = int(choice)
-        strategy_param = 1.0
+    # 接收命令行传递的策略配置 (如果有)
+    # python account_listener.py <address> <strategy_b64_or_json>
+    strategy_config = {"mode": 1, "param": 1.0} # 默认值
+    
+    if len(sys.argv) > 2:
+        arg2 = sys.argv[2]
+        try:
+            # 尝试直接解析 JSON
+            strategy_config = json.loads(arg2)
+            print(f"📥 [CLI] 接收到 JSON 策略配置: {strategy_config}")
+        except:
+            try:
+                # 如果 JSON 解析失败，尝试 Base64 解码
+                decoded = base64.b64decode(arg2).decode('utf-8')
+                strategy_config = json.loads(decoded)
+                print(f"📥 [CLI] 接收到 Base64 策略配置: {strategy_config}")
+            except Exception as e:
+                print(f"⚠️ 策略参数解析失败 (JSON/Base64): {e}，将使用默认配置")
+    else:
+        # ... (rest of interactive logic) ...
+        # 只有在没有 CLI 参数时才进入交互模式
+        # --- 交互式跟单策略选择 ---
+        print("\n" + "="*40)
+        print("🎯 请选择跟单策略方式:")
+        print("1. 按金额比例 (如: 对方下100，你下100 * 比例)")
+        print("2. 按仓位占比 (如: 对方下其仓位10%，你也下你仓位10%)")
+        print("3. 恒定金额   (如: 无论对方下多少，你固定下 USD 金额)")
+        print("="*40)
         
-        if strategy_mode == 1:
-            val = input("请输入下单比例 (默认 1.0): ").strip() or "1.0"
-            strategy_param = float(val)
-            print(f"✅ 已选择模式 1: 按金额比例 | 参数: {strategy_param}")
-            
-        elif strategy_mode == 2:
-            print(f"✅ 已选择模式 2: 按仓位占比 (基于实时余额计算)")
-            
-        elif strategy_mode == 3:
-            val = input("请输入单笔恒定金额 USD (默认 50.0): ").strip() or "50.0"
-            strategy_param = float(val)
-            print(f"✅ 已选择模式 3: 恒定金额 | 单笔: ${strategy_param}")
-            
-        else:
-            print("⚠️ 输入无效，自动切换为模式 1，比例 1.0")
-            strategy_mode = 1
+        try:
+            choice = input("请输入编号 (1/2/3, 默认1): ").strip() or "1"
+            strategy_mode = int(choice)
             strategy_param = 1.0
             
-    except Exception as e:
-        print(f"⚠️ 输入错误 ({e})，使用默认设置: 模式 1, 比例 1.0")
-        strategy_mode = 1
-        strategy_param = 1.0
+            if strategy_mode == 1:
+                val = input("请输入下单比例 (默认 1.0): ").strip() or "1.0"
+                strategy_param = float(val)
+                print(f"✅ 已选择模式 1: 按金额比例 | 参数: {strategy_param}")
+                
+            elif strategy_mode == 2:
+                print(f"✅ 已选择模式 2: 按仓位占比 (基于实时余额计算)")
+                
+            elif strategy_mode == 3:
+                val = input("请输入单笔恒定金额 USD (默认 50.0): ").strip() or "50.0"
+                strategy_param = float(val)
+                print(f"✅ 已选择模式 3: 恒定金额 | 单笔: ${strategy_param}")
+                
+            else:
+                strategy_mode = 1
+                strategy_param = 1.0
+        except:
+            strategy_mode = 1
+            strategy_param = 1.0
 
-    strategy_config = {"mode": strategy_mode, "param": strategy_param}
+        strategy_config = {"mode": strategy_mode, "param": strategy_param}
+
     print("="*40 + "\n")
 
     # 1. 实盘下单处理器 (核心：真金白银下单)
