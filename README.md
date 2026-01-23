@@ -56,7 +56,7 @@ MIN_REQUIRED_USDC=5.0
 
 ### 1. 运行 Web 服务器
 ```bash
-python user_listener/app.py
+python3.9 user_listener/app.py
 ```
 启动成功后，浏览器访问 `http://127.0.0.1:5005`。
 

@@ -1,5 +1,6 @@
 import pandas as pd
 import time
+import os
 from datetime import datetime
 from polymarket_data_fetcher import PolymarketDataFetcher
 
@@ -188,23 +189,52 @@ class AccountListener:
 
 if __name__ == "__main__":
     import sys
+    import json
+    import base64
+    from trade_handlers import AutoCopyTradeHandler, FileLoggerHandler, RealExecutionHandler
+    import config
     
-    # 默认账户（用户刚才查询的那个）
-    default_wallet = "0xdb27bf2ac5d428a9c63dbc914611036855a6c56e"
+    # --- 核心锁定：强制读取 ENV 配置 ---
+    # 强制重新加载以确保从 config 模块拿到的是最纯净的数据
+    BOT_WALLET = config.FUNDER_ADDRESS.lower() if config.FUNDER_ADDRESS else None
+    TARGET_FROM_ENV = os.getenv("TARGET_TRADER_ADDRESS")
     
-    target_wallet = sys.argv[1] if len(sys.argv) > 1 else default_wallet
+    # 确定要监听的目标 (如果有命令行输入则优先，否则取 ENV)
+    arg_target = sys.argv[1].lower() if len(sys.argv) > 1 else None
+    target_wallet = arg_target if arg_target else (TARGET_FROM_ENV.lower() if TARGET_FROM_ENV else None)
     
+    print("\n" + "🛡️ " * 20)
+    print("      POLYMARKET 自动化跟单系统启动")
+    print("      -------------------------------")
+    print(f"💰 [我的执行钱包] : {BOT_WALLET}")
+    print(f"📡 [正在监控目标] : {target_wallet}")
+    print("🛡️ " * 20 + "\n")
+    
+    if not BOT_WALLET or not target_wallet:
+        print("❌ 错误：配置不全！请检查 .env 文件。")
+        sys.exit(1)
+        
+    # --- 安全熔断器：防止自交易或配置重合 ---
+    if BOT_WALLET == target_wallet:
+        print("\n" + "!" * 50)
+        print("🚨 [拒绝启动] 严重错误：执行钱包不能与监控目标相同！")
+        print(f"   当前两者均为: {BOT_WALLET}")
+        print("   这通常是因为系统环境变量被污染。请尝试以下操作：")
+        print("   1. 检查 .env 文件是否配置正确")
+        print("   2. 重启终端窗口或 IDE 以清空无效环境变量")
+        print("!" * 50 + "\n")
+        sys.exit(1)
+
     listener = AccountListener(target_wallet)
     
     # 注册默认处理器
     listener.add_handler(ConsoleLogHandler()) # 保持原本的控制台美化显示
     
-    # 新增：导入必要的处理器和配置
-    from trade_handlers import AutoCopyTradeHandler, FileLoggerHandler, RealExecutionHandler
-    import config
-    
-    import json
-    import base64
+    # 已经由上面导入
+    # from trade_handlers import AutoCopyTradeHandler, FileLoggerHandler, RealExecutionHandler
+    # import config
+    # import json
+    # import base64
     
     # 接收命令行传递的策略配置 (如果有)
     # python account_listener.py <address> <strategy_b64_or_json>
@@ -252,15 +282,26 @@ if __name__ == "__main__":
                 val = input("请输入单笔恒定金额 USD (默认 50.0): ").strip() or "50.0"
                 strategy_param = float(val)
                 print(f"✅ 已选择模式 3: 恒定金额 | 单笔: ${strategy_param}")
-                
             else:
                 strategy_mode = 1
                 strategy_param = 1.0
-        except:
+
+            # 新增：选择订单类型
+            print("\n⚙️ 选择下单类型:")
+            print("1. 市价单 (FOK) - 增加 $0.01 滑点确保成交 [推荐]")
+            print("2. 限价单 (GTC) - 原价挂单，可能不成交 (建议最小 5 股)")
+            type_choice = input("请选择 (1/2, 默认1): ").strip() or "1"
+            order_type = "FOK" if type_choice == "1" else "GTC"
+            if order_type == "GTC":
+                print("⚠️ 提醒: 限价单模式下，如果价格波动较快可能无法成交。")
+
+        except Exception as e:
+            print(f"⚠️ 输入解析错误: {e}, 将使用默认 FOK 模式")
             strategy_mode = 1
             strategy_param = 1.0
+            order_type = "FOK"
 
-        strategy_config = {"mode": strategy_mode, "param": strategy_param}
+        strategy_config = {"mode": strategy_mode, "param": strategy_param, "order_type": order_type}
 
     print("="*40 + "\n")
 

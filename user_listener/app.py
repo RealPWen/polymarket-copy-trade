@@ -12,6 +12,7 @@ from typing import Dict
 app = Flask(__name__)
 visualizer = TraderVisualizer()
 fetcher = PolymarketDataFetcher()
+tester = None # 提前声明，防止 NameError
 
 # --- 启动时连接验证 ---
 try:
@@ -239,6 +240,14 @@ def launch_copy_trade():
             
         address = address.lower()
         
+        # 显式日志审计
+        import config
+        print("\n" + "🔔" * 20)
+        print(f"🚀 [后台指令] 准备启动跟单进程")
+        print(f"📡 [监控目标] : {address}")
+        print(f"💰 [执行账号] : {config.FUNDER_ADDRESS}")
+        print("🔔" * 20 + "\n")
+
         # 检查是否已运行
         try:
             find_cmd = f"ps aux | grep 'account_listener.py {address}' | grep -v grep"
@@ -307,11 +316,30 @@ def get_my_executions():
 def get_my_balance():
     try:
         import config
-        # 简单实例化 fetcher 获取余额
-        cash = fetcher.get_user_cash_balance(config.FUNDER_ADDRESS)
+        # 优先使用 CLOB Client (tester) 获取实时余额，它比 Data API (fetcher) 更准确
+        if tester:
+            cash = tester.get_balance()
+            print(f"💰 [CLOB] 实时余额: ${cash:.2f}")
+        else:
+            # 兜底方案
+            cash = fetcher.get_user_cash_balance(config.FUNDER_ADDRESS)
+            print(f"⚠️ [DataAPI] 使用兜底余额: ${cash:.2f}")
+            
         return jsonify({"cash": cash, "address": config.FUNDER_ADDRESS})
     except Exception as e:
+        print(f"❌ 获取余额失败: {e}")
         return jsonify({"error": str(e)}), 500
+
+@app.route('/api/my-positions')
+def get_my_positions():
+    try:
+        import config
+        positions_df = fetcher.get_user_positions(config.FUNDER_ADDRESS)
+        if positions_df.empty:
+            return jsonify([])
+        return jsonify(positions_df.to_dict('records'))
+    except Exception as e:
+        return jsonify([])
 
 if __name__ == '__main__':
     # Ensure templates directory exists

@@ -205,7 +205,14 @@
                 </div>
             </div>
 
-            <div class="panel">
+            <div class="panel" style="flex: 1;">
+                <div class="panel-header">我的现有持仓 (My Positions)</div>
+                <div class="panel-content" id="my-positions-list">
+                    <div style="text-align: center; color: #666; padding: 20px;">暂无持仓</div>
+                </div>
+            </div>
+
+            <div class="panel" style="flex: 1;">
                 <div class="panel-header">我的成交历史 (My Executions)</div>
                 <div class="panel-content" id="my-trades-list">
                     <!-- JS 动态填充 -->
@@ -244,6 +251,7 @@
         // 定时刷新器
         setInterval(() => {
             fetchMyBalance();
+            fetchMyPositions();
             fetchMyExecutions();
             fetchTargetStream();
         }, 2500);
@@ -262,6 +270,35 @@
             }
         }
 
+        // 1.5 获取我的当前持仓
+        async function fetchMyPositions() {
+            try {
+                const res = await fetch('/api/my-positions');
+                const data = await res.json();
+                const container = document.getElementById('my-positions-list');
+
+                if (!data || data.length === 0) {
+                    container.innerHTML = '<div style="text-align: center; color: #666; padding: 20px;">暂无持仓</div>';
+                    return;
+                }
+
+                container.innerHTML = data.map(p => `
+                    <div class="trade-item">
+                        <div class="trade-info">
+                            <span style="color: #fff; font-weight: bold; font-size: 11px;">${(p.title || 'Unknown').slice(0, 40)}${(p.title && p.title.length > 40) ? '...' : ''}</span>
+                            <span style="color: #aaa; font-size: 10px;">${p.outcome || 'N/A'}</span>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="display:block; font-weight:bold; color: #fff;">${parseFloat(p.size).toFixed(2)} 股</span>
+                            <span class="trade-meta">价值: $${(p.currentValue || 0).toFixed(2)}</span>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
         // 2. 获取我的成交
         async function fetchMyExecutions() {
             try {
@@ -274,9 +311,12 @@
                 container.innerHTML = data.map(t => `
                 <div class="trade-item">
                     <div class="trade-info">
-                        <span class="${t.side === 'BUY' ? 'tag-buy' : 'tag-sell'}">${t.side}</span>
-                        <span style="font-weight: bold;">${t.size} 股</span>
-                        <span class="trade-meta">@ $${t.price.toFixed(2)}</span>
+                        <span style="color: #fff; font-size: 11px; font-weight: bold; display: block; margin-bottom: 2px;">${(t.market_title || 'Unknown').slice(0, 35)}${(t.market_title && t.market_title.length > 35) ? '...' : ''}</span>
+                        <div>
+                            <span class="${t.side === 'BUY' ? 'tag-buy' : 'tag-sell'}">${t.side}</span>
+                            <span style="font-weight: bold;">${t.size} 股</span>
+                            <span class="trade-meta">@ $${t.price.toFixed(2)}</span>
+                        </div>
                     </div>
                     <div style="text-align: right;">
                         <span style="display:block; font-weight:bold;">$${t.my_target_amount.toFixed(2)}</span>
@@ -340,6 +380,7 @@
 
         // 首次加载
         fetchMyBalance();
+        fetchMyPositions();
         fetchMyExecutions();
         fetchTargetStream();
 

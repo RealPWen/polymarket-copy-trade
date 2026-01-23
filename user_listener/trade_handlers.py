@@ -127,7 +127,8 @@ class RealExecutionHandler(BaseTradeHandler):
 
         # 1. 余额预检 (即时预警)
         try:
-            my_cash = self.fetcher.get_user_cash_balance(self.my_address)
+            # 优先使用 CLOB Client 获取实时余额 (更准)
+            my_cash = self.trader.get_balance()
             if my_cash < config.MIN_REQUIRED_USDC:
                 print("\n" + "!" * 50)
                 print(f"🚨 [账户报警] 余额严重不足!")
@@ -136,8 +137,11 @@ class RealExecutionHandler(BaseTradeHandler):
                 print("!" * 50 + "\n")
                 return
         except Exception as e:
-            print(f"⚠️ [警报系统] 无法获取实时余额: {e}")
-            my_cash = 999999 # 如果获取失败，默认为允许（通过 API 报错兜底）
+            print(f"⚠️ [警报系统] 无法通过 CLOB 获取余额，尝试使用 DataAPI: {e}")
+            try:
+                my_cash = self.fetcher.get_user_cash_balance(self.my_address)
+            except:
+                my_cash = 999999 
 
         # --- 计算我的下单金额 (USD) ---
         my_target_amount = 0
@@ -171,18 +175,67 @@ class RealExecutionHandler(BaseTradeHandler):
             print(f"⏭️ [忽略] 计算出的下单金额 (${my_target_amount:.2f}) 低于系统最小下单门槛 $1.00")
             return
             
-        my_size = round(my_target_amount / price, 2)
+        # --- 计算执行价格 ---
+        order_type = self.strategy.get('order_type', 'GTC').upper()
+        execution_price = round(price, 2) # 基础价格先处理到 2 位
         
-        if my_size <= 0:
-            print(f"⏭️ [忽略] 转换后的股数不足 1 股")
+        # 如果是市价单 (FOK)，增加滑点容忍度以确保成交
+        if order_type == "FOK":
+            if side == "BUY":
+                execution_price = execution_price + 0.01
+            else:
+                execution_price = max(0.01, execution_price - 0.01)
+            print(f"📊 [市价单模式] 开启滑点保护: ${price:.3f} -> ${execution_price:.2f}")
+        
+        # --- 计算下单股数 (已加入 SELL 保护逻辑) ---
+        my_size = 0
+        
+        if side == "BUY":
+            my_size = int(my_target_amount / execution_price)
+        else:
+            # 🔴 对于 SELL，我们需要先知道我们手里有多少股
+            print(f"🔍 [平仓审计] 正在查询我的持仓以准备卖出...")
+            try:
+                my_positions = self.fetcher.get_user_positions(self.my_address)
+                # 寻找匹配的 token_id
+                matched_pos = None
+                if not my_positions.empty:
+                    # 过滤出当前 token 的持仓
+                    curr_pos = my_positions[my_positions['asset'] == token_id]
+                    if not curr_pos.empty:
+                        matched_pos = float(curr_pos.iloc[0]['size'])
+                
+                my_holdings = matched_pos if matched_pos else 0
+                print(f"📊 [持仓数据] 我当前持有: {my_holdings} 股")
+                
+                if my_holdings <= 0:
+                    print(f"⏭️ [跳过] 交易员在平仓，但我并无该市场持仓。")
+                    return
+                
+                # 计算建议卖出量
+                suggested_size = int(my_target_amount / execution_price)
+                
+                # 🔴 关键保护：卖出量不能超过持仓量
+                if suggested_size > my_holdings:
+                    my_size = int(my_holdings) # 如果计算量大于持仓，则全平
+                    print(f"⚠️ [调整] 计算卖出量超过持仓，已自动调整为全平: {my_size} 股")
+                else:
+                    my_size = suggested_size
+            except Exception as e:
+                print(f"⚠️ [持仓查询失败] 将尝试按原计划卖出: {e}")
+                my_size = int(my_target_amount / execution_price)
+
+        if my_size < 5:
+            print(f"⏭️ [跳过] 计算得出的股数 ({my_size}) 不足 5 股。")
+            print(f"    Polymarket 最小下单门槛为 5 股。当前目标金额为 ${my_target_amount:.2f}，执行价为 ${execution_price:.2f}")
             return
 
         print(f"\n⚡ [实盘执行] 正在下达链上订单...")
         print(f"   策略模式: {mode} | 本笔目标: ${my_target_amount:.2f}")
-        print(f"   执行细节: {side} {my_size}股 @ ${price:.3f} (总额: ${my_size*price:.2f})")
+        print(f"   执行细节: {side} {my_size}股 @ ${execution_price:.2f} (类型: {order_type})")
         
         try:
-            result = self.trader.place_order(token_id, side, my_size, price, order_type="GTC")
+            result = self.trader.place_order(token_id, side, my_size, execution_price, order_type=order_type)
             print(f"✅ [成交] 订单已提交: {json.dumps(result, ensure_ascii=False)}")
             
             # --- 记录我的成交日志 (供前端展示) ---
@@ -191,12 +244,14 @@ class RealExecutionHandler(BaseTradeHandler):
                 "timestamp": time.time(),
                 "date_str": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                 "strategy": mode,
+                "order_type": order_type,
                 "trader_base_amount": trader_amount,
                 "my_target_amount": my_target_amount,
                 "side": side,
                 "size": my_size,
-                "price": price,
+                "price": execution_price,
                 "market_token": token_id,
+                "market_title": trade_data.get('title', 'Unknown Market'),
                 "tx_hash": result.get('transactionHash') or result.get('orderID') or "pending" 
             }
             try:
