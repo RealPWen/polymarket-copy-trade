@@ -233,8 +233,8 @@
                 const data = await res.json();
 
                 if (data.status === 'launched' || data.status === 'already_running') {
-                    // 跳转到仪表盘
-                    window.location.href = `/copy-trade/dashboard?address=${address}`;
+                    // 跳转到仪表盘，携带策略参数以便展示
+                    window.location.href = `/copy-trade/dashboard?address=${address}&mode=${selectedMode}&param=${param}&order_type=${selectedOrderType}`;
                 } else {
                     alert("启动失败: " + JSON.stringify(data));
                     btn.innerText = "确认并启动跟单";
