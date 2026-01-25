@@ -299,6 +299,8 @@
         </div>
         <div style="font-size: 12px; color: #888;">
             正在监控: <span id="target-addr" style="color: #fff; font-family: monospace;">...</span>
+            <span onclick="openAddressEdit()" style="cursor: pointer; color: var(--primary); margin-left: 8px;">✎
+                管理</span>
         </div>
     </div>
 
@@ -409,6 +411,31 @@
         </div>
     </div>
 
+    <!-- 地址管理弹窗 -->
+    <div id="address-modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 999; justify-content: center; align-items: center;">
+        <div
+            style="background: var(--surface); padding: 30px; border-radius: 12px; width: 500px; border: 1px solid var(--border);">
+            <h3 style="margin-top: 0; margin-bottom: 20px;">管理监控目标</h3>
+
+            <div id="addr-list-container"
+                style="max-height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+                <!-- JS 动态填充 -->
+            </div>
+
+            <button onclick="addAddressInput()"
+                style="width: 100%; padding: 8px; border: 1px dashed #555; background: rgba(255,255,255,0.05); color: #aaa; cursor: pointer; margin-bottom: 25px;">+
+                添加新地址</button>
+
+            <div style="display: flex; gap: 10px;">
+                <button onclick="closeAddressEdit()"
+                    style="flex: 1; padding: 12px; background: transparent; border: 1px solid #555; color: #fff; border-radius: 4px; cursor: pointer;">取消</button>
+                <button id="save-addr-btn" onclick="saveAddresses()"
+                    style="flex: 1; padding: 12px; background: var(--primary); border: none; color: #fff; border-radius: 4px; cursor: pointer;">保存并重启</button>
+            </div>
+        </div>
+    </div>
+
     <!-- 内置提示音 (Base64) -->
     <audio id="notif-sound"
         src="data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTdvT19"></audio>
@@ -418,9 +445,75 @@
 
         // URL 参数解析
         const params = new URLSearchParams(window.location.search);
-        const addressList = (params.get('address') || "").split(',').filter(a => a.startsWith('0x'));
+        let addressList = (params.get('address') || "").split(',').filter(a => a.startsWith('0x'));
         const mode = params.get('mode');
         const param = params.get('param');
+
+        // --- 地址管理逻辑 ---
+        function openAddressEdit() {
+            const modal = document.getElementById('address-modal');
+            const container = document.getElementById('addr-list-container');
+            container.innerHTML = ''; // 清空
+
+            addressList.forEach(addr => addAddressInput(addr));
+            if (addressList.length === 0) addAddressInput(); // 至少显示一个
+
+            modal.style.display = 'flex';
+        }
+
+        function closeAddressEdit() {
+            document.getElementById('address-modal').style.display = 'none';
+        }
+
+        function addAddressInput(value = "") {
+            const div = document.createElement('div');
+            div.style.cssText = "display: flex; gap: 8px;";
+            div.innerHTML = `
+                <input type="text" class="addr-input" value="${value}" placeholder="0x..." style="flex: 1; padding: 10px; background: #222; border: 1px solid #444; color: #fff; border-radius: 4px;">
+                <button onclick="this.parentElement.remove()" style="padding: 0 15px; background: #333; color: #ff1744; border: 1px solid #444; border-radius: 4px; cursor: pointer;">✕</button>
+            `;
+            document.getElementById('addr-list-container').appendChild(div);
+        }
+
+        async function saveAddresses() {
+            const inputs = document.querySelectorAll('.addr-input');
+            const newAddresses = Array.from(inputs).map(i => i.value.trim()).filter(a => a.startsWith('0x'));
+
+            if (newAddresses.length === 0) {
+                alert("请至少保留一个有效地址");
+                return;
+            }
+
+            const btn = document.getElementById('save-addr-btn');
+            btn.innerText = "正在重启服务...";
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('/api/copy-trade/update-clients', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ addresses: newAddresses })
+                });
+                const data = await res.json();
+
+                if (data.status === 'restarted') {
+                    alert("服务已重启！页面即将刷新...");
+                    // 构造新的 URL 并刷新
+                    const newUrl = new URL(window.location.href);
+                    newUrl.searchParams.set('address', newAddresses.join(','));
+                    window.location.href = newUrl.toString();
+                } else {
+                    alert("更新失败: " + data.error);
+                    btn.innerText = "保存并重启";
+                    btn.disabled = false;
+                }
+            } catch (e) {
+                alert("请求错误: " + e);
+                btn.innerText = "保存并重启";
+                btn.disabled = false;
+            }
+        }
+
         const orderType = params.get('order_type');
         let myWalletAddress = null;
 

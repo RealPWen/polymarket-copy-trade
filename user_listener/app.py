@@ -108,6 +108,80 @@ def get_analysis_data(address):
         print(f"Update error: {e}")
         return jsonify({"error": str(e)}), 500
 
+    except Exception as e:
+        print(f"Update error: {e}")
+        return jsonify({"error": str(e)}), 500
+
+def _kill_all_listeners():
+    """强制终止所有监听进程"""
+    try:
+        # 查找所有 account_listener.py 进程
+        cmd = "ps aux | grep 'account_listener.py' | grep -v grep | awk '{print $2}'"
+        res = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+        pids = res.stdout.strip().split('\n')
+        killed_count = 0
+        
+        for pid in pids:
+            if pid:
+                try:
+                    os.kill(int(pid), signal.SIGTERM)
+                    killed_count += 1
+                except: pass
+        return killed_count
+    except:
+        return 0
+
+@app.route('/api/copy-trade/update-clients', methods=['POST'])
+def update_copy_trade_clients():
+    try:
+        new_addresses = request.json.get('addresses', [])
+        if not new_addresses:
+            return jsonify({"error": "No addresses provided"}), 400
+            
+        # 1. 终止旧进程
+        _kill_all_listeners()
+        
+        # 2. 读取当前策略配置 (用于重启)
+        strategy = {"mode": 1, "param": 1.0} # 默认兜底
+        try:
+            if os.path.exists("monitored_trades/strategy_config.json"):
+                with open("monitored_trades/strategy_config.json", 'r') as f:
+                    strategy = json.load(f)
+        except: pass
+        
+        # 3. 准备启动参数
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        import base64
+        strategy_json = json.dumps(strategy)
+        strategy_b64 = base64.b64encode(strategy_json.encode('utf-8')).decode('utf-8')
+        
+        try:
+            python_path = subprocess.check_output(['which', 'python3.9']).decode().strip()
+        except:
+            import sys
+            python_path = sys.executable
+
+        listener_script = os.path.join(project_root, 'user_listener', 'account_listener.py')
+        combined_addresses = ",".join([a.lower().strip() for a in new_addresses])
+        
+        # 4. 启动新终端
+        applescript = f'''
+        tell application "Terminal"
+            do script "cd {project_root} && {python_path} {listener_script} {combined_addresses} {strategy_b64}"
+            activate
+        end tell
+        '''
+        subprocess.run(['osascript', '-e', applescript])
+        
+        return jsonify({
+            "status": "restarted", 
+            "message": f"服务已重启，正在监控 {len(new_addresses)} 个地址"
+        })
+        
+    except Exception as e:
+        print(f"Client update error: {e}")
+        return jsonify({"error": str(e)}), 500
+
 @app.route('/api/copy-trade/start', methods=['POST'])
 def start_copy_trade():
     address = request.json.get('address')
