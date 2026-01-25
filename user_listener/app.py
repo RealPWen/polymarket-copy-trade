@@ -25,6 +25,15 @@ try:
         print("✅ [系统] 凭证验证成功，API 已就绪")
     else:
         print("⚠️ [系统] 警告：未检测到完整配置，实盘跟单功能可能受限")
+        
+    # Start Daily Report Scheduler
+    try:
+        from daily_reporter import DailyReportScheduler
+        scheduler = DailyReportScheduler()
+        scheduler.start()
+    except Exception as de:
+        print(f"❌ [系统] 无法启动定时报告: {de}")
+
 except Exception as e:
     print(f"❌ [系统] 启动连接验证失败: {e}")
 # --------------------
@@ -122,7 +131,11 @@ def start_copy_trade():
     try:
         # 获取项目根目录和 Python 路径
         project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-        python_path = subprocess.check_output(['which', 'python3.9']).decode().strip()
+        try:
+            python_path = subprocess.check_output(['which', 'python3.9']).decode().strip()
+        except:
+            import sys
+            python_path = sys.executable
         
         # 构建启动命令（在项目根目录下执行）
         listener_script = os.path.join(project_root, 'user_listener', 'account_listener.py')
@@ -291,19 +304,35 @@ def copy_trade_dashboard():
 @app.route('/api/my-executions')
 def get_my_executions():
     try:
+        import config
+        # 直接从 API 读取我的历史成交
+        # limit=50: 获取最近 50 条
+        trades_df = fetcher.get_trades(wallet_address=config.FUNDER_ADDRESS, limit=50, silent=True)
+        
+        if trades_df.empty:
+            return jsonify([])
+            
         trades = []
-        if os.path.exists("my_executions.jsonl"):
-            with open("my_executions.jsonl", "r") as f:
-                # 获取最后 50 条
-                lines = f.readlines()
-                if len(lines) > 50:
-                    lines = lines[-50:]
-                for line in reversed(lines):
-                    try:
-                        trades.append(json.loads(line))
-                    except: continue
+        for _, row in trades_df.iterrows():
+            try:
+                size = float(row.get('size', 0))
+                price = float(row.get('price', 0))
+                usd_val = size * price
+                ts = row.get('timestamp', 0)
+                
+                trades.append({
+                    "market_title": row.get('title', 'Unknown Market'),
+                    "side": row.get('side', 'UNKNOWN'),
+                    "size": f"{size:.2f}",
+                    "my_target_amount": usd_val, # 复用前端字段名 (实际是 Total Value)
+                    "date_str": datetime.fromtimestamp(ts).strftime('%m-%d %H:%M:%S'),
+                    "timestamp": ts
+                })
+            except: continue
+            
         return jsonify(trades)
     except Exception as e:
+        print(f"❌ 获取成交历史失败: {e}")
         return jsonify([])
 
 @app.route('/api/my-balance')
@@ -331,7 +360,16 @@ def get_my_positions():
         positions_df = fetcher.get_user_positions(config.FUNDER_ADDRESS)
         if positions_df.empty:
             return jsonify([])
-        return jsonify(positions_df.to_dict('records'))
+            
+        # 数据清洗与过滤
+        positions_df['size'] = pd.to_numeric(positions_df['size'], errors='coerce').fillna(0)
+        positions_df['currentValue'] = pd.to_numeric(positions_df.get('currentValue', 0), errors='coerce').fillna(0)
+        
+        # 过滤掉极其微小的持仓 (Value < $0.01)
+        # 这通常是已经归零的期权或者残留的灰尘
+        valid_positions = positions_df[positions_df['currentValue'] > 0.01].copy()
+        
+        return jsonify(valid_positions.to_dict('records'))
     except Exception as e:
         return jsonify([])
 

@@ -17,6 +17,13 @@ FUNDER_ADDRESS = os.getenv("POLYMARKET_FUNDER_ADDRESS")
 SIGNATURE_TYPE = int(os.getenv("POLYMARKET_SIGNATURE_TYPE", "1"))
 MIN_REQUIRED_USDC = float(os.getenv("MIN_REQUIRED_USDC", "5.0"))
 
+# Email Configuration
+SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.gmail.com")
+SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
+SMTP_USER = os.getenv("SMTP_USER", "")
+SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
+EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER", "")
+
 # 验证有效性
 if FUNDER_ADDRESS:
     # 强制清理地址格式，防止空格等导致的匹配失败

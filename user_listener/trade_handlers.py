@@ -135,6 +135,14 @@ class RealExecutionHandler(BaseTradeHandler):
                 print(f"   当前余额: ${my_cash:.2f} | 设定最小阈值: ${config.MIN_REQUIRED_USDC:.2f}")
                 print(f"   系统已进入保护模式，将跳过本次及后续交易。请尽快充值！")
                 print("!" * 50 + "\n")
+                
+                # 发送邮件警报
+                try:
+                    from .email_notifier import EmailNotifier
+                    EmailNotifier.send_low_balance_alert(my_cash, config.MIN_REQUIRED_USDC)
+                except Exception as email_err:
+                    print(f"⚠️ 邮件发送尝试失败: {email_err}")
+                
                 return
         except Exception as e:
             print(f"⚠️ [警报系统] 无法通过 CLOB 获取余额，尝试使用 DataAPI: {e}")
