@@ -114,8 +114,28 @@ class RealExecutionHandler(BaseTradeHandler):
             return
             
         import config # 动态读取配置中的阈值
+        
+        # --- 动态策略热更新 ---
+        self._reload_strategy()
 
         token_id = trade_data.get('asset')
+
+    def _reload_strategy(self):
+        """尝试从文件加载最新的策略配置"""
+        try:
+            import os
+            config_path = "monitored_trades/strategy_config.json"
+            if os.path.exists(config_path):
+                with open(config_path, 'r') as f:
+                    new_strategy = json.load(f)
+                    # 简单校验
+                    if 'mode' in new_strategy and 'param' in new_strategy:
+                        # 仅当配置真的变化时才打印
+                        if new_strategy != self.strategy:
+                            print(f"\n🔄 [策略热更新] 检测到配置变更: {self.strategy} -> {new_strategy}")
+                            self.strategy = new_strategy
+        except Exception as e:
+            print(f"⚠️ 策略热更新失败: {e}")
         side = trade_data.get('side', '').upper()
         trader_shares = float(trade_data.get('size', 0))
         price = float(trade_data.get('price', 0))

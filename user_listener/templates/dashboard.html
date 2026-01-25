@@ -281,7 +281,9 @@
             <div id="strategy-info"
                 style="margin-left: 20px; padding-left: 20px; border-left: 1px solid #444; display: flex; gap: 20px; align-items: center;">
                 <div style="display: flex; flex-direction: column;">
-                    <span style="font-size: 10px; color: #888; text-transform: uppercase;">当前策略</span>
+                    <span style="font-size: 10px; color: #888; text-transform: uppercase;">当前策略 <span
+                            onclick="openStrategyEdit()" style="cursor: pointer; color: var(--primary);">✎
+                            编辑</span></span>
                     <span id="display-strategy"
                         style="font-size: 13px; color: var(--primary); font-weight: bold;">--</span>
                 </div>
@@ -369,6 +371,44 @@
         </div>
     </div>
 
+    <!-- 策略编辑弹窗 -->
+    <div id="strategy-modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 999; justify-content: center; align-items: center;">
+        <div
+            style="background: var(--surface); padding: 30px; border-radius: 12px; width: 400px; border: 1px solid var(--border);">
+            <h3 style="margin-top: 0; margin-bottom: 20px;">修改跟单策略</h3>
+
+            <label style="display: block; margin-bottom: 10px; font-size: 12px; color: #aaa;">选择模式</label>
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <button id="edit-mode-1" class="edit-mode-btn" data-mode="1" onclick="selectEditMode(1)"
+                    style="flex: 1; padding: 10px; background: #333; border: 1px solid transparent; color: #fff; cursor: pointer; border-radius: 4px;">金额比例</button>
+                <button id="edit-mode-2" class="edit-mode-btn" data-mode="2" onclick="selectEditMode(2)"
+                    style="flex: 1; padding: 10px; background: #333; border: 1px solid transparent; color: #fff; cursor: pointer; border-radius: 4px;">仓位占比</button>
+                <button id="edit-mode-3" class="edit-mode-btn" data-mode="3" onclick="selectEditMode(3)"
+                    style="flex: 1; padding: 10px; background: #333; border: 1px solid transparent; color: #fff; cursor: pointer; border-radius: 4px;">恒定金额</button>
+            </div>
+
+            <label id="edit-param-label" style="display: block; margin-bottom: 8px; font-weight: bold;">参数数值</label>
+            <input type="number" id="edit-param"
+                style="width: 100%; padding: 10px; background: #222; border: 1px solid #444; color: #fff; border-radius: 4px; box-sizing: border-box; margin-bottom: 25px;">
+
+            <div style="display: flex; gap: 10px;">
+                <button onclick="closeStrategyEdit()"
+                    style="flex: 1; padding: 12px; background: transparent; border: 1px solid #555; color: #fff; border-radius: 4px; cursor: pointer;">取消</button>
+                <button id="save-strat-btn" onclick="saveStrategy()"
+                    style="flex: 1; padding: 12px; background: var(--primary); border: none; color: #fff; border-radius: 4px; cursor: pointer;">确认修改</button>
+            </div>
+
+            <style>
+                .edit-mode-btn.active {
+                    background: rgba(0, 123, 255, 0.2) !important;
+                    border-color: var(--primary) !important;
+                    color: var(--primary) !important;
+                }
+            </style>
+        </div>
+    </div>
+
     <!-- 内置提示音 (Base64) -->
     <audio id="notif-sound"
         src="data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTdvT19"></audio>
@@ -422,10 +462,8 @@
         // 定时刷新
         setInterval(() => {
             fetchMyBalance();
-            fetchMyPositions();
-            fetchMyExecutions();
-            fetchTargetStreamAggregate(); // 聚合拉取
-            updateCharts();
+            fetchTargetStreamAggregate();
+            // updateCharts(); // 移除无脑轮询，改为按需触发
         }, 5000);
 
         function playNotification() {
@@ -438,23 +476,44 @@
                 const res = await fetch('/api/my-balance');
                 const data = await res.json();
                 const str = JSON.stringify(data);
+
+                // 优化：只有当余额变化（或初始化）时，才去查询持仓和订单流
                 if (str === lastState.balance) return;
+
+                console.log("💰 余额变化检测: ", lastState.balance, "->", str);
                 lastState.balance = str;
+
                 if (data.cash !== undefined) {
                     document.getElementById('my-balance').innerText = '$' + data.cash.toFixed(2);
                     document.getElementById('my-address').innerText = data.address.slice(0, 6) + '...' + data.address.slice(-4);
+
                     const isFirst = (myWalletAddress === null);
                     myWalletAddress = data.address;
-                    if (isFirst) updateCharts();
+
+                    // 触发级联更新
+                    fetchMyPositions();
+                    fetchMyExecutions();
+                    // 更新我的 PnL 曲线
+                    fetchAnalysis(myWalletAddress, 'my-pnl-chart', 'my-pnl-total', '#00c853');
+
+                    if (isFirst) {
+                        // 首次加载时，也强制刷新一下目标图表
+                        updateTargetCharts();
+                    }
                 }
             } catch (e) { }
         }
 
-        async function updateCharts() {
-            if (myWalletAddress) fetchAnalysis(myWalletAddress, 'my-pnl-chart', 'my-pnl-total', '#00c853');
+        function updateTargetCharts() {
             addressList.forEach(addr => {
                 fetchAnalysis(addr, `chart-${addr}`, `total-pnl-${addr}`, '#007bff');
             });
+        }
+
+        async function updateCharts() {
+            // 保留此函数用于 resize 事件，但不用于轮询
+            if (myWalletAddress) fetchAnalysis(myWalletAddress, 'my-pnl-chart', 'my-pnl-total', '#00c853');
+            updateTargetCharts();
         }
 
         async function fetchAnalysis(addr, chartId, totalId, color) {
@@ -508,7 +567,12 @@
                 const dataStr = JSON.stringify(allTrades);
                 if (initialLoadDone.targetStream && dataStr !== lastState.targetStream) {
                     if (localStorage.getItem('enable_sound') === 'true') playNotification();
+
+                    // 目标流有更新 -> 更新目标图表
+                    console.log("🌊 目标流更新，刷新图表...");
+                    updateTargetCharts();
                 }
+
                 if (dataStr === lastState.targetStream) return;
                 lastState.targetStream = dataStr;
 
@@ -602,17 +666,99 @@
             if (checked) playNotification();
         }
 
+        // --- 策略编辑相关 ---
+        let currentStrategy = { mode: 1, param: 1.0 }; // 默认
+
+        // 页面加载时初始化 (从 URL 这里其实拿不到最新的，如果有更持久的存储更好，这里先用 URL 兜底)
+        if (mode) currentStrategy.mode = parseInt(mode);
+        if (param) currentStrategy.param = parseFloat(param);
+
+        function openStrategyEdit() {
+            const modal = document.getElementById('strategy-modal');
+            modal.style.display = 'flex';
+
+            // 选中当前模式
+            document.getElementById(`edit-mode-${currentStrategy.mode}`).click();
+            document.getElementById('edit-param').value = currentStrategy.param;
+        }
+
+        function closeStrategyEdit() {
+            document.getElementById('strategy-modal').style.display = 'none';
+        }
+
+        function selectEditMode(m) {
+            document.querySelectorAll('.edit-mode-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`edit-mode-${m}`).classList.add('active');
+
+            const label = document.getElementById('edit-param-label');
+            if (m === 1) label.innerText = "跟单比例 (0.1 - 10.0)";
+            if (m === 2) label.innerText = "仓位占比 (0.1 = 10%) [单人模式]";
+            if (m === 3) label.innerText = "单笔固定金额 (USD)";
+        }
+
+        async function saveStrategy() {
+            const modeBtn = document.querySelector('.edit-mode-btn.active');
+            const newMode = parseInt(modeBtn.dataset.mode);
+            const newParam = parseFloat(document.getElementById('edit-param').value);
+
+            if (isNaN(newParam) || newParam <= 0) {
+                alert("请输入有效的参数数值");
+                return;
+            }
+
+            const payload = {
+                mode: newMode,
+                param: newParam
+            };
+
+            const btn = document.getElementById('save-strat-btn');
+            btn.innerText = "保存中...";
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('/api/copy-trade/update-strategy', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+
+                if (data.status === 'updated') {
+                    // 更新本地状态和 UI
+                    currentStrategy = payload;
+
+                    const modeNames = { '1': '金额比例 (Ratio)', '2': '仓位占比 (Portfolio)', '3': '恒定金额 (Constant)' };
+                    document.getElementById('display-strategy').innerText = modeNames[newMode] || '自定义';
+
+                    let pText = '--';
+                    if (newMode === 1) pText = 'x' + newParam;
+                    if (newMode === 2) pText = (newParam * 100).toFixed(0) + '%';
+                    if (newMode === 3) pText = '$' + newParam;
+                    document.getElementById('display-param').innerText = pText;
+
+                    closeStrategyEdit();
+                    alert("策略更新成功！下一次跟单将应用新参数。");
+                } else {
+                    alert("更新失败: " + data.error);
+                }
+            } catch (e) {
+                alert("请求错误: " + e);
+            } finally {
+                btn.innerText = "确认修改";
+                btn.disabled = false;
+            }
+        }
+
+
         // --- 新增：响应式布局适配 ---
         window.addEventListener('resize', () => {
-            ['my-pnl-chart', ...addressList.map(addr => `chart-${addr}`)].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) Plotly.Plots.resize(el);
-            });
+            updateCharts();
         });
 
         fetchMyBalance().then(() => {
             const saved = localStorage.getItem('enable_sound');
             if (saved === 'true') document.getElementById('sound-toggle').checked = true;
+            // 初始也拉一下，防止 Balance 刚开始一样导致不触发
             fetchMyPositions();
             fetchMyExecutions();
             fetchTargetStreamAggregate();

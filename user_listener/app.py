@@ -266,35 +266,61 @@ def launch_copy_trade():
 
         listener_script = os.path.join(project_root, 'user_listener', 'account_listener.py')
         
-        started_count = 0
-        for address in addresses:
-            address = address.lower().strip()
+        # 构建多地址参数 (comma separated)
+        combined_addresses = ",".join([a.lower().strip() for a in addresses])
+        
+        # 检查是否已有包含这组地址的监听器在运行
+        # 简单检查：只要还在运行这个脚本，且包含其中一个地址，就视为冲突 (或者您可以设计更复杂的逻辑)
+        # 这里为了简化，我们先 kill 掉旧的单一监听器，或者允许并行运行
+        
+        # 启动单一终端窗口，传入所有地址
+        applescript = f'''
+        tell application "Terminal"
+            do script "cd {project_root} && {python_path} {listener_script} {combined_addresses} {strategy_b64}"
+            activate
+        end tell
+        '''
+        
+        # [NEW] 同时初始化策略热更新文件
+        try:
+            os.makedirs("monitored_trades", exist_ok=True)
+            with open("monitored_trades/strategy_config.json", "w") as f:
+                json.dump(strategy, f)
+        except Exception as e:
+            print(f"⚠️ 无法写入策略初始配置文件: {e}")
             
-            # 检查该地址是否已运行
-            find_cmd = f"ps aux | grep 'account_listener.py {address}' | grep -v grep"
-            result = subprocess.run(find_cmd, shell=True, capture_output=True, text=True)
-            if result.stdout.strip():
-                print(f"⏩ [跳过] 地址 {address} 已有进程在运行")
-                continue
-
-            # 启动新终端窗口
-            applescript = f'''
-            tell application "Terminal"
-                do script "cd {project_root} && {python_path} {listener_script} {address} {strategy_b64}"
-                activate
-            end tell
-            '''
-            subprocess.run(['osascript', '-e', applescript])
-            started_count += 1
-            print(f"🚀 [启动] 已开启 {address} 的监听进程")
-
+        subprocess.run(['osascript', '-e', applescript])
+        
         return jsonify({
             "status": "success",
-            "message": f"成功启动 {started_count} 路新监听，共计监控 {len(addresses)} 个地址"
+            "message": f"成功启动多路监听进程，监控 {len(addresses)} 个地址: {combined_addresses}"
         })
     except Exception as e:
         print(f"Launch error: {e}")
         return jsonify({"error": str(e)}), 500
+
+@app.route('/api/copy-trade/update-strategy', methods=['POST'])
+def update_strategy():
+    try:
+        new_strategy = request.json
+        if not new_strategy:
+            return jsonify({"error": "No data provided"}), 400
+            
+        # 简单验证
+        if 'mode' not in new_strategy or 'param' not in new_strategy:
+             return jsonify({"error": "Missing required fields (mode, param)"}), 400
+             
+        # 写入共享配置文件
+        os.makedirs("monitored_trades", exist_ok=True)
+        with open("monitored_trades/strategy_config.json", "w") as f:
+            json.dump(new_strategy, f, indent=4)
+            
+        print(f"✅ 策略已通过 API 更新: {new_strategy}")
+        return jsonify({"status": "updated", "strategy": new_strategy})
+    except Exception as e:
+        print(f"❌ 更新策略失败: {e}")
+        return jsonify({"error": str(e)}), 500
+
 
 @app.route('/copy-trade/dashboard')
 def copy_trade_dashboard():
