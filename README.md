@@ -1,5 +1,7 @@
 # 🎯 Polymarket Smart Trader & Copier (专业级多路跟单系统)
 
+![Landing Page](images/landing_page.png)
+
 这是一个专为 **Polymarket** 深度玩家打造的“雷达式”交易员分析与同步执行系统。它不仅能帮助你快速审计市场上明星交易员的往期战绩，还能让你实时开启单路或“多路聚合”的跟随交易。
 
 ---
@@ -9,11 +11,13 @@
 本系统已升级为 **V2.0 专业版**，新增了以下重磅功能：
 
 ### 1. 🖥️ 全能实盘仪表盘 (Dashboard)
+![Dashboard Overview](images/dashboard_full.png)
 - **实时监控**: 可以在一个页面同时看到 **我的持仓**、**我的成交历史**、**目标交易员的实时订单流**。
 - **动态图表**: 自动绘制本金收益曲线 (PnL Chart)，盈亏趋势一目了然。
 - **智能刷新**: 仅在余额变动或有新订单时才刷新数据，极低资源占用。
 
 ### 2. ⚡️ 策略与目标热更新 (Hot-Swap)
+![Strategy Edit](images/dashboard_strategy.png) ![Tracking Management](images/dashboard_tracking.png)
 - **策略热修改**: 在仪表盘点击 **"✎ 编辑" (Edit Strategy)**，即可在**不停止程序**的情况下，实时调整跟单金额（如从 $5 改为 $50）或切换模式。
 - **目标热管理**: 点击 **"✎ 管理" (Manage Addresses)**，可以随时添加新的监控大神或移除表现不佳的地址，系统会自动平滑重启监听进程。
 
@@ -27,6 +31,7 @@
 ## 🌟 核心功能演示
 
 ### 1. 📊 深度战绩审计
+![Configuration Page](images/config_page.png)
 输入地址（或逗号分隔的多个地址），系统将并行抓取 Polymarket 链上数据：
 - **对比收益曲线**：在同一坐标系下对比多人的累计盈亏。
 - **三维数据视图**：Current Positions (当前持仓)、Performance (绩效榜)、Order History (订单流) 全新圆角卡片化展示。
