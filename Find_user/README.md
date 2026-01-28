@@ -68,19 +68,38 @@ Find_user/
 └── README.md
 ```
 
-### 3.2 快速开始
+### 3.2 启动指南 (Startup Guide)
 
+按照以下步骤即可完成从"发现"到"验证"的全流程。
+
+#### 第一步：环境配置
+确保根目录下存在 `.env` 文件，并填写了必要的 API Key（如有）。
+安装依赖（如果尚未安装）：
 ```powershell
-# 1. 抓取排行榜数据 (Top 1000)
-python fetch_leaderboard.py --max-traders 1000
-
-# 2. 分析并筛选聪明钱
-python smart_trader_analyzer.py
-
-# 3. 使用预设配置
-python smart_trader_analyzer.py --preset aggressive  # 严格筛选
-python smart_trader_analyzer.py --preset relaxed     # 宽松筛选
+pip install -r requirements.txt
 ```
+
+#### 第二步：运行发现流水线 (Discovery)
+一键运行数据抓取、清洗和筛选流程。
+```powershell
+# 运行完整流程 (默认配置)
+python run_pipeline.py
+
+# 仅抓取最近且活跃的用户 (推荐)
+python run_pipeline.py --time-period MONTH --max-traders 500
+```
+*输出*: `output/smart_wallets_YYYYMMDD_HHMMSS.json`
+
+#### 第三步：运行跟单模拟 (Simulation)
+对筛选出的钱包进行历史回测，验证其策略的盈利能力。
+```powershell
+# 对生成的钱包名单进行回测 (请替换为实际文件名)
+python smart_follower_sim.py --input output/smart_wallets_XXXX.json
+
+# 自定义回测参数 (最近 50 笔交易，0.5% 滑点)
+python smart_follower_sim.py --input output/smart_wallets_XXXX.json --lookback 50 --slippage 50
+```
+*输出*: `output/simulation_YYYYMMDD_HHMMSS.csv` (包含夏普比率、回撤等指标)
 
 ### 3.3 命令行参数
 
@@ -165,32 +184,17 @@ python smart_trader_analyzer.py --preset relaxed     # 宽松筛选
 3.  **计算当前价值 (Mark to Market)**: 使用 CLOB Orderbook 的深度数据，计算如果我们现在平仓能卖多少钱。
     *   使用 `calculateMarketPrice(token_id, side=SELL, amount=size)` 获取精确的市价卖出价格。
 
-### 7. Smart Follower Simulation (New!)
-A robust backtesting engine that simulates "Mirror Trading" on identified smart wallets.
+### 7.2 模拟原理 (Simulation Logic)
 
-**Core Logic:**
-1. **Replay History**: Fetches full trade history (`BUY` and `SELL`) for each wallet.
-2. **Portfolio Tracking**: Maintains a virtual portfolio of positions, tracking average entry price and size.
-3. **Realized PnL**: When the master wallet sells, the simulator "follows" the sell and calculates realized profit/loss:
-   - `Profit = (Sell Price - Avg Entry Price) * Sell Size`
-4. **Unrealized PnL / Redemption**:
-   - For open positions, calculates value based on **Current Market Price** (CLOB).
-   - For resolved markets, calculates value based on **Settlement Outcome** (Winner=$1, Loser=$0).
+模拟器通过"镜像交易" (Mirror Trading) 的方式验证策略：
 
-**Key Metrics:**
-- **Sharpe/Sortino Ratio**: Risk-adjusted returns.
-- **Max Drawdown**: assessing the risk of ruin.
-- **Win Rate**: % of profitable trades.
-- **Statistical Significance (P-value)**: Verifying if performance is luck or skill.
-
-**Usage:**
-```bash
-# Full processing
-python smart_follower_sim.py --input output/smart_wallets.json --lookback 300 --workers 10
-
-# Random sampling (e.g., test 50 random wallets)
-python smart_follower_sim.py --input output/smart_wallets.json --lookback 300 --sample 50
-```
+1.  **历史重放**: 获取通过筛选的钱包的历史交易记录 (`BUY` 和 `SELL`)。
+2.  **虚拟仓位**: 维护一个虚拟账户，跟踪持仓数量和平均入场价格。
+3.  **实现盈亏 (Realized PnL)**: 当目标钱包卖出时，计算跟单的已实现盈亏：
+    *   `Profit = (Sell Price - Avg Entry Price) * Sell Size`
+4.  **未实现盈亏 (Unrealized PnL)**: 
+    *   对于未平仓位，使用 **CLOB 当前盘口价格** 计算浮动盈亏。
+    *   对于已决裁市场，根据 **裁决结果** (赢=1, 输=0) 计算最终价值。
 
 ### 7.3 高级统计评估 (Advanced Statistical Metrics)
 
