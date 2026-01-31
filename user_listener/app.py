@@ -8,6 +8,7 @@ import pandas as pd
 import subprocess
 import signal
 import json
+import sys
 from datetime import datetime
 from typing import Dict
 
@@ -15,6 +16,119 @@ app = Flask(__name__)
 visualizer = TraderVisualizer()
 fixed_analyzer = FixedBetStrategyAnalyzer()
 fetcher = PolymarketDataFetcher()
+
+# --- 服务器/桌面环境检测 ---
+def _is_server_mode():
+    """
+    检测是否运行在服务器环境（无图形界面）
+    服务器环境下返回 True，桌面环境返回 False
+    """
+    # 方法1: 检查 DISPLAY 环境变量 (Linux无头服务器通常没有)
+    if platform.system() == 'Linux' and not os.environ.get('DISPLAY'):
+        return True
+    
+    # 方法2: 检查是否可以使用 osascript (macOS 桌面专有)
+    if platform.system() == 'Darwin':
+        try:
+            # 快速测试 osascript 是否可用
+            result = subprocess.run(
+                ['osascript', '-e', 'return "test"'],
+                capture_output=True,
+                timeout=2
+            )
+            if result.returncode != 0:
+                return True  # osascript 失败，可能是无头环境
+        except Exception:
+            return True
+        return False  # macOS 桌面模式
+    
+    # 方法3: Windows 目前默认为桌面模式
+    if platform.system() == 'Windows':
+        return False
+    
+    # 默认: Linux 服务器模式
+    return True
+
+def _get_python_path():
+    """
+    获取 Python 解释器路径，优先级：
+    1. python3.9 (如果存在)
+    2. python3 (通用)
+    3. 当前解释器 (sys.executable)
+    """
+    for cmd in ['python3.9', 'python3', 'python']:
+        try:
+            result = subprocess.run(
+                ['which', cmd] if platform.system() != 'Windows' else ['where', cmd],
+                capture_output=True,
+                text=True,
+                timeout=5
+            )
+            if result.returncode == 0 and result.stdout.strip():
+                return result.stdout.strip().split('\n')[0]  # 取第一个结果
+        except Exception:
+            continue
+    return sys.executable  # 兜底方案
+
+def _start_listener_process(project_root, listener_script, python_path, 
+                              combined_addresses, strategy_b64, exec_args):
+    """
+    统一的监听器启动函数，自动适配服务器/桌面环境
+    返回: (success: bool, message: str)
+    """
+    is_server = _is_server_mode()
+    
+    if platform.system() == 'Windows':
+        # Windows: 使用 cmd 启动新窗口
+        cmd_str = f'cmd /c start "Polymarket Listener" cmd /k "cd /d {project_root} && {python_path} "{listener_script}" "{combined_addresses}" "{strategy_b64}" {exec_args}"'
+        subprocess.Popen(cmd_str, shell=True)
+        return True, "Windows 终端窗口已启动"
+    
+    elif is_server:
+        # Linux 服务器模式: 使用 nohup 后台运行
+        log_dir = os.path.join(project_root, 'user_listener', 'logs')
+        os.makedirs(log_dir, exist_ok=True)
+        log_file = os.path.join(log_dir, 'listener_nohup.log')
+        
+        # 构建完整命令
+        cmd_parts = [
+            python_path, listener_script, 
+            combined_addresses, strategy_b64
+        ]
+        # 添加可选的执行参数
+        if exec_args:
+            cmd_parts.extend(exec_args.split())
+        
+        # 使用 nohup 启动，输出重定向到日志文件
+        with open(log_file, 'a') as log_f:
+            log_f.write(f"\n\n{'='*60}\n")
+            log_f.write(f"[{datetime.now().isoformat()}] 启动监听器\n")
+            log_f.write(f"命令: {' '.join(cmd_parts)}\n")
+            log_f.write(f"{'='*60}\n")
+        
+        # 启动后台进程
+        with open(log_file, 'a') as out_f:
+            process = subprocess.Popen(
+                cmd_parts,
+                stdout=out_f,
+                stderr=subprocess.STDOUT,
+                cwd=project_root,
+                start_new_session=True  # 脱离父进程，确保后台运行
+            )
+        
+        return True, f"服务器后台进程已启动 (PID: {process.pid})，日志: {log_file}"
+    
+    else:
+        # macOS 桌面模式: 使用 AppleScript 打开新 Terminal
+        applescript = f'''
+        tell application "Terminal"
+            do script "cd {project_root} && caffeinate -dimsu {python_path} {listener_script} {combined_addresses} {strategy_b64} {exec_args}"
+            activate
+        end tell
+        '''
+        subprocess.run(['osascript', '-e', applescript])
+        return True, "macOS Terminal 窗口已启动"
+
 tester = None # 提前声明，防止 NameError
 
 # --- 启动时连接验证 ---
@@ -105,6 +219,44 @@ def health_check():
         return jsonify(status)
     except Exception as e:
         return jsonify({'backend': False, 'error': str(e)})
+
+@app.route('/api/server-info')
+def server_info():
+    """Server environment diagnostic endpoint for deployment debugging"""
+    try:
+        info = {
+            'platform': platform.system(),
+            'platform_version': platform.version(),
+            'python_version': platform.python_version(),
+            'python_path': _get_python_path(),
+            'server_mode': _is_server_mode(),
+            'display_env': os.environ.get('DISPLAY', 'Not Set'),
+            'working_directory': os.getcwd(),
+            'listener_processes': [],
+            'timestamp': datetime.now().isoformat()
+        }
+        
+        # 获取所有运行中的监听器进程
+        try:
+            cmd = "ps aux | grep 'account_listener.py' | grep -v grep"
+            result = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=5)
+            if result.stdout.strip():
+                for line in result.stdout.strip().split('\n'):
+                    parts = line.split()
+                    if len(parts) >= 11:
+                        info['listener_processes'].append({
+                            'pid': parts[1],
+                            'cpu': parts[2],
+                            'mem': parts[3],
+                            'start_time': parts[8],
+                            'command': ' '.join(parts[10:])[:100]  # 截断过长的命令
+                        })
+        except Exception as e:
+            info['process_error'] = str(e)
+        
+        return jsonify(info)
+    except Exception as e:
+        return jsonify({'error': str(e)})
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
@@ -253,21 +405,10 @@ def update_copy_trade_clients():
         strategy_json = json.dumps(strategy)
         strategy_b64 = base64.b64encode(strategy_json.encode('utf-8')).decode('utf-8')
         
-        try:
-            python_path = subprocess.check_output(['which', 'python3.9']).decode().strip()
-        except:
-            import sys
-            python_path = sys.executable
-
+        python_path = _get_python_path()
         listener_script = os.path.join(project_root, 'user_listener', 'account_listener.py')
         combined_addresses = ",".join([a.lower().strip() for a in new_addresses])
         
-        # 4. 启动新终端 (使用 caffeinate 防止休眠)
-        # -d: Prevent display sleep
-        # -i: Prevent idle sleep
-        # -m: Prevent disk idle sleep
-        # -s: Prevent system sleep
-        # -u: Declare user is active
         # 获取钱包配置
         wallet_info = request.json.get('wallet', {})
         exec_address = wallet_info.get('address', '')
@@ -275,29 +416,20 @@ def update_copy_trade_clients():
         
         exec_args = ""
         if exec_address and exec_private_key:
-             # 使用 CLI 参数传递 (移除单引号以避免 shell 解析问题)
              exec_address = exec_address.replace("'", "")
              exec_private_key = exec_private_key.replace("'", "")
              exec_args = f"--exec-address {exec_address} --exec-key {exec_private_key}"
-             
-        if platform.system() == 'Windows':
-             # Windows 启动命令
-             cmd_str = f'cmd /c start "Polymarket Listener" cmd /k "cd /d {project_root} && {python_path} "{listener_script}" "{combined_addresses}" "{strategy_b64}" {exec_args}"'
-             subprocess.Popen(cmd_str, shell=True)
-        else:
-            # MacOS 启动命令
-            # 注意：account_listener.py 的参数顺序是: targets strategy [optional args]
-            applescript = f'''
-            tell application "Terminal"
-                do script "cd {project_root} && caffeinate -dimsu {python_path} {listener_script} {combined_addresses} {strategy_b64} {exec_args}"
-                activate
-            end tell
-            '''
-            subprocess.run(['osascript', '-e', applescript])
+        
+        # 使用统一的启动函数
+        success, msg = _start_listener_process(
+            project_root, listener_script, python_path,
+            combined_addresses, strategy_b64, exec_args
+        )
         
         return jsonify({
-            "status": "started",
-            "message": f"多路监听器启动成功，监听: {combined_addresses}"
+            "status": "started" if success else "error",
+            "message": f"多路监听器启动成功，监听: {combined_addresses}。{msg}",
+            "server_mode": _is_server_mode()
         })
         
     except Exception as e:
@@ -341,46 +473,23 @@ def start_copy_trade():
         
         exec_args = ""
         if exec_address and exec_private_key:
-             # 使用 CLI 参数传递 (移除单引号以避免 shell 解析问题，假设地址/私钥无空格)
              exec_args = f"--exec-address {exec_address} --exec-key {exec_private_key}"
         
         # 获取项目根目录和 Python 路径
         project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-        try:
-            python_path = subprocess.check_output(['which', 'python3.9']).decode().strip()
-        except:
-            import sys
-            python_path = sys.executable
-        
-        # 构建启动命令（在项目根目录下执行）
+        python_path = _get_python_path()
         listener_script = os.path.join(project_root, 'user_listener', 'account_listener.py')
         
-        # 使用 osascript 在新的 Terminal 窗口中启动（macOS）
-        
-        if platform.system() == 'Windows':
-            cmd_str = f'cmd /c start "Polymarket Listener" cmd /k "cd /d {project_root} && {python_path} "{listener_script}" "{address}" {exec_args}"'
-            subprocess.Popen(cmd_str, shell=True)
-            
-        else:
-            applescript = f'''
-            tell application "Terminal"
-                do script "cd {project_root} && {python_path} {listener_script} {address} {exec_args}"
-                activate
-            end tell
-            '''
-            
-            # 启动进程，但不等待它结束
-            subprocess.Popen(
-                ['osascript', '-e', applescript],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE
-            )
+        # 使用统一的启动函数 (strategy_b64 为空字符串使用默认策略)
+        success, msg = _start_listener_process(
+            project_root, listener_script, python_path,
+            address, "", exec_args  # address 单一地址, 无策略配置
+        )
         
         # 等待一小会儿，确保监听器进程已经启动
         import time
         time.sleep(2)
         
-        # 验证监听器是否成功启动
         # 验证监听器是否成功启动
         if platform.system() == 'Windows':
             verify_cmd = f"Get-WmiObject Win32_Process | Where-Object {{ $_.CommandLine -like '*account_listener.py* {address}*' }}"
@@ -388,15 +497,18 @@ def start_copy_trade():
             if not verify_result.stdout.strip():
                 raise Exception("监听器启动失败，请检查终端输出")
         else:
-            verify_cmd = f"ps aux | grep 'account_listener.py {address}' | grep -v grep"
+            verify_cmd = f"ps aux | grep 'account_listener.py' | grep '{address}' | grep -v grep"
             verify_result = subprocess.run(verify_cmd, shell=True, capture_output=True, text=True)
             
             if not verify_result.stdout.strip():
-                raise Exception("监听器启动失败，请检查终端输出")
+                # 在服务器模式下不报错，可能进程在后台运行
+                if not _is_server_mode():
+                    raise Exception("监听器启动失败，请检查终端输出")
         
         return jsonify({
             "status": "started",
-            "message": f"监听器已在新终端窗口中启动，监听地址: {address}"
+            "message": f"监听器已启动，监听地址: {address}。{msg}",
+            "server_mode": _is_server_mode()
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -493,27 +605,14 @@ def launch_copy_trade():
             
         project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         import base64
-        import json # Added import for json
         strategy_json = json.dumps(strategy)
         strategy_b64 = base64.b64encode(strategy_json.encode('utf-8')).decode('utf-8')
         
-        # 尝试获取 Python 路径
-        try:
-            python_path = subprocess.check_output(['which', 'python3.9']).decode().strip()
-        except:
-            import sys # Added import for sys
-            python_path = sys.executable
-
+        python_path = _get_python_path()
         listener_script = os.path.join(project_root, 'user_listener', 'account_listener.py')
         
         # 构建多地址参数 (comma separated)
         combined_addresses = ",".join([a.lower().strip() for a in addresses])
-        
-        # 检查是否已有包含这组地址的监听器在运行
-        # 简单检查：只要还在运行这个脚本，且包含其中一个地址，就视为冲突 (或者您可以设计更复杂的逻辑)
-        # 这里为了简化，我们先 kill 掉旧的单一监听器，或者允许并行运行
-        
-
         
         # [NEW] 同时初始化策略热更新文件
         try:
@@ -530,28 +629,20 @@ def launch_copy_trade():
         
         exec_args = ""
         if exec_address and exec_private_key:
-             # 使用 CLI 参数传递 (移除单引号以避免 shell 解析问题)
              exec_address = exec_address.replace("'", "")
              exec_private_key = exec_private_key.replace("'", "")
              exec_args = f"--exec-address {exec_address} --exec-key {exec_private_key}"
 
-        if platform.system() == "Windows":
-             # Windows 启动命令
-             cmd_str = f'cmd /c start "Polymarket Listener" cmd /k "cd /d {project_root} && {python_path} "{listener_script}" "{combined_addresses}" "{strategy_b64}" {exec_args}"'
-             subprocess.Popen(cmd_str, shell=True)
-        else:
-            # macOS: 使用 AppleScript
-            applescript = f'''
-            tell application "Terminal"
-                do script "cd {project_root} && caffeinate -dimsu {python_path} {listener_script} {combined_addresses} {strategy_b64} {exec_args}"
-                activate
-            end tell
-            '''
-            subprocess.run(['osascript', '-e', applescript])
+        # 使用统一的启动函数
+        success, msg = _start_listener_process(
+            project_root, listener_script, python_path,
+            combined_addresses, strategy_b64, exec_args
+        )
         
         return jsonify({
-            "status": "success",
-            "message": f"成功启动多路监听进程，监控 {len(addresses)} 个地址: {combined_addresses}"
+            "status": "success" if success else "error",
+            "message": f"成功启动多路监听进程，监控 {len(addresses)} 个地址: {combined_addresses}。{msg}",
+            "server_mode": _is_server_mode()
         })
     except Exception as e:
         print(f"Launch error: {e}")

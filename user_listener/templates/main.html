@@ -332,11 +332,11 @@
 
         /* ========== 跟单配置页面 ========== */
         .setup-container {
-            min-height: 100%;
+            flex: 1;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            padding: 40px 24px;
+            justify-content: center;
+            padding: 24px;
         }
 
         .setup-card {
@@ -346,8 +346,6 @@
             padding: 32px;
             width: 100%;
             max-width: 500px;
-            margin: auto;
-            /* 关键：空间足够时居中，不足时由 padding 撑开 */
         }
 
         .setup-card h2 {
