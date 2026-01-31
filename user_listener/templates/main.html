@@ -206,7 +206,8 @@
         /* ========== 页面视图 ========== */
         .page-view {
             flex: 1;
-            overflow: hidden;
+            overflow-y: auto;
+            /* 允许垂直滚动 */
             display: none;
         }
 
@@ -331,11 +332,11 @@
 
         /* ========== 跟单配置页面 ========== */
         .setup-container {
-            flex: 1;
+            min-height: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 24px;
+            padding: 40px 24px;
         }
 
         .setup-card {
@@ -345,6 +346,8 @@
             padding: 32px;
             width: 100%;
             max-width: 500px;
+            margin: auto;
+            /* 关键：空间足够时居中，不足时由 padding 撑开 */
         }
 
         .setup-card h2 {
