@@ -535,12 +535,34 @@
 
         // --- 动态生成目标曲线 UI ---
         const targetContainer = document.getElementById('target-charts-container');
+        // 全局缓存，用于在切换时无需重新请求
+        const chartDataCache = {};
+        const currentChartType = {}; // 记录每个地址当前是 'actual' 还是 'strategy'
+
         addressList.forEach((addr, index) => {
+            currentChartType[addr] = 'actual'; // 默认显示真实盈亏
             const html = `
-                <div class="panel" style="flex: none; height: 250px;">
+                <div class="panel" style="flex: none; height: 300px;">
                     <div class="panel-header">
-                        <span>跟踪: ${addr.slice(0, 8)}...${addr.slice(-6)}</span>
-                        <span id="total-pnl-${addr}" style="font-size: 12px; color: var(--primary);">--</span>
+                        <div style="display:flex; flex-direction:column;">
+                            <span>跟踪: ${addr.slice(0, 8)}...${addr.slice(-6)}</span>
+                            <span style="font-size:10px; color:#888;" id="chart-sub-title-${addr}">Actual PnL</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <span id="total-pnl-${addr}" style="font-size: 14px; font-weight:bold; color: var(--primary);">--</span>
+                            
+                            <!-- 切换按钮组 -->
+                            <div style="display:flex; background:#333; border-radius:4px; padding:2px;">
+                                <button id="btn-actual-${addr}" onclick="switchChart('${addr}', 'actual')" 
+                                    style="background:var(--primary); color:#fff; border:none; border-radius:3px; padding:4px 8px; font-size:10px; cursor:pointer;">
+                                    真实
+                                </button>
+                                <button id="btn-strategy-${addr}" onclick="switchChart('${addr}', 'strategy')" 
+                                    style="background:transparent; color:#aaa; border:none; border-radius:3px; padding:4px 8px; font-size:10px; cursor:pointer;">
+                                    策略
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="panel-content" style="padding: 0; display: flex;">
                         <div id="chart-${addr}" style="flex: 1; width: 100%;"></div>
@@ -549,6 +571,83 @@
             `;
             targetContainer.insertAdjacentHTML('beforeend', html);
         });
+
+        // --- 切换图表函数 ---
+        function switchChart(addr, type) {
+            currentChartType[addr] = type;
+
+            // 更新按钮样式
+            const btnActual = document.getElementById(`btn-actual-${addr}`);
+            const btnStrat = document.getElementById(`btn-strategy-${addr}`);
+
+            if (type === 'actual') {
+                btnActual.style.background = 'var(--primary)';
+                btnActual.style.color = '#fff';
+                btnStrat.style.background = 'transparent';
+                btnStrat.style.color = '#aaa';
+                document.getElementById(`chart-sub-title-${addr}`).innerText = "Actual Trader PnL";
+            } else {
+                btnStrat.style.background = 'var(--primary)';
+                btnStrat.style.color = '#fff';
+                btnActual.style.background = 'transparent';
+                btnActual.style.color = '#aaa';
+                document.getElementById(`chart-sub-title-${addr}`).innerText = "Fixed Bet ($5) Simulation";
+            }
+
+            // 渲染图表
+            renderChart(addr);
+        }
+
+        function renderChart(addr) {
+            const data = chartDataCache[addr];
+            const type = currentChartType[addr];
+            const chartId = `chart-${addr}`;
+            const totalId = `total-pnl-${addr}`;
+
+            if (!data) return; // 数据尚未加载
+
+            let history = [];
+            let color = '#007bff';
+
+            if (type === 'actual') {
+                history = data.pnl_history || [];
+                color = '#007bff'; // 蓝色
+            } else {
+                history = data.strategy_pnl_history || [];
+                color = '#e040fb'; // 紫色，区分策略
+            }
+
+            if (history.length > 0) {
+                const x = history.map(d => d.date);
+                const y = history.map(d => d.cumulative_pnl);
+                const lastPnl = y[y.length - 1];
+
+                const el = document.getElementById(totalId);
+                if (el) {
+                    el.innerText = (lastPnl >= 0 ? '+' : '') + '$' + lastPnl.toFixed(2);
+                    el.style.color = lastPnl >= 0 ? '#00c853' : '#ff1744';
+                }
+
+                Plotly.react(chartId, [{
+                    x: x, y: y, type: 'scatter', mode: 'lines',
+                    line: { color: color, width: 2 },
+                    fill: 'tozeroy',
+                    fillcolor: color === '#007bff' ? 'rgba(0,123,255,0.1)' : 'rgba(224,64,251,0.1)'
+                }], {
+                    paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+                    font: { color: '#888', size: 10 },
+                    margin: { t: 10, r: 10, l: 35, b: 30 },
+                    xaxis: { gridcolor: '#222', showgrid: true },
+                    yaxis: { gridcolor: '#222', showgrid: true, tickprefix: '$' },
+                    autosize: true
+                }, { responsive: true, displayModeBar: false });
+            } else {
+                // 无数据情况
+                const el = document.getElementById(totalId);
+                if (el) el.innerText = "No Data";
+                Plotly.purge(chartId); // 清空
+            }
+        }
 
         // --- 状态与追踪 ---
         const lastState = { balance: "", positions: "", executions: "", targetStream: "" };
@@ -602,7 +701,7 @@
 
         function updateTargetCharts() {
             addressList.forEach(addr => {
-                fetchAnalysis(addr, `chart-${addr}`, `total-pnl-${addr}`, '#007bff');
+                fetchAnalysis(addr, null, null, null); // 传递 null 因为逻辑变了
             });
         }
 
@@ -616,31 +715,42 @@
             try {
                 const res = await fetch(`/api/analysis/${addr}`);
                 const data = await res.json();
-                if (data.pnl_history && data.pnl_history.length > 0) {
-                    const x = data.pnl_history.map(d => d.date);
-                    const y = data.pnl_history.map(d => d.cumulative_pnl);
-                    const lastPnl = y[y.length - 1];
-                    const el = document.getElementById(totalId);
-                    if (el) {
-                        el.innerText = (lastPnl >= 0 ? '+' : '') + '$' + lastPnl.toFixed(2);
-                        el.style.color = lastPnl >= 0 ? '#00c853' : '#ff1744';
+
+                // 特殊情况：如果是我的地址(myWalletAddress)，仍使用旧逻辑 (因为我不是“目标”)
+                // 或者我们可以简单判断是否在 chartDataCache 中
+
+                if (addressList.includes(addr)) {
+                    // 这是监控目标 -> 使用新逻辑
+                    chartDataCache[addr] = data;
+                    renderChart(addr);
+                } else {
+                    // 这是我的账户 -> 保持旧逻辑
+                    if (data.pnl_history && data.pnl_history.length > 0) {
+                        const x = data.pnl_history.map(d => d.date);
+                        const y = data.pnl_history.map(d => d.cumulative_pnl);
+                        const lastPnl = y[y.length - 1];
+                        const el = document.getElementById(totalId);
+                        if (el) {
+                            el.innerText = (lastPnl >= 0 ? '+' : '') + '$' + lastPnl.toFixed(2);
+                            el.style.color = lastPnl >= 0 ? '#00c853' : '#ff1744';
+                        }
+                        Plotly.react(chartId, [{
+                            x: x, y: y, type: 'scatter', mode: 'lines+markers',
+                            marker: { size: 4, opacity: 0.5 },
+                            fill: 'tozeroy',
+                            line: { color: color, width: 3, shape: 'spline' },
+                            fillcolor: color === '#00c853' ? 'rgba(0,200,83,0.1)' : 'rgba(0,123,255,0.1)'
+                        }], {
+                            paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+                            font: { color: '#888', size: 10 },
+                            margin: { t: 5, r: 25, l: 35, b: 30 },
+                            xaxis: { gridcolor: '#222', showgrid: true, zeroline: false },
+                            yaxis: { gridcolor: '#222', showgrid: true, zeroline: true, zerolinecolor: '#444', tickprefix: '$' },
+                            autosize: true
+                        }, { responsive: true, displayModeBar: false });
                     }
-                    Plotly.react(chartId, [{
-                        x: x, y: y, type: 'scatter', mode: 'lines+markers',
-                        marker: { size: 4, opacity: 0.5 },
-                        fill: 'tozeroy',
-                        line: { color: color, width: 3, shape: 'spline' },
-                        fillcolor: color === '#00c853' ? 'rgba(0,200,83,0.1)' : 'rgba(0,123,255,0.1)'
-                    }], {
-                        paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
-                        font: { color: '#888', size: 10 },
-                        margin: { t: 5, r: 25, l: 35, b: 30 },
-                        xaxis: { gridcolor: '#222', showgrid: true, zeroline: false },
-                        yaxis: { gridcolor: '#222', showgrid: true, zeroline: true, zerolinecolor: '#444', tickprefix: '$' },
-                        autosize: true
-                    }, { responsive: true, displayModeBar: false });
                 }
-            } catch (e) { }
+            } catch (e) { console.error("Analysis fetch error:", e); }
         }
 
         async function fetchTargetStreamAggregate() {

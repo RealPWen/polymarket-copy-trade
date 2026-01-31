@@ -166,7 +166,7 @@ class RealExecutionHandler(BaseTradeHandler):
                 
                 # 发送邮件警报
                 try:
-                    from .email_notifier import EmailNotifier
+                    from email_notifier import EmailNotifier
                     EmailNotifier.send_low_balance_alert(my_cash, config.MIN_REQUIRED_USDC)
                 except Exception as email_err:
                     print(f"⚠️ 邮件发送尝试失败: {email_err}")

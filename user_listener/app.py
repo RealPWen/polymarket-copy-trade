@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from visualize_trader import TraderVisualizer
+from strategy_analysis import FixedBetStrategyAnalyzer
 from polymarket_data_fetcher import PolymarketDataFetcher
 import os
 import platform
@@ -12,6 +13,7 @@ from typing import Dict
 
 app = Flask(__name__)
 visualizer = TraderVisualizer()
+fixed_analyzer = FixedBetStrategyAnalyzer()
 fetcher = PolymarketDataFetcher()
 tester = None # 提前声明，防止 NameError
 
@@ -78,7 +80,7 @@ def get_analysis_data(address):
         # Perform full analysis
         analysis_df, trades_df, active_df = visualizer.analyzer.analyze_trader(address, limit=5000)
         
-        # Prepare PnL data for chart
+        # 1. 真实盈亏数据 (Actual PnL)
         pnl_data = []
         if not analysis_df.empty:
             df_temp = analysis_df.copy()
@@ -94,13 +96,27 @@ def get_analysis_data(address):
             top_wins = []
             top_losses = []
 
+        # 2. 模拟策略盈亏数据 (Strategy PnL)
+        strat_pnl_data = []
+        try:
+            if not trades_df.empty:
+                # 复用 trades_df 避免二次请求
+                strat_pnl_df, _, _ = fixed_analyzer._simulate_strategy(trades_df)
+                if not strat_pnl_df.empty:
+                    df_strat = strat_pnl_df.copy()
+                    df_strat['date'] = df_strat['date'].dt.strftime('%Y-%m-%d %H:%M')
+                    strat_pnl_data = df_strat[['date', 'cumulative_pnl']].to_dict('records')
+        except Exception as e:
+            print(f"Strategy simulation error: {e}")
+
         # Prepare positions
         active_list = []
         if not active_df.empty:
             active_list = active_df.to_dict('records')
 
         return jsonify({
-            "pnl_history": pnl_data,
+            "pnl_history": pnl_data,          # 真实
+            "strategy_pnl_history": strat_pnl_data, # 模拟
             "top_wins": top_wins,
             "top_losses": top_losses,
             "active_positions": active_list

@@ -23,3 +23,4 @@ env/
 monitored_trades/
 report_*.html
 !example_data.csv
+monitored_trades/
