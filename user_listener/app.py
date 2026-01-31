@@ -714,9 +714,81 @@ def update_strategy():
         print(f"❌ 更新策略失败: {e}")
         return jsonify({"error": str(e)}), 500
 
+# ====== 多设备同步 API ======
+SYNC_DATA_DIR = os.path.join(os.path.dirname(__file__), 'sync_data')
+os.makedirs(SYNC_DATA_DIR, exist_ok=True)
+
+@app.route('/api/sync/strategies', methods=['GET', 'POST'])
+def sync_strategies():
+    """同步策略数据 - 支持多设备共享"""
+    filepath = os.path.join(SYNC_DATA_DIR, 'strategies.json')
+    
+    if request.method == 'GET':
+        try:
+            if os.path.exists(filepath):
+                with open(filepath, 'r') as f:
+                    return jsonify(json.load(f))
+            return jsonify([])
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+    
+    elif request.method == 'POST':
+        try:
+            data = request.json
+            with open(filepath, 'w') as f:
+                json.dump(data, f, indent=2)
+            return jsonify({"status": "saved", "count": len(data) if isinstance(data, list) else 1})
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+@app.route('/api/sync/targets', methods=['GET', 'POST'])
+def sync_targets():
+    """同步跟踪目标 - 支持多设备共享"""
+    filepath = os.path.join(SYNC_DATA_DIR, 'targets.json')
+    
+    if request.method == 'GET':
+        try:
+            if os.path.exists(filepath):
+                with open(filepath, 'r') as f:
+                    return jsonify(json.load(f))
+            return jsonify([])
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+    
+    elif request.method == 'POST':
+        try:
+            data = request.json
+            with open(filepath, 'w') as f:
+                json.dump(data, f, indent=2)
+            return jsonify({"status": "saved", "count": len(data) if isinstance(data, list) else 1})
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+@app.route('/api/sync/wallets', methods=['GET', 'POST'])
+def sync_wallets():
+    """同步钱包数据 - 支持多设备共享 (注意: 私钥会存储在服务器)"""
+    filepath = os.path.join(SYNC_DATA_DIR, 'wallets.json')
+    
+    if request.method == 'GET':
+        try:
+            if os.path.exists(filepath):
+                with open(filepath, 'r') as f:
+                    return jsonify(json.load(f))
+            return jsonify([])
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+    
+    elif request.method == 'POST':
+        try:
+            data = request.json
+            with open(filepath, 'w') as f:
+                json.dump(data, f, indent=2)
+            return jsonify({"status": "saved", "count": len(data) if isinstance(data, list) else 1})
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
 
 @app.route('/copy-trade/dashboard')
-@login_required
 def copy_trade_dashboard():
     address = request.args.get('address')
     return render_template('dashboard.html', address=address)

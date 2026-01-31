@@ -1107,12 +1107,85 @@
         let knownHashes = new Set();
         let initialLoad = true;
 
-        // 策略管理 (使用 localStorage 持久化)
-        let strategies = JSON.parse(localStorage.getItem('copyStrategies') || '[]');
+        // 策略管理 (使用服务器同步)
+        let strategies = [];
         let activeStrategyId = null;
 
-        // 钱包管理 (使用 localStorage 持久化)
-        let wallets = JSON.parse(localStorage.getItem('boundWallets') || '[]');
+        // 钱包管理 (使用服务器同步)
+        let wallets = [];
+
+        // ========== 服务器同步函数 ==========
+        async function loadFromServer() {
+            try {
+                // 并行加载所有数据
+                const [strategiesRes, walletsRes, targetsRes] = await Promise.all([
+                    fetch('/api/sync/strategies').catch(() => ({ ok: false })),
+                    fetch('/api/sync/wallets').catch(() => ({ ok: false })),
+                    fetch('/api/sync/targets').catch(() => ({ ok: false }))
+                ]);
+
+                if (strategiesRes.ok) {
+                    const data = await strategiesRes.json();
+                    strategies = Array.isArray(data) ? data : [];
+                }
+                if (walletsRes.ok) {
+                    const data = await walletsRes.json();
+                    wallets = Array.isArray(data) ? data : [];
+                }
+                if (targetsRes.ok) {
+                    const data = await targetsRes.json();
+                    trackedTargets = Array.isArray(data) ? data : [];
+                }
+
+                console.log('✅ 从服务器加载数据完成');
+            } catch (e) {
+                console.error('❌ 从服务器加载数据失败:', e);
+                // 降级到 localStorage
+                strategies = JSON.parse(localStorage.getItem('copyStrategies') || '[]');
+                wallets = JSON.parse(localStorage.getItem('boundWallets') || '[]');
+                trackedTargets = JSON.parse(localStorage.getItem('trackedTargets') || '[]');
+            }
+        }
+
+        async function syncStrategiesToServer() {
+            try {
+                await fetch('/api/sync/strategies', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(strategies)
+                });
+                // 同时保存到 localStorage 作为备份
+                localStorage.setItem('copyStrategies', JSON.stringify(strategies));
+            } catch (e) {
+                console.error('同步策略失败:', e);
+            }
+        }
+
+        async function syncWalletsToServer() {
+            try {
+                await fetch('/api/sync/wallets', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(wallets)
+                });
+                localStorage.setItem('boundWallets', JSON.stringify(wallets));
+            } catch (e) {
+                console.error('同步钱包失败:', e);
+            }
+        }
+
+        async function syncTargetsToServer() {
+            try {
+                await fetch('/api/sync/targets', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(trackedTargets)
+                });
+                localStorage.setItem('trackedTargets', JSON.stringify(trackedTargets));
+            } catch (e) {
+                console.error('同步目标失败:', e);
+            }
+        }
 
         // ========== 钱包管理 ==========
         function generateWalletId() {
@@ -1120,7 +1193,7 @@
         }
 
         function saveWallets() {
-            localStorage.setItem('boundWallets', JSON.stringify(wallets));
+            syncWalletsToServer();  // 同步到服务器
             renderWalletList();
             renderWalletDropdown();
         }
@@ -1208,10 +1281,10 @@
         }
 
         // ========== 跟踪目标管理 (Address Book) ==========
-        let trackedTargets = JSON.parse(localStorage.getItem('trackedTargets') || '[]');
+        let trackedTargets = [];
 
         function saveTrackedTargets() {
-            localStorage.setItem('trackedTargets', JSON.stringify(trackedTargets));
+            syncTargetsToServer();  // 同步到服务器
             renderTrackedTargetsList();
             renderQuickTargetSelect();
         }
@@ -1300,7 +1373,7 @@
         }
 
         function saveStrategies() {
-            localStorage.setItem('copyStrategies', JSON.stringify(strategies));
+            syncStrategiesToServer();  // 同步到服务器
             renderStrategyList();
         }
 
@@ -1434,6 +1507,10 @@
 
         // 页面加载时渲染列表并自动绑定 env 钱包
         document.addEventListener('DOMContentLoaded', async () => {
+            // 先从服务器加载数据
+            await loadFromServer();
+
+            // 然后渲染所有列表
             renderStrategyList();
             renderWalletList();
             renderWalletDropdown();
