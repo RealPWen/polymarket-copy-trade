@@ -92,7 +92,13 @@ class AccountListener:
         
         # 初始化起点
         try:
-            initial_trades = self.fetcher.get_trades(wallet_address=target_address, limit=1, silent=True)
+            # 同样使用 activity 来初始化，通过 type 过滤
+            init_activity = self.fetcher.get_user_activity(target_address, limit=5)
+            if not init_activity.empty and 'type' in init_activity.columns:
+                initial_trades = init_activity[init_activity['type'] == 'TRADE']
+            else:
+                initial_trades = pd.DataFrame()
+
             if not initial_trades.empty:
                 self.state_timestamps[target_address] = initial_trades.iloc[0]['timestamp']
                 self.state_hashes[target_address].add(initial_trades.iloc[0]['transactionHash'])
@@ -104,8 +110,14 @@ class AccountListener:
 
         while self.running:
             try:
-                # 1. 获取最近的交易 (增加 limit 以更好处理高频并发)
-                trades_df = self.fetcher.get_trades(wallet_address=target_address, limit=50, silent=True)
+                # 1. 获取最近的活动 (使用 /activity 替代 /trades 以避免延迟)
+                activity_df = self.fetcher.get_user_activity(target_address, limit=50)
+                
+                # 过滤出 TRADE 类型的记录
+                if not activity_df.empty and 'type' in activity_df.columns:
+                    trades_df = activity_df[activity_df['type'] == 'TRADE'].copy()
+                else:
+                    trades_df = activity_df if not activity_df.empty else pd.DataFrame() # 兜底
                 
                 num_fetched = len(trades_df)
                 new_count = 0

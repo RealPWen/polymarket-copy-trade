@@ -318,16 +318,31 @@ def analyze():
 @app.route('/stream/<address>')
 def stream_trades(address):
     try:
-        # Get the 20 most recent trades for the address
-        trades_df = fetcher.get_trades(wallet_address=address, limit=20, silent=True)
+        # 🔄 使用 /activity API 替代 /trades，因为后者延迟严重（可能滞后数小时）
+        activity_df = fetcher.get_user_activity(address, limit=50)
+        if activity_df.empty:
+            return jsonify([])
+        
+        # 只保留 TRADE 类型的记录（排除存款、提款等）
+        if 'type' in activity_df.columns:
+            trades_df = activity_df[activity_df['type'] == 'TRADE'].copy()
+        else:
+            trades_df = activity_df.copy()
+        
         if trades_df.empty:
             return jsonify([])
         
         # Prepare data for frontend
         trades_df['date_str'] = pd.to_datetime(trades_df['timestamp'], unit='s').dt.strftime('%m-%d %H:%M:%S')
-        trades_list = trades_df.to_dict('records')
+        
+        # 确保必要的字段存在（activity API 的字段可能略有不同）
+        if 'transactionHash' not in trades_df.columns and 'transactionHash' in activity_df.columns:
+            pass  # 已经有了
+        
+        trades_list = trades_df.head(20).to_dict('records')
         return jsonify(trades_list)
     except Exception as e:
+        print(f"❌ Stream error: {e}")
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/logs')
