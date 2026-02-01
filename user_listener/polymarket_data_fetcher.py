@@ -179,20 +179,21 @@ class PolymarketDataFetcher:
         params = {"user": wallet_address, "limit": limit}
         return self._make_request(url, params, "用户持仓")
     
-    def get_user_activity(self, wallet_address: str, limit: int = 100) -> pd.DataFrame:
+    def get_user_activity(self, wallet_address: str, limit: int = 100, silent: bool = False) -> pd.DataFrame:
         """
         获取用户活动记录（交易、存款等）
         
         参数:
             wallet_address: 用户钱包地址
             limit: 返回结果数量限制
+            silent: 是否静默（不打印日志）
         
         返回:
             pandas DataFrame 包含活动数据
         """
         url = f"{self.data_api_base}/activity"
         params = {"user": wallet_address, "limit": limit}
-        return self._make_request(url, params, "用户活动")
+        return self._make_request(url, params, "用户活动", silent=silent)
     
     def get_user_value(self, wallet_address: str) -> Dict:
         """
@@ -342,10 +343,21 @@ class PolymarketDataFetcher:
     
     # ==================== Helper Methods ====================
     
-    def _make_request(self, url: str, params: Dict, data_type: str) -> pd.DataFrame:
+    def _make_request(self, url: str, params: Dict, data_type: str, silent: bool = False) -> pd.DataFrame:
         """发送请求并返回 DataFrame"""
         try:
-            response = self.session.get(url, params=params)
+            # 添加时间戳参数破坏缓存 (如果尚未存在)
+            if "_t" not in params:
+                 import time as time_module
+                 params["_t"] = int(time_module.time() * 1000)
+            
+            # 添加无缓存请求头
+            headers = {
+                "Cache-Control": "no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache"
+            }
+
+            response = self.session.get(url, params=params, headers=headers)
             response.raise_for_status()
             
             data = response.json()
@@ -362,11 +374,13 @@ class PolymarketDataFetcher:
             else:
                 df = pd.DataFrame()
             
-            print(f"✅ 成功获取 {len(df)} 条{data_type}数据")
+            if not silent:
+                print(f"✅ 成功获取 {len(df)} 条{data_type}数据")
             return df
             
         except requests.exceptions.RequestException as e:
-            print(f"❌ 获取{data_type}数据失败: {e}")
+            if not silent:
+                print(f"❌ 获取{data_type}数据失败: {e}")
             return pd.DataFrame()
     
     def _make_request_json(self, url: str, params: Dict, data_type: str) -> Dict:

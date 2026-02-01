@@ -93,7 +93,7 @@ class AccountListener:
         # 初始化起点
         try:
             # 同样使用 activity 来初始化，通过 type 过滤
-            init_activity = self.fetcher.get_user_activity(target_address, limit=5)
+            init_activity = self.fetcher.get_user_activity(target_address, limit=5, silent=True)
             if not init_activity.empty and 'type' in init_activity.columns:
                 initial_trades = init_activity[init_activity['type'] == 'TRADE']
             else:
@@ -111,7 +111,7 @@ class AccountListener:
         while self.running:
             try:
                 # 1. 获取最近的活动 (使用 /activity 替代 /trades 以避免延迟)
-                activity_df = self.fetcher.get_user_activity(target_address, limit=50)
+                activity_df = self.fetcher.get_user_activity(target_address, limit=50, silent=True)
                 
                 # 过滤出 TRADE 类型的记录
                 if not activity_df.empty and 'type' in activity_df.columns:
