@@ -105,10 +105,15 @@ class RealExecutionHandler(BaseTradeHandler):
             self.strategy = strategy_config or {"mode": 1, "param": 1.0}
             self.last_strategy_mtime = 0
             self.my_address = funder_address
+            # 24小时市场去重: {condition_id: last_trade_timestamp}
+            self.market_trade_cache = {}
+            self.MARKET_COOLDOWN_SECONDS = 24 * 60 * 60  # 24小时冷却期
             print(f"🚀 [系统] 实盘下单处理器已就绪 | 模式: {self.strategy['mode']} | 参数: {self.strategy['param']}")
         except Exception as e:
             print(f"❌ [系统] 初始化交易模块失败: {e}")
             self.trader = None
+            self.market_trade_cache = {}
+            self.MARKET_COOLDOWN_SECONDS = 24 * 60 * 60
 
     def _reload_strategy(self):
         """尝试从文件加载最新的策略配置 (带缓存优化)"""
@@ -137,12 +142,13 @@ class RealExecutionHandler(BaseTradeHandler):
             return
             
         import config # 动态读取配置中的阈值
+        import time
         
         # --- 动态策略热更新 ---
         self._reload_strategy()
 
         token_id = trade_data.get('asset')
-
+        condition_id = trade_data.get('conditionId', token_id)  # 使用 conditionId 作为市场唯一标识
 
         side = trade_data.get('side', '').upper()
         trader_shares = float(trade_data.get('size', 0))
@@ -152,6 +158,20 @@ class RealExecutionHandler(BaseTradeHandler):
         if not token_id or price <= 0:
             print(f"⚠️ [跳过] 执行层无效数据 (Asset: {token_id}, Price: {price})")
             return
+
+        # --- 24小时市场去重检查 (仅限 BUY 操作) ---
+        if side == "BUY" and condition_id:
+            current_time = time.time()
+            last_trade_time = self.market_trade_cache.get(condition_id, 0)
+            time_since_last = current_time - last_trade_time
+            
+            if time_since_last < self.MARKET_COOLDOWN_SECONDS:
+                remaining_hours = (self.MARKET_COOLDOWN_SECONDS - time_since_last) / 3600
+                market_title = trade_data.get('title', 'Unknown')[:40]
+                print(f"\n⏳ [冷却中] 该市场 24 小时内已交易过，跳过")
+                print(f"   市场: {market_title}")
+                print(f"   剩余冷却: {remaining_hours:.1f} 小时")
+                return
 
         # 1. 余额预检 (即时预警)
         try:
@@ -295,6 +315,11 @@ class RealExecutionHandler(BaseTradeHandler):
                     f.write(json.dumps(log_entry, ensure_ascii=False) + "\n")
             except Exception as le:
                 print(f"⚠️ 日志写入失败: {le}")
+            
+            # --- 更新 24 小时市场去重缓存 (仅 BUY 操作) ---
+            if side == "BUY" and condition_id:
+                self.market_trade_cache[condition_id] = time.time()
+                print(f"🔒 [缓存] 市场已加入 24 小时冷却: {condition_id[:20]}...")
 
         except Exception as e:
             print(f"❌ [错误] 链上下单失败: {e}")
