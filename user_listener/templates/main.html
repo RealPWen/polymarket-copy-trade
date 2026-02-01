@@ -1862,6 +1862,10 @@
         }
 
         // ========== 监控功能 ==========
+        // 余额跟踪变量，用于检测变化
+        let lastKnownMyBalance = null;
+        let lastKnownTargetTradeCount = 0;
+
         function startMonitoring() {
             if (!monitorConfig) return;
 
@@ -1870,6 +1874,8 @@
 
             // 重置状态，确保加载新钱包的数据
             myWalletAddress = null;
+            lastKnownMyBalance = null;
+            lastKnownTargetTradeCount = 0;
 
             fetchMyBalance();
             fetchMyPositions();
@@ -1878,18 +1884,11 @@
             fetchTargetAnalysis();
 
             if (monitorInterval) clearInterval(monitorInterval);
-            let tickCount = 0;
             monitorInterval = setInterval(() => {
                 fetchMyBalance();
                 fetchMyPositions();
                 fetchMyExecutions();
                 fetchTargetStream();
-
-                // 每 20 秒 (4 * 5s) 更新一次 PnL 分析，避免过于频繁
-                tickCount++;
-                if (tickCount % 4 === 0) {
-                    fetchMyPnL();
-                }
             }, 5000);
         }
 
@@ -1903,12 +1902,21 @@
                 const data = await res.json();
 
                 if (data.cash !== undefined) {
-                    document.getElementById('my-balance').innerText = '$' + data.cash.toFixed(2);
+                    const currentBalance = data.cash;
+                    document.getElementById('my-balance').innerText = '$' + currentBalance.toFixed(2);
                     document.getElementById('my-address').innerText =
                         data.address.slice(0, 6) + '...' + data.address.slice(-4);
 
+                    // 首次加载时设置地址和初始 PnL
                     if (!myWalletAddress) {
                         myWalletAddress = data.address;
+                        lastKnownMyBalance = currentBalance;
+                        fetchMyPnL();
+                    }
+                    // 检测余额变化 (允许 $0.01 的误差)，变化时才更新 PnL
+                    else if (lastKnownMyBalance !== null && Math.abs(currentBalance - lastKnownMyBalance) > 0.01) {
+                        console.log(`💰 [我的账户] 余额变化: $${lastKnownMyBalance.toFixed(2)} → $${currentBalance.toFixed(2)}, 刷新 PnL`);
+                        lastKnownMyBalance = currentBalance;
                         fetchMyPnL();
                     }
                 }
@@ -2076,8 +2084,13 @@
                     }
                 });
 
-                if (hasNew && document.getElementById('sound-toggle').checked) {
-                    document.getElementById('notif-sound').play().catch(() => { });
+                // 检测到新交易时：播放提示音 + 刷新目标 PnL 分析
+                if (hasNew) {
+                    console.log(`📊 [目标账户] 检测到新交易，刷新 PnL 分析`);
+                    fetchTargetAnalysis();
+                    if (document.getElementById('sound-toggle').checked) {
+                        document.getElementById('notif-sound').play().catch(() => { });
+                    }
                 }
 
                 initialLoad = false;

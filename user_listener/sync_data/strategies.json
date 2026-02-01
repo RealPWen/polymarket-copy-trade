@@ -1,0 +1,26 @@
+[
+  {
+    "id": "strat_1769940579548_kpoydc",
+    "address": "0xdb27bf2ac5d428a9c63dbc914611036855a6c56e",
+    "mode": 3,
+    "param": 5,
+    "orderType": "FOK",
+    "walletId": "wallet_1769861929298_6s6hv1",
+    "walletName": "Main",
+    "walletAddress": "0xca170825729Cb4Fe2127809608B1c2F23D01012d",
+    "status": "running",
+    "createdAt": "2026-02-01T10:09:39.548Z"
+  },
+  {
+    "id": "strat_1769940654405_r3mbzb",
+    "address": "0xdbade4c82fb72780a0db9a38f821d8671aba9c95",
+    "mode": 3,
+    "param": 5,
+    "orderType": "FOK",
+    "walletId": "wallet_1769861929298_6s6hv1",
+    "walletName": "Main",
+    "walletAddress": "0xca170825729Cb4Fe2127809608B1c2F23D01012d",
+    "status": "running",
+    "createdAt": "2026-02-01T10:10:54.405Z"
+  }
+]
