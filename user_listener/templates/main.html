@@ -2109,6 +2109,9 @@
 
                 container.innerHTML = trades.slice(0, 20).map(t => {
                     const side = (t.side || '').toUpperCase();
+                    const price = parseFloat(t.price || 0);
+                    const size = parseFloat(t.size || 0);
+                    const totalValue = price * size;
                     return `
                         <div class="trade-item">
                             <div>
@@ -2118,7 +2121,10 @@
                                     ${t.outcome || ''} · ${t.date_str || ''}
                                 </div>
                             </div>
-                            <div style="font-weight: 600;">$${parseFloat(t.price || 0).toFixed(2)}</div>
+                            <div style="text-align: right;">
+                                <div style="font-weight: 600;">$${totalValue.toFixed(2)}</div>
+                                <div style="font-size: 10px; color: var(--text-muted);">${size.toFixed(0)}股 @$${price.toFixed(2)}</div>
+                            </div>
                         </div>
                     `;
                 }).join('');
