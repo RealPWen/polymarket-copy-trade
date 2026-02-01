@@ -17,10 +17,24 @@ env/
 .vscode/
 .idea/
 
-# Custom data files
-*.csv
+# ====== 本地缓存数据（服务器独立维护）======
+# 交易日志和数据
 *.jsonl
-monitored_trades/
-report_*.html
+*.csv
 !example_data.csv
+
+# 监控交易数据目录
 monitored_trades/
+
+# 同步数据缓存（策略、目标、钱包配置）
+user_listener/sync_data/
+
+# 日志文件
+user_listener/logs/
+*.log
+
+# 生成的报告
+report_*.html
+
+# 执行记录
+my_executions.jsonl
