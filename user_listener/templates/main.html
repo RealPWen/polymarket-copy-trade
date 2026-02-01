@@ -1431,10 +1431,30 @@
             }).join('');
         }
 
-        function stopStrategy(event, strategyId) {
+        async function stopStrategy(event, strategyId) {
             event.stopPropagation();  // 防止触发 openStrategy
             if (!confirm('确定要停止并删除此跟单策略吗？')) return;
 
+            // 获取策略信息，用于调用停止 API
+            const strategy = getStrategy(strategyId);
+
+            // 🔴 调用后端 API 停止监听进程
+            if (strategy && strategy.address) {
+                try {
+                    console.log(`🛑 [停止策略] 正在终止监听进程: ${strategy.address}`);
+                    const res = await fetch('/api/copy-trade/stop', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ address: strategy.address })
+                    });
+                    const result = await res.json();
+                    console.log('🛑 [停止策略] 后端响应:', result);
+                } catch (e) {
+                    console.error('停止监听进程失败:', e);
+                }
+            }
+
+            // 从前端列表中移除
             removeStrategy(strategyId);
 
             // 如果删除的是当前激活的策略，清除监控
@@ -1884,7 +1904,17 @@
 
             // 清空图表显示，等待新数据
             const pnlEl = document.getElementById('target-pnl-total');
-            if (pnlEl) pnlEl.innerText = '加载中...';
+            if (pnlEl) {
+                pnlEl.innerText = '加载中...';
+                pnlEl.style.color = 'var(--text-muted)';
+            }
+
+            // 🧹 完全清空 Plotly 图表 (避免显示其他用户数据)
+            const chartEl = document.getElementById('target-pnl-chart');
+            if (chartEl) {
+                Plotly.purge(chartEl);  // 完全移除图表
+                chartEl.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-muted);">加载中...</div>';
+            }
 
             const streamContainer = document.getElementById('target-stream');
             if (streamContainer) streamContainer.innerHTML = '<div style="color: var(--text-muted); text-align: center; padding: 16px;">加载中...</div>';
