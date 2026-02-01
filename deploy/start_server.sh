@@ -111,8 +111,15 @@ case $choice in
         ;;
     5)
         echo -e "${YELLOW}⏳ 停止所有进程...${NC}"
+        # 停止监听器
         pkill -f "account_listener.py" 2>/dev/null || true
+        # 停止 Flask 应用 (多种可能的启动方式)
         pkill -f "user_listener/app.py" 2>/dev/null || true
+        pkill -f "python3 app.py" 2>/dev/null || true
+        pkill -f "python app.py" 2>/dev/null || true
+        # 通过端口杀死进程 (5005 端口)
+        fuser -k 5005/tcp 2>/dev/null || true
+        sleep 1
         echo -e "${GREEN}✅ 所有进程已停止${NC}"
         ;;
     *)
