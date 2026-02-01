@@ -722,10 +722,352 @@
             border-bottom: 1px solid #1e293b;
             line-height: 1.4;
         }
+
+        /* ========== 移动端汉堡菜单 ========== */
+        .mobile-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+        }
+
+        .hamburger-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .hamburger-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hamburger-btn span {
+            width: 22px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .hamburger-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-logo {
+            font-size: 1rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .mobile-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--success);
+        }
+
+        /* 侧边栏遮罩层 */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .sidebar-overlay.show {
+            opacity: 1;
+        }
+
+        /* ========== 移动端响应式样式 ========== */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+                padding-top: 56px;
+                /* 为固定头部留空间 */
+            }
+
+            .mobile-header {
+                display: flex;
+            }
+
+            .sidebar-overlay {
+                display: block;
+                pointer-events: none;
+            }
+
+            .sidebar-overlay.show {
+                pointer-events: all;
+            }
+
+            /* 侧边栏变为滑出式 */
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -280px;
+                width: 280px;
+                height: 100vh;
+                z-index: 999;
+                transition: left 0.3s ease;
+                padding-top: 56px;
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            /* 隐藏桌面端顶栏 */
+            .topbar {
+                display: none;
+            }
+
+            /* 主内容区占满 */
+            .main-content {
+                padding-top: 0;
+            }
+
+            /* 页面视图改为单列 */
+            .page-view {
+                padding: 12px;
+            }
+
+            /* 跟单监控页面 - 单列布局 */
+            .monitor-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                gap: 12px;
+                overflow-y: auto;
+                height: auto;
+                min-height: calc(100vh - 68px);
+            }
+
+            .monitor-left,
+            .monitor-center,
+            .monitor-right {
+                width: 100%;
+            }
+
+            .monitor-left-bottom {
+                flex-direction: column;
+            }
+
+            /* 余额显示 */
+            .balance-display {
+                padding: 16px;
+            }
+
+            .balance-amount {
+                font-size: 28px;
+            }
+
+            /* 图表容器 */
+            .chart-container {
+                min-height: 200px;
+            }
+
+            /* 面板样式 */
+            .panel-header {
+                padding: 12px;
+                font-size: 13px;
+            }
+
+            .panel-content {
+                padding: 12px;
+            }
+
+            /* 交易项 - 更大的触摸区域 */
+            .trade-item {
+                padding: 14px 0;
+            }
+
+            /* 策略列表项 */
+            .strategy-list-item {
+                padding: 14px 16px;
+            }
+
+            /* 按钮适配 */
+            .btn {
+                padding: 14px 20px;
+                font-size: 14px;
+                width: 100%;
+                text-align: center;
+            }
+
+            /* 输入框放大 */
+            .form-input,
+            .search-input {
+                font-size: 16px;
+                /* 防止 iOS 自动缩放 */
+                padding: 14px;
+            }
+
+            /* 配置页面 */
+            .setup-container {
+                padding: 16px;
+            }
+
+            .setup-card {
+                padding: 20px;
+            }
+
+            .setup-card h2 {
+                font-size: 18px;
+            }
+
+            /* 订单类型按钮 */
+            .order-type-btn {
+                padding: 14px;
+            }
+
+            /* 搜索栏 */
+            .search-bar {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .search-bar .btn {
+                width: 100%;
+            }
+
+            /* 分析容器 */
+            .analyze-container {
+                padding: 16px;
+            }
+
+            /* iFrame报告 */
+            #report-frame {
+                height: 60vh;
+            }
+
+            /* 导航项更大 */
+            .nav-item {
+                padding: 16px;
+                font-size: 14px;
+            }
+
+            /* 图表切换按钮 */
+            .chart-toggle-btn {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+
+            /* 跟踪目标卡片 */
+            .monitor-center .panel:first-child .panel-header {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            /* PnL 显示 */
+            #target-pnl-total {
+                font-size: 14px !important;
+            }
+
+            /* 表单组 */
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-group label {
+                font-size: 13px;
+                margin-bottom: 8px;
+            }
+
+            /* 模式选择按钮 */
+            .mode-options {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .mode-btn {
+                width: 100%;
+                padding: 16px;
+            }
+
+            /* 钱包管理卡片 */
+            .wallet-card {
+                padding: 16px;
+            }
+
+            /* 底部安全区 (iPhone) */
+            .page-view {
+                padding-bottom: env(safe-area-inset-bottom, 20px);
+            }
+        }
+
+        /* ========== 超小屏幕 (< 380px) ========== */
+        @media (max-width: 380px) {
+            .balance-amount {
+                font-size: 24px;
+            }
+
+            .panel-header {
+                font-size: 12px;
+            }
+
+            .trade-item {
+                font-size: 10px;
+            }
+
+            .nav-item {
+                font-size: 13px;
+                padding: 14px;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <!-- 移动端头部 -->
+    <header class="mobile-header">
+        <button class="hamburger-btn" id="hamburger-btn" onclick="toggleMobileSidebar()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="mobile-logo">Smart Trader</div>
+        <div class="mobile-status">
+            <span class="status-dot" id="mobile-status-dot"></span>
+        </div>
+    </header>
+
+    <!-- 侧边栏遮罩层 -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleMobileSidebar()"></div>
+
     <!-- 侧边栏 -->
     <aside class="sidebar">
         <div class="sidebar-header">
@@ -1106,6 +1448,50 @@
         let currentChartType = 'actual';
         let knownHashes = new Set();
         let initialLoad = true;
+        let isMobile = window.innerWidth <= 768;
+
+        // ========== 移动端侧边栏控制 ==========
+        function toggleMobileSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            const hamburger = document.getElementById('hamburger-btn');
+
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+            hamburger.classList.toggle('active');
+        }
+
+        function closeMobileSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            const hamburger = document.getElementById('hamburger-btn');
+
+            sidebar.classList.remove('open');
+            overlay.classList.remove('show');
+            hamburger.classList.remove('active');
+        }
+
+        // 监听窗口大小变化
+        window.addEventListener('resize', () => {
+            isMobile = window.innerWidth <= 768;
+            if (!isMobile) {
+                closeMobileSidebar();
+            }
+        });
+
+        // 更新移动端状态指示器
+        function updateMobileStatus(status) {
+            const dot = document.getElementById('mobile-status-dot');
+            if (dot) {
+                const colors = {
+                    'online': 'var(--success)',
+                    'warning': 'var(--warning)',
+                    'offline': 'var(--danger)'
+                };
+                dot.style.background = colors[status] || colors['offline'];
+                dot.style.animation = status === 'online' ? 'pulse 2s infinite' : 'none';
+            }
+        }
 
         // 策略管理 (使用服务器同步)
         let strategies = [];
@@ -1523,6 +1909,11 @@
                 'monitor-dashboard': '跟单监控'
             };
             document.getElementById('page-title').innerText = titles[pageName] || pageName;
+
+            // 📱 移动端：切换页面后自动关闭侧边栏
+            if (isMobile) {
+                closeMobileSidebar();
+            }
         }
 
         // 页面加载时渲染列表并自动绑定 env 钱包
@@ -1667,6 +2058,9 @@
                     topbarBadge.style.borderColor = 'rgba(16, 185, 129, 0.3)';
                 }
             }
+
+            // 📱 移动端状态指示器
+            updateMobileStatus(status);
         }
 
         async function autoBindEnvWallet() {
