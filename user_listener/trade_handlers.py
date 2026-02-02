@@ -110,6 +110,9 @@ class RealExecutionHandler(BaseTradeHandler):
             self.cache_file = "market_cooldown_cache.json"
             self._load_cooldown_cache()
             
+            # 止损去重: {asset_id: timestamp}
+            self.pending_stop_loss = {}
+            
             self.MARKET_COOLDOWN_SECONDS = 24 * 60 * 60  # 24小时冷却期
             print(f"🚀 [系统] 实盘下单处理器已就绪 | 模式: {self.strategy['mode']} | 参数: {self.strategy['param']}")
         except Exception as e:
@@ -384,6 +387,12 @@ class RealExecutionHandler(BaseTradeHandler):
 
         threshold = stop_loss_val / 100.0  # e.g. 40 -> 0.4
         
+        # 清理过期的 pending (30秒)
+        current_time = time.time()
+        to_remove = [k for k, v in self.pending_stop_loss.items() if current_time - v > 30]
+        for k in to_remove:
+            del self.pending_stop_loss[k]
+        
         try:
             # 获取我的持仓 (silent=True 避免刷屏)
             positions = self.fetcher.get_user_positions(self.my_address, limit=50, silent=True)
@@ -391,24 +400,28 @@ class RealExecutionHandler(BaseTradeHandler):
             if positions.empty:
                 return
             
-            # 这里的 print 稍微有点多，如果是高频检查建议去掉，或者每隔几次打印一次
-            # print(f"🔍 [风控] 检查止损 (阈值: {stop_loss_val}%) ...") 
-            
             for _, pos in positions.iterrows():
                 size = float(pos.get('size', 0))
-                if size < 1: continue # 忽略极小残渣
+                # 忽略极小残渣
+                if size < 1: continue 
                 
+                token_id = pos.get('asset')
+                # [保护1] 防止短时间内重复提交
+                if token_id in self.pending_stop_loss:
+                    continue
+
                 avg_price = float(pos.get('avgPrice', 0))
                 cur_price = float(pos.get('curPrice', 0))
-                token_id = pos.get('asset')
                 title = pos.get('title', 'Unknown')
                 
-                # 如果该市场已经完全卖出，size 会很小或者 API 不返回
-                # 如果 cur_price 为 0 (市场结束或无流动性)，可能无法止损，需谨慎
                 if avg_price <= 0 or cur_price <= 0: continue
                 
                 # 计算亏损比例: (买入价 - 现价) / 买入价
                 loss_ratio = (avg_price - cur_price) / avg_price
+                
+                # [保护2] 归零保护：如果亏损超过 95%，放弃治疗 (防止在无流动性时无限尝试)
+                if loss_ratio > 0.95:
+                    continue
                 
                 if loss_ratio >= threshold:
                     print(f"\n🚨 [止损触发] 市场: {title[:40]}...")
@@ -418,11 +431,13 @@ class RealExecutionHandler(BaseTradeHandler):
                     
                     try:
                         # 卖出价格稍微低一点点以确保成交 (Slippage)
-                        # 如果是 FOK，价格如果不匹配会失败。Market order 最好。
-                        # 这里用 FOK + 较大滑点
                         sell_price = max(0.01, cur_price - 0.05) 
                         result = self.trader.place_order(token_id, "SELL", size, sell_price, order_type="FOK")
                         print(f"✅ [止损完成] 已抛售平仓: {json.dumps(result, ensure_ascii=False)}")
+                        
+                        # 记录已执行，30秒内不再对该 asset 执行止损
+                        self.pending_stop_loss[token_id] = current_time
+                        
                     except Exception as e:
                         print(f"❌ [止损失败] 下单出错: {e}")
                         
