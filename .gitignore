@@ -23,3 +23,9 @@ env/
 monitored_trades/
 report_*.html
 !example_data.csv
+
+Find_user/Market_Scanner/archive/
+Find_user/Market_Scanner/data/
+Find_user/Market_Scanner/deprecated/
+Find_user/Market_Scanner/output/
+Find_user/Market_Scanner/*.tar.xz

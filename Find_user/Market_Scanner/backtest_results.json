@@ -1,0 +1,110 @@
+[
+  {
+    "type": "WHALE_BUY",
+    "timestamp": 1769127548.0,
+    "market_id": "897019",
+    "question": "Will Paramount close Warner Bros acquisition?",
+    "outcome": "No",
+    "side": "BUY",
+    "price": 0.78,
+    "burst_value": 2340.0,
+    "wallet": "0xffc49504efd8126650580438d4b22b1e7316a9f2",
+    "reason": "Large BUY $2,340 @ 0.78 in 10s"
+  },
+  {
+    "type": "WHALE_BUY",
+    "timestamp": 1769686272.0,
+    "market_id": "1243248",
+    "question": "Russia x Ukraine ceasefire by February 28, 2026?",
+    "outcome": "Yes",
+    "side": "BUY",
+    "price": 0.06,
+    "burst_value": 2141.5884,
+    "wallet": "0xd426adbc3c4461c86099c26221c877f20e42334a",
+    "reason": "Large BUY $2,142 @ 0.06 in 10s"
+  },
+  {
+    "type": "WHALE_BUY",
+    "timestamp": 1769839708.0,
+    "market_id": "1265640",
+    "question": "Spurs vs. Hornets",
+    "outcome": "Hornets",
+    "side": "BUY",
+    "price": 0.38,
+    "burst_value": 2872.6784000000002,
+    "wallet": "0x5e6e2c3f06686f2607b86c90e35f536e81a1be00",
+    "reason": "Large BUY $2,873 @ 0.38 in 10s"
+  },
+  {
+    "type": "WHALE_BUY",
+    "timestamp": 1769839736.0,
+    "market_id": "1265640",
+    "question": "Spurs vs. Hornets",
+    "outcome": "Spurs",
+    "side": "BUY",
+    "price": 0.62,
+    "burst_value": 8217.542,
+    "wallet": "0xb57a6e67c1d397cddd68845a4c01b4860cfbb8c3",
+    "reason": "Large BUY $8,218 @ 0.62 in 10s"
+  },
+  {
+    "type": "WHALE_BUY",
+    "timestamp": 1769839776.0,
+    "market_id": "1265640",
+    "question": "Spurs vs. Hornets",
+    "outcome": "Hornets",
+    "side": "BUY",
+    "price": 0.38,
+    "burst_value": 7600.0,
+    "wallet": "0x5e6e2c3f06686f2607b86c90e35f536e81a1be00",
+    "reason": "Large BUY $7,600 @ 0.38 in 10s"
+  },
+  {
+    "type": "WHALE_BUY",
+    "timestamp": 1769839832.0,
+    "market_id": "1265640",
+    "question": "Spurs vs. Hornets",
+    "outcome": "Hornets",
+    "side": "BUY",
+    "price": 0.38,
+    "burst_value": 3096.601,
+    "wallet": "0xead02f1568144be782d762e2b6a719302830f3ba",
+    "reason": "Large BUY $3,097 @ 0.38 in 10s"
+  },
+  {
+    "type": "WHALE_BUY",
+    "timestamp": 1769842368.0,
+    "market_id": "1265640",
+    "question": "Spurs vs. Hornets",
+    "outcome": "Spurs",
+    "side": "BUY",
+    "price": 0.6199999999678345,
+    "burst_value": 2313.0399989999996,
+    "wallet": "0x2a59f6c20cb7a720e6a08973152c0efdcb9c9a2f",
+    "reason": "Large BUY $2,313 @ 0.62 in 10s"
+  },
+  {
+    "type": "WHALE_BUY",
+    "timestamp": 1769848136.0,
+    "market_id": "1265640",
+    "question": "Spurs vs. Hornets",
+    "outcome": "Spurs",
+    "side": "BUY",
+    "price": 0.6199999999565526,
+    "burst_value": 3995.639999,
+    "wallet": "0x62a1ba2b73246e8ca9c5be13b47a75178b3ebbec",
+    "reason": "Large BUY $3,996 @ 0.62 in 10s"
+  },
+  {
+    "type": "WHALE_BUY",
+    "timestamp": 1769159184.0,
+    "market_id": "558937",
+    "question": "Will Brazil win the 2026 FIFA World Cup?",
+    "outcome": "Yes",
+    "side": "BUY",
+    "price": 0.1,
+    "burst_value": 2500.0,
+    "wallet": "0xf5592765133941c40c77e52bc56bbe7ec167f462",
+    "reason": "Large BUY $2,500 @ 0.10 in 10s"
+  }
+]

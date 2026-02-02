@@ -1,0 +1,3547 @@
+{
+  "wallet": "0xd82079c0d6b837bad90abf202befc079da5819f6",
+  "activity_count": 200,
+  "filtered_trades_count": 535,
+  "wallet_trades": [
+    {
+      "timestamp": 1769678296,
+      "date": "2026-01-29 17:18:16",
+      "type": "REDEEM",
+      "side": "",
+      "outcome": "",
+      "price": 0,
+      "size": 716172.9638,
+      "usdcSize": 716172.9638,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x8fd723d8429ee3b738c32053659855168ec43fde76123de8843cc0b153d005cf",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769635008,
+      "date": "2026-01-29 05:16:48",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 11.98,
+      "usdcSize": 6.4692,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xc5da092370c85fe4cd4a5d650fcd8edcec30e83fb0d0aa4a8611505da33b7945",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634604,
+      "date": "2026-01-29 05:10:04",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 17.12,
+      "usdcSize": 9.5872,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x7fc3753afbebb3a75b0fdf5c62a5b42b9214a0715d41885a3567cae07c26b884",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634598,
+      "date": "2026-01-29 05:09:58",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5600001936001084,
+      "size": 2.272726,
+      "usdcSize": 1.272727,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x1c011f454d166d98ebacb5c96c3a6ef23652e6a6c921f86d409a2552c7b198ef",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634592,
+      "date": "2026-01-29 05:09:52",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 31.25,
+      "usdcSize": 17.5,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x5bb0d959cd42321738c4f3045cc74ad571d260b3cff97e7e6647210ac1fafc1f",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634592,
+      "date": "2026-01-29 05:09:52",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 25000,
+      "usdcSize": 14000,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x743703a738fdce79ce5d4bcbcc24758f1c09e3124ae447125f1ef82e9cc9fc6b",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634586,
+      "date": "2026-01-29 05:09:46",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 5.5,
+      "usdcSize": 3.08,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x737decf93794b3893205934fd92a7b42b34bde9967e389aaa16d8d71a4b5389e",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634582,
+      "date": "2026-01-29 05:09:42",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5600001936001084,
+      "size": 2.272726,
+      "usdcSize": 1.272727,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x5b8bd5b6c15f7c93e1483ca130b62a19950854c74a43c27ea154497bae71b105",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634580,
+      "date": "2026-01-29 05:09:40",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5600001936001084,
+      "size": 2.272726,
+      "usdcSize": 1.272727,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x31a343084e9df351b3f07aa3b34ec8889fac0f5f1f83b519096ca430fe5d32c1",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634578,
+      "date": "2026-01-29 05:09:38",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5600000105600008,
+      "size": 22.727271,
+      "usdcSize": 12.727272,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x583bf05a37b9987c75d2417a5a4d180680351c696746ea759d4adf24a7906eb1",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634576,
+      "date": "2026-01-29 05:09:36",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 1.25,
+      "usdcSize": 0.7,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xf0a8e562ab495feb2dd268f0e83d7741fbf7f3ef843b4624c9f554ac3f03ab3c",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634572,
+      "date": "2026-01-29 05:09:32",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 1378.16,
+      "usdcSize": 771.7696,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x755402f874d6bfbc826bcb07ffa01caf40259aae3136553331b743508379d0cb",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634566,
+      "date": "2026-01-29 05:09:26",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 17110.99,
+      "usdcSize": 9582.1544,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x72d9ef4a5311680d98a77dac6f6e93b2187029bca9c1d81083e463c2e2187853",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634564,
+      "date": "2026-01-29 05:09:24",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 99,
+      "usdcSize": 55.44,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x8c84db5af140450dc6250e24fa0f0d1e96a1cb69d71433739eaea526e686db96",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634564,
+      "date": "2026-01-29 05:09:24",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 337,
+      "usdcSize": 188.72,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x9ce7a7208f507aec62e636394fbb5f0652a0034dad7c34129d2c1fa0ce56f3f9",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634564,
+      "date": "2026-01-29 05:09:24",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 1038,
+      "usdcSize": 581.28,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x029415cc043167c99b38e32c1a78327121ac0a8b83597075eeae2900ac5d3d65",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634562,
+      "date": "2026-01-29 05:09:22",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 31.25,
+      "usdcSize": 17.5,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x480074bfa45cc77d6c5227ed4cbeeb10a00e1dfe79925ea86d1b251a5cd7531c",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634562,
+      "date": "2026-01-29 05:09:22",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 4778,
+      "usdcSize": 2675.68,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xdcdbadc6bf3fce24254d5ba1775d5be1da5784be891d3e913b9d3791578e41fa",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634560,
+      "date": "2026-01-29 05:09:20",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 26605.76,
+      "usdcSize": 14899.2256,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xc7a4f8d80127ec3093dac49df9f832b1e4168202eab4cd4c051c51db2e481266",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634424,
+      "date": "2026-01-29 05:07:04",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 223,
+      "usdcSize": 124.88,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xc223200ffd4c1d5e8cca1b34ecfb38c60b8a9cc300f3f386392a5d6db70b369d",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634420,
+      "date": "2026-01-29 05:07:00",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5600001936001084,
+      "size": 2.272726,
+      "usdcSize": 1.272727,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x12127be52126b688ba2325e13f23c48dd08e1e2860eaa5572570482057a540de",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634418,
+      "date": "2026-01-29 05:06:58",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 5094.64,
+      "usdcSize": 2852.9984,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x8ce04f7bab19e1ee6c65981b531c7f7da8877ea16361c2a0c03de556645e93f7",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634416,
+      "date": "2026-01-29 05:06:56",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5600001303704122,
+      "size": 3.681817,
+      "usdcSize": 2.061818,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xba644d587a676a542bcba27d79289c867bff5f01a68cc7d37a656a4305311c77",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634414,
+      "date": "2026-01-29 05:06:54",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 31.25,
+      "usdcSize": 17.5,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x4a9f128ef9bc1c999b1882e269188fef7253152532aa6ad5a2d98a854ba49516",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634414,
+      "date": "2026-01-29 05:06:54",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 99,
+      "usdcSize": 55.44,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x3174e95eb17c7b5ae0fa55f25d6bd8f3bbbe858117d45c98a0a965b0019209bf",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634412,
+      "date": "2026-01-29 05:06:52",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 14.06,
+      "usdcSize": 7.8736,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xbfcff35abe80bb061c52e43d8d727e5d10d625754fc6095021123804f31a835a",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634402,
+      "date": "2026-01-29 05:06:42",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 27123.33,
+      "usdcSize": 15189.0648,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x610781d8d2edde76618ab5558ad1c8a4c22e7a1926d8b7f95bff5dac49b256dc",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634400,
+      "date": "2026-01-29 05:06:40",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5600000005360406,
+      "size": 447.727271,
+      "usdcSize": 250.727272,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xc776dcf25badc87932d58db07e53d73c444a417e72027612e277b71015523d17",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634400,
+      "date": "2026-01-29 05:06:40",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 31.25,
+      "usdcSize": 17.5,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x7558a5dab2e663689f4d77c5f0cf662ec0feb195b18d7840ecd3145b046b4694",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634400,
+      "date": "2026-01-29 05:06:40",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 15000,
+      "usdcSize": 8400,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x13101376372f9fbf4788167d231c41e1af8637465cb12641918603019fb3cc10",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634398,
+      "date": "2026-01-29 05:06:38",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5600000079200003,
+      "size": 45.454544,
+      "usdcSize": 25.454545,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x71856718adad2b5e86f9fee4fba42baa60a48d17b6e3adb1ea814aa75a2d9793",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634398,
+      "date": "2026-01-29 05:06:38",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 5366.07,
+      "usdcSize": 3004.9992,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xded75c8e937df529c22907e87c1211ee30a6c344b5ee45064dd2f158e5a78644",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634398,
+      "date": "2026-01-29 05:06:38",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 201,
+      "usdcSize": 112.56,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x381baaa3afcc054f6ba88e2aec25786c85176f728a6ee58bf1a81fa7b4276241",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634396,
+      "date": "2026-01-29 05:06:36",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 1732,
+      "usdcSize": 969.92,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xf3187ade59b0abc5c75db814413b50cc42c9e3032b6ad3e5ec9be939544f4504",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634396,
+      "date": "2026-01-29 05:06:36",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 3.16,
+      "usdcSize": 1.7696,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x26c446e9ecc161cb25ba707eeff7ad8f0c0cb152a194a4a4fd9e7dd75c21bb2c",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634396,
+      "date": "2026-01-29 05:06:36",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 50,
+      "usdcSize": 28,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xa10907cc40c2a359b8b0f489a9145ab845b21603a2e8426e85ba92dc7240f48c",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634394,
+      "date": "2026-01-29 05:06:34",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 2036,
+      "usdcSize": 1140.16,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xf9db01840b7c8934d47d21b9936a4de495e6e592f6c13b51f59e38b985214b51",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634394,
+      "date": "2026-01-29 05:06:34",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 7.5,
+      "usdcSize": 4.2,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x027005cc4871a20dc0ae333db77297e37fad54a52658f226c01d89fcfd78764c",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634394,
+      "date": "2026-01-29 05:06:34",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 1529,
+      "usdcSize": 856.24,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x6bfc29d4375f4aa04c15ae28146e6ba200e9214602fc3d50617ad99a941c7279",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634392,
+      "date": "2026-01-29 05:06:32",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 1401,
+      "usdcSize": 784.56,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x11ab956a6905412fe0146f0fa2820b4cac682bb16d690a457a5855f1061add7f",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634390,
+      "date": "2026-01-29 05:06:30",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5600001936001084,
+      "size": 2.272726,
+      "usdcSize": 1.272727,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xc98a55fa83712901fdcad2d6834c4470a3dae78ef084fedfc4d1465428acffea",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634388,
+      "date": "2026-01-29 05:06:28",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5600001973832734,
+      "size": 2.431817,
+      "usdcSize": 1.361818,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xa47ac86755f4c82625f0077433e47f2d182ef7ac1904ff0dabeb74dffe7910aa",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634388,
+      "date": "2026-01-29 05:06:28",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5600000528406525,
+      "size": 9.840908,
+      "usdcSize": 5.510909,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xf7939c2c2b3f6a0b04c2ef0e1b2cf94200441c783f78a424bd5d3fa3afd9b984",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634388,
+      "date": "2026-01-29 05:06:28",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5600000240546739,
+      "size": 9.977271,
+      "usdcSize": 5.587272,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x7f06f823f05cc94049f43169b669d9faf686448157aff6e332dd48fc351bdbec",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634388,
+      "date": "2026-01-29 05:06:28",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 5380.36,
+      "usdcSize": 3013.0016,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xc8b4d7ae74b5b2fba14cd3dcb03a318e98c4d937c85ff661fb710519ae66085a",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634388,
+      "date": "2026-01-29 05:06:28",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 2217,
+      "usdcSize": 1241.52,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x7ebd4fa0b8537845e5906eaf08dca5579321bbfe8fc867ff145f73d69563e5f1",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634386,
+      "date": "2026-01-29 05:06:26",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 237,
+      "usdcSize": 132.72,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x6c4e113a8f99f78d75ac54247faed20a822f7f9d6dd765415593a40d779bb8db",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634386,
+      "date": "2026-01-29 05:06:26",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 99,
+      "usdcSize": 55.44,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x23b20a277dd4b56b1d52af027421ac01620be019fb349d16978f542c15d40974",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634386,
+      "date": "2026-01-29 05:06:26",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 2937,
+      "usdcSize": 1644.72,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x62511fa132f72bae4432a1069a1453a485ebdf4db8fe25940dc19648adef9656",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634384,
+      "date": "2026-01-29 05:06:24",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 14471,
+      "usdcSize": 8103.76,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x1c62feccd0846bd157bfcf845d4ca7ed1c3005187c405f52e798cff95b584aa5",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634384,
+      "date": "2026-01-29 05:06:24",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 316.85,
+      "usdcSize": 177.436,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x215219cc6469d11d05e81c16129e569bedfc66f8b6d5b98ce5953eaefe053d10",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634384,
+      "date": "2026-01-29 05:06:24",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 4957.14,
+      "usdcSize": 2775.9984,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xfe9d403142509f536d02045abf220a0cc2ea562bbb2d96f7ad912096dbbe8ca3",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634384,
+      "date": "2026-01-29 05:06:24",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 31.25,
+      "usdcSize": 17.5,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x1db6ec8ecba18aeb15d8fb409818d70ae0bf95837bea4bd144c56958876a1aef",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634384,
+      "date": "2026-01-29 05:06:24",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5600000079200003,
+      "size": 45.454544,
+      "usdcSize": 25.454545,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xbf66edb1e5e213f98c60bdaf8f654ab0ddf7b4fb1d41b11e7d553c83e03a650b",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634382,
+      "date": "2026-01-29 05:06:22",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.56,
+      "size": 11065.68,
+      "usdcSize": 6196.7808,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x4eda29750fdbd1e267d708e7f164fd53b7b5eb3363738a46e32cc522b50467dc",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634378,
+      "date": "2026-01-29 05:06:18",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5500000258290835,
+      "size": 17.422221,
+      "usdcSize": 9.582222,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xf39297b95cb7010630aa664a2bec20df33245f4bfe02a9c9480b446e915325c8",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634372,
+      "date": "2026-01-29 05:06:12",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5500002025001114,
+      "size": 2.222221,
+      "usdcSize": 1.222222,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x76282b090d862da9d623878fcdcef2335eb0c1b6ed2700f3037095e8071ecf1b",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634370,
+      "date": "2026-01-29 05:06:10",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 500,
+      "usdcSize": 275,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x81e0f1bcbc29c27ff39e93cb5701d8d7c2ba30242d169f26aebe322f261c172a",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634370,
+      "date": "2026-01-29 05:06:10",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 7.15,
+      "usdcSize": 3.9325,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xf842357e4d3decdd2146f6a3eec14442932573846b812d679da521245be6482b",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634370,
+      "date": "2026-01-29 05:06:10",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 5230.91,
+      "usdcSize": 2877.0005,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x86c3e9d073541365f8973e58dd7ad7ec1b56e826000c5a26c35cf2efaee515ff",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634366,
+      "date": "2026-01-29 05:06:06",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 5025.45,
+      "usdcSize": 2763.9975,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x87ec3d1a9953ba4dafb02f0914c84d9fca373555263fbe4ca6818b4901b75087",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634366,
+      "date": "2026-01-29 05:06:06",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 1352,
+      "usdcSize": 743.6,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xac544f566b5758754ef66cda90e13c7ba070f5ac795345b3e078fd363aa74b3b",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634366,
+      "date": "2026-01-29 05:06:06",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 1982.3,
+      "usdcSize": 1090.265,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x417ddec75d78689e5cc77390aa8534d296686b919f09d8e60cb3162625c61e6f",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634364,
+      "date": "2026-01-29 05:06:04",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 10605,
+      "usdcSize": 5832.75,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x269411e84a2aa611ca1bb97fd939953e003df8fa50b86581b4fea39331035ac9",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634364,
+      "date": "2026-01-29 05:06:04",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 30.6,
+      "usdcSize": 16.83,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xd5f6b7d5b0f98ea485f49b3560c96e65e92c6b9532aaf09c8717ea33a3bf733a",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634364,
+      "date": "2026-01-29 05:06:04",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 4958.18,
+      "usdcSize": 2726.999,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x0b3516628d764462d03a5239976c110239f91b40406041d60b868ffc616cfb68",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634354,
+      "date": "2026-01-29 05:05:54",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 13.16,
+      "usdcSize": 7.238,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x7ad64943c37a8782703be9207990a1e3ded56f9a1fd75ca4bf13d17fcef5682e",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634350,
+      "date": "2026-01-29 05:05:50",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5500001857799103,
+      "size": 2.422221,
+      "usdcSize": 1.332222,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x92e23b5a70487636862befd863a855d6c5d04f16759e2af63ce9d6683c7a6a84",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634348,
+      "date": "2026-01-29 05:05:48",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5500000450000045,
+      "size": 11.11111,
+      "usdcSize": 6.111111,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xb9a70d03bff86199cbb9879b9ae4d8445f6269abc7f891bbe1a742ebb6059afc",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634346,
+      "date": "2026-01-29 05:05:46",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 5350.91,
+      "usdcSize": 2943.0005,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x0ea5f8902dfdbcb5ffb5ab3ec9e44c22694932bc9b38addbd95173808b4af9e9",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634346,
+      "date": "2026-01-29 05:05:46",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5500000375000094,
+      "size": 6.666665,
+      "usdcSize": 3.666666,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xefc461c65572320f0533cecee85a8b3a30d160cf913e976db82b9f12e681414c",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634346,
+      "date": "2026-01-29 05:05:46",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5500000203804376,
+      "size": 12.266665,
+      "usdcSize": 6.746666,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xd6830f429930e70a58c7a241c4637fa555f239f749cc1ac590dc10843c973428",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634346,
+      "date": "2026-01-29 05:05:46",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5500002025001114,
+      "size": 2.222221,
+      "usdcSize": 1.222222,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x31a28a3d84a37ad97e11d16c7a5b1bfa83eebcd0da114cdfc0e8aed78810eb26",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634346,
+      "date": "2026-01-29 05:05:46",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 30000,
+      "usdcSize": 16500,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xba13e848e57d211c178b719c2d8accdb3e4b8903deb1d61fe484fba63eee2346",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634344,
+      "date": "2026-01-29 05:05:44",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.550000002025,
+      "size": 222.222221,
+      "usdcSize": 122.222222,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xc2a81b532cecd4d33e050db22afe07aafb0bd1b23dd09eded5d97c93ce56688f",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634342,
+      "date": "2026-01-29 05:05:42",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5500002025001114,
+      "size": 2.222221,
+      "usdcSize": 1.222222,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x58df4356b6aa75c74392406f75987fcf8e0a7eaa0f6db42d7f2f84e7553338ec",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634342,
+      "date": "2026-01-29 05:05:42",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 5410.91,
+      "usdcSize": 2976.0005,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x3db870f255844bdcf10370ec7c5279251aeecdb9f340d27e96ad4e8a4048712d",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634340,
+      "date": "2026-01-29 05:05:40",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 30.6,
+      "usdcSize": 16.83,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x3b71be3681239ebf890f90abafd0c7a690d1ad1a8fa97a57acd2e508d96a37f8",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634340,
+      "date": "2026-01-29 05:05:40",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 4.53,
+      "usdcSize": 2.4915,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x96d1b7eb4fc03f6444fb5dbb5dbcc6f1f5d77069235e726fe9b05e0a8f355d38",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634334,
+      "date": "2026-01-29 05:05:34",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 1956,
+      "usdcSize": 1075.8,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x9e8bb4fa539b2d6e625fc0db3dd32c2edab9a53ff97b952e69a9f8d83d685667",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634332,
+      "date": "2026-01-29 05:05:32",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5500002025001114,
+      "size": 2.222221,
+      "usdcSize": 1.222222,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xd7a87393c9f3ebe527f54c21fbb2fcacefee51cece25ad75f3eedee31bf9ddea",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634332,
+      "date": "2026-01-29 05:05:32",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5500001173913758,
+      "size": 2.555554,
+      "usdcSize": 1.405555,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x4c1c6bf1ceb5aa9b08e8a507f532e7d010486f18a42c462d2394b629a02f66de",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634332,
+      "date": "2026-01-29 05:05:32",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 29,
+      "usdcSize": 15.95,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x1ed0d8e10af8feccf98f1ae61e202c087bedf86055cc7d94d27fe63141ff4d45",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634332,
+      "date": "2026-01-29 05:05:32",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5500001857799103,
+      "size": 2.422221,
+      "usdcSize": 1.332222,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x68890402722f0da7f433db81debcc6a0541a30eb5f3dfeb9a4a8ae01b2d8e4c2",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634332,
+      "date": "2026-01-29 05:05:32",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 1827,
+      "usdcSize": 1004.85,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x93c9d5930947a90e204ab02ba1fd9de16fe439b0048b5272187d458ddf57ee2b",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634330,
+      "date": "2026-01-29 05:05:30",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 641,
+      "usdcSize": 352.55,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x491e1e654f552cd7c782c29d93257c0478b7cf8e9a4b1521caa9b77c2890f95d",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634330,
+      "date": "2026-01-29 05:05:30",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 1180,
+      "usdcSize": 649,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x8da1d1bdff30370038b23a28ee350d5d422d9d610bc9ff7b30f289994f4e433e",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634330,
+      "date": "2026-01-29 05:05:30",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 37.03,
+      "usdcSize": 20.3665,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x83d9b928b394f44a11631e65bf09a32020efb14ae44646880f527afc92462c31",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634328,
+      "date": "2026-01-29 05:05:28",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 629,
+      "usdcSize": 345.95,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xff2c0f421314f2bd1fefe80ae3b1a1b2ab3c1d40a40c89a762c8012a6490d00e",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634328,
+      "date": "2026-01-29 05:05:28",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 25000,
+      "usdcSize": 13750,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x816db30a4cfe7f443ec4ad63e9558523cdf8012bc6e5664fac78a368a719fde8",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634328,
+      "date": "2026-01-29 05:05:28",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5500000449002272,
+      "size": 10.022221,
+      "usdcSize": 5.512222,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x103c1f3524947a8b072d59e96aea471241be78e190aa663b704de88885897475",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634326,
+      "date": "2026-01-29 05:05:26",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 223,
+      "usdcSize": 122.65,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xaa4199b1236eeeb3060c3195ad421d324da90f6e9817f3e2be9267ea0774aac1",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634326,
+      "date": "2026-01-29 05:05:26",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 1083,
+      "usdcSize": 595.65,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x42f33be3e0e0ae7a291c98adaf27a50a00a42fc49daa41c4a3c7604a2b6154a6",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634326,
+      "date": "2026-01-29 05:05:26",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 2.4,
+      "usdcSize": 1.32,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xdf9d6ef148eb7f48cfe1610a9da9ba6a738ff52d82961c9db8cb328e7ba8d846",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634326,
+      "date": "2026-01-29 05:05:26",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5500000151685422,
+      "size": 9.888887,
+      "usdcSize": 5.438888,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x0209560eff28aef95b974fb182baac8d29f5561cf678b698d37e67ab943db5e6",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634324,
+      "date": "2026-01-29 05:05:24",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 30.6,
+      "usdcSize": 16.83,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xe356b2fa6a88f213fc5e3c984dc3aec977fa0cf5c72ba64822c9f4e3b30a7a55",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634324,
+      "date": "2026-01-29 05:05:24",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 7826,
+      "usdcSize": 4304.3,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xe1b0f4b1ee18941124d35a0d2a3e2899be70e9606290b2898bdb4c886d765f17",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634322,
+      "date": "2026-01-29 05:05:22",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 6930.51,
+      "usdcSize": 3811.7805,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x07ac2961b3b5dd5b857550a89a75124d373046727c9f1bca78ae9026449fc36c",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634312,
+      "date": "2026-01-29 05:05:12",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.540000007634855,
+      "size": 41.913042,
+      "usdcSize": 22.633043,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x867ddc9d8550863ed67d3005818241eae78aef2fd2609eff9b8aab4a762fd3e5",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634312,
+      "date": "2026-01-29 05:05:12",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 7000,
+      "usdcSize": 3850,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x8d8971843a31d4c3157c97fa52cb9add5627111e26e2fead0ddb7626bccfe565",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634308,
+      "date": "2026-01-29 05:05:08",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5400000009680291,
+      "size": 537.173912,
+      "usdcSize": 290.073913,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xcd1ef013a8928100448e182870be34ddd544a96ae76adc2a80e8e69bb2d65ad2",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634238,
+      "date": "2026-01-29 05:03:58",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 2.22,
+      "usdcSize": 1.1988,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x8f5c321d059a5a6b50114962090cd6de3f4595a8c82d5494110dec40a7157eea",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634236,
+      "date": "2026-01-29 05:03:56",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 500,
+      "usdcSize": 270,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xfb40f7aa77367439c71a6e86ef3bb839440c6e3ddedc47eec8e1592e0038004e",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634222,
+      "date": "2026-01-29 05:03:42",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.55,
+      "size": 50000,
+      "usdcSize": 27500,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x741b0d27414ddd658f3278e12c475535a677c62d2862d146b4a9c379b5fc8c68",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634204,
+      "date": "2026-01-29 05:03:24",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5400002392001149,
+      "size": 2.173912,
+      "usdcSize": 1.173913,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x685033a3b17a97265f5b1334fbf0b39f42f4d064612d9201a5e3276db578bb1c",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634198,
+      "date": "2026-01-29 05:03:18",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 29.5,
+      "usdcSize": 15.93,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xcc64b12ec33338b8ec0fafef9117cd1bb61a41452c980c3c6e8ab32f41285640",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634198,
+      "date": "2026-01-29 05:03:18",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 400,
+      "usdcSize": 216,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xeb43bdca31935498b1c9bcb46e4ab808d15a164c09085bf136d7d5002ac1dc21",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634196,
+      "date": "2026-01-29 05:03:16",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 220,
+      "usdcSize": 118.8,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xae22ad633d250817378264894169bbf1cdc22853ac3c2e64c205c4b49a27e63d",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634196,
+      "date": "2026-01-29 05:03:16",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 5146.3,
+      "usdcSize": 2779.002,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xd0543d0c8c11f97cf2dbfbf776a93aaa4f44a0cbfdf2028acdac984370486f26",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634196,
+      "date": "2026-01-29 05:03:16",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 12514,
+      "usdcSize": 6757.56,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x9efb82eab8b6f927e8ef29f921fe25a7b24cf6a71467a34846dbdbeffdc23f98",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634190,
+      "date": "2026-01-29 05:03:10",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 231,
+      "usdcSize": 124.74,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x733605bcd18f32614ed7bfbcf3348b434651651c9e4d3f83815eae31f939070c",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634184,
+      "date": "2026-01-29 05:03:04",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 231,
+      "usdcSize": 124.74,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x9706eed6efe84f48350d36925783a58dd1ca3f88befa9b66e2168e6321f75b2d",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634180,
+      "date": "2026-01-29 05:03:00",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 9.09,
+      "usdcSize": 4.9086,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x23dbe99279bf26bc701b8e1ee54d1bb6173eebd47469a3835ef4408e45640c03",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634180,
+      "date": "2026-01-29 05:03:00",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 17.09,
+      "usdcSize": 9.2286,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x4639ad712a41200ed5507270125748b4029a6ae5af4c9c5de3338c6aebee0141",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634178,
+      "date": "2026-01-29 05:02:58",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 5040,
+      "usdcSize": 2721.6,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xcd83770f176ef89c79fa67cbad1e5af815fddac6e59055c2688c87ef7e2680ad",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634178,
+      "date": "2026-01-29 05:02:58",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 214,
+      "usdcSize": 115.56,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x2b36d8ac152710140ce96985b23263d42a2bf17dc140a36ccf266fcbef56be56",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634176,
+      "date": "2026-01-29 05:02:56",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 6644.19,
+      "usdcSize": 3587.8626,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xc5966530d6c58c5be555edfebe8f64feb812fca6f709fefd19b7e4f86eb01c5c",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634114,
+      "date": "2026-01-29 05:01:54",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 5487.04,
+      "usdcSize": 2963.0016,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xc8d269335aa4ad8b36311b3395797169d1c615fcc5569bb9131268f530552015",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634106,
+      "date": "2026-01-29 05:01:46",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 100,
+      "usdcSize": 54,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x4ec98b81257e57a1904de8411aa74c7ecef16b0b840ff82dc048340451ce3c71",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634104,
+      "date": "2026-01-29 05:01:44",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 182,
+      "usdcSize": 98.28,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xddb26e2690581f0e9e123c0b53644c8eba8c1f92e56bdfb4297619fe80c5784b",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634098,
+      "date": "2026-01-29 05:01:38",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 208,
+      "usdcSize": 112.32,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x2a6ce6d5b7f19855c828eb949d8e9902f8d2bda9f12061299e6dd52347c22bd3",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634098,
+      "date": "2026-01-29 05:01:38",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 6.54,
+      "usdcSize": 3.5316,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x735f05a34d41ab0daf7561ff2e0ff5a06abd668237dde3d2a590ab7eab6dc71b",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634096,
+      "date": "2026-01-29 05:01:36",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5400001150000288,
+      "size": 4.347825,
+      "usdcSize": 2.347826,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x12e0da4d957e7df8619b41a76190523843c3093b71272181080db0f1af3b9071",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634096,
+      "date": "2026-01-29 05:01:36",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 5,
+      "usdcSize": 2.7,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x25b691ae55903dfec475c81aa395e5aee913aba927f759ba639360b94b87ace4",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634094,
+      "date": "2026-01-29 05:01:34",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 18.52,
+      "usdcSize": 10.0008,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x230248e00c0f44147c529d812ae459d25013b73c476216aec3b31037bdffa796",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634088,
+      "date": "2026-01-29 05:01:28",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5400000069696972,
+      "size": 45.913042,
+      "usdcSize": 24.793043,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x1907da3908c2137c94046890a8e8f82e14825b94c39d4e0fb02e9bf95b7b7cba",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634088,
+      "date": "2026-01-29 05:01:28",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 2594.32,
+      "usdcSize": 1400.9328,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x93615b384e9d5005d9b7603e6f38201f9002dbc0af2856690bda7b43ece2dd0a",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634088,
+      "date": "2026-01-29 05:01:28",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 2227.83,
+      "usdcSize": 1203.0282,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x93615b384e9d5005d9b7603e6f38201f9002dbc0af2856690bda7b43ece2dd0a",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634088,
+      "date": "2026-01-29 05:01:28",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 25,
+      "usdcSize": 13.5,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xe429cf455e361aa5b0aec2652258cb4698f5445f256f8f687e45a947cc94e0fb",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634084,
+      "date": "2026-01-29 05:01:24",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 211,
+      "usdcSize": 113.94,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xf38de9c1a631f50455ec064d24ec62071b0dacb6fa085fbe9176d4046a909633",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634080,
+      "date": "2026-01-29 05:01:20",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5400000006962359,
+      "size": 660.695651,
+      "usdcSize": 356.775652,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xfed5a3821146c2b9606d188347d304ee90cc19be40790d5d2ef3acf4accafbb5",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634074,
+      "date": "2026-01-29 05:01:14",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 236,
+      "usdcSize": 127.44,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x155c6aedbcd56aadfd5b85b2433b15d637c86c01e4b4a5b71ff2bb20a8c614cc",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634072,
+      "date": "2026-01-29 05:01:12",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 5414.81,
+      "usdcSize": 2923.9974,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xb78176a56c7cd1669f952285b5614d99639a1e6333b525e48ad609f1cedb42cc",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634072,
+      "date": "2026-01-29 05:01:12",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 500,
+      "usdcSize": 270,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x3d89991382c687a9c41dde70a08a46eb1d3bd25bc7a355595e8a951f26cde441",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634070,
+      "date": "2026-01-29 05:01:10",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5400000157557713,
+      "size": 29.195651,
+      "usdcSize": 15.765652,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xb4e1a0dabdd4cf19e97de6f6b6068c68fbf6775b0ee608b9b4c67e02c8862dab",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634068,
+      "date": "2026-01-29 05:01:08",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 5000,
+      "usdcSize": 2700,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x805fd9a6a72abb4517788f96f045dc85e3ae298c9e14aa4af17bd40fdeed67fa",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634066,
+      "date": "2026-01-29 05:01:06",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 200,
+      "usdcSize": 108,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x2a82714b9ed61cfb9f10d77f31fff069b06bdb5ed3e0e3224a4b8654107d1f4b",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634062,
+      "date": "2026-01-29 05:01:02",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5400000032200002,
+      "size": 43.478259,
+      "usdcSize": 23.47826,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xc2056252265fa76b6ed1350421458573a7a8396d3524c69ccf42051547cb1548",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634062,
+      "date": "2026-01-29 05:01:02",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 220,
+      "usdcSize": 118.8,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xcc2564f66277e2ea37962f4208d3936f23e5f0e65b517b8653a2b673f4a1adba",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634058,
+      "date": "2026-01-29 05:00:58",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 9654.67,
+      "usdcSize": 5213.5218,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x4e9f347e8a943838ea9ef60c05167854f48341d42941f531d71193ba367501b1",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634044,
+      "date": "2026-01-29 05:00:44",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 79.36,
+      "usdcSize": 42.8544,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x959f09088ae14a6bfc399281d4d2bda224831edee95b185d4522aa53a2e31390",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634042,
+      "date": "2026-01-29 05:00:42",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 500,
+      "usdcSize": 270,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x47eda286f6664aff119afae86189d7e988eaf224cf86ec6a0686aba55a7bfdd0",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634040,
+      "date": "2026-01-29 05:00:40",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 547,
+      "usdcSize": 295.38,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xf47f6eaf632657d9c2199bf3c5f56162dcd6c72e751fddf933da4ea39aa4953d",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634038,
+      "date": "2026-01-29 05:00:38",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 99,
+      "usdcSize": 53.46,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x5a8a50b7c847e7311f5face18ed394bc60cf99a06390c161a1998e74484f7a30",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634038,
+      "date": "2026-01-29 05:00:38",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 6030,
+      "usdcSize": 3256.2,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xc009fd7641931ab9ac884de93a83ac01eb08b5c2bfb98a5b20d8e5a4bb7cb9b8",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634036,
+      "date": "2026-01-29 05:00:36",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 7744.64,
+      "usdcSize": 4182.1056,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x3986b015dce634409d186d458d4b565bc191b3b42a25ddef465a047d9ad1930f",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634020,
+      "date": "2026-01-29 05:00:20",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 31.17,
+      "usdcSize": 16.5201,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xca0a0a89ad8042e87df0d37ab109ee3d4b58d1a3021c21451101144c3ed2a2b5",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769634006,
+      "date": "2026-01-29 05:00:06",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 25000,
+      "usdcSize": 13500,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x2b5a264500a589696c1b661869d653f34fa282043027539dd38abf5ebc164ff9",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633994,
+      "date": "2026-01-29 04:59:54",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 25000,
+      "usdcSize": 13500,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x227f0c6eb42df9ad8b65a6ae45c27fa76f77bb81944df2f2eaad5595967bad6c",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633988,
+      "date": "2026-01-29 04:59:48",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 460,
+      "usdcSize": 243.8,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x11ef8a7a6405fdc7f302ae22eb2d12c3d241bc86342adffc04455d7b53ffcd5b",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633988,
+      "date": "2026-01-29 04:59:48",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 9.03,
+      "usdcSize": 4.7859,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xb71e11390988470b0b097aec597b84b623aebe2c3759a251a2af73733afed5dd",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633984,
+      "date": "2026-01-29 04:59:44",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 29,
+      "usdcSize": 15.37,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xfad9d57feb672f4bbfe99d916fbb174bfcfa283a8102c7ad390a8a4f1d890d6f",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633982,
+      "date": "2026-01-29 04:59:42",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 361.99,
+      "usdcSize": 195.4746,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x5d8026856fe6adf14f0b3ddcca049248301574bd81f429e6065752118043ab9e",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633980,
+      "date": "2026-01-29 04:59:40",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5400000040905417,
+      "size": 53.782607,
+      "usdcSize": 29.042608,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x8989b7c70e59225752fbdd00b1443688b5bdf39069967623559c59f640a77168",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633978,
+      "date": "2026-01-29 04:59:38",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.540000047895884,
+      "size": 10.021738,
+      "usdcSize": 5.411739,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xd59e7635bccfdf34f1a6c9fb64f301a91c6e1c49fdba12b0625a0256cb869358",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633978,
+      "date": "2026-01-29 04:59:38",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 6.26,
+      "usdcSize": 3.3804,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x51c3ff3c5964cffa850c589877e0fd630cac0aaa379768f8b3ad40ac3735f28e",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633978,
+      "date": "2026-01-29 04:59:38",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 185,
+      "usdcSize": 99.9,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x333c1b981dd6037078e1f93dd4f463a0b7580cf64a2017579a6b3a8fa4db9279",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633976,
+      "date": "2026-01-29 04:59:36",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5400000429906904,
+      "size": 2.326085,
+      "usdcSize": 1.256086,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x7bedefb9ba20dd2996eafd68b4bd0c8f4d514f81b1c2e09b9a21d4052337023e",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633976,
+      "date": "2026-01-29 04:59:36",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5400000404800045,
+      "size": 10.869564,
+      "usdcSize": 5.869565,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xfe31916167a46bde471f68f0dc31d1695689a09f8be7fa044b4c9c67196ef226",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633974,
+      "date": "2026-01-29 04:59:34",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5400000429906904,
+      "size": 2.326085,
+      "usdcSize": 1.256086,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x4858f817b74a87748e69cfd348edd46249eb628f96b52c7f21738aa4a6f87da9",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633974,
+      "date": "2026-01-29 04:59:34",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5400000384175877,
+      "size": 9.891303,
+      "usdcSize": 5.341304,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xfb29f393b6d6219dd8bded41b40c092ff79492c76cbabbe132bcfe9bd1330e5c",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633972,
+      "date": "2026-01-29 04:59:32",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 171,
+      "usdcSize": 92.34,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x68a06e9963d6ec309524e5692f3039afbf9c49caf4f3ab89f83c518bcee79f5e",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633972,
+      "date": "2026-01-29 04:59:32",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 23000,
+      "usdcSize": 12420,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xdebd83367120f986a9ea0e44a3400b84c7f73fd639de737e436661cbca75e0fb",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633972,
+      "date": "2026-01-29 04:59:32",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 99,
+      "usdcSize": 53.46,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xf55a2ba283d96d281ab582da84cca96b8d5c1b16de3ee7993adee5b2530f0806",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633970,
+      "date": "2026-01-29 04:59:30",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 2.17,
+      "usdcSize": 1.1718,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x520de76fb5a70568a990ec656234e15f54f17af9164f0a3a6042deedcf5fb44c",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633970,
+      "date": "2026-01-29 04:59:30",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 66.07,
+      "usdcSize": 35.0171,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x4ffb2ddd4cedce73e152f6fed9031352ba4abcc03889b871e24ed5e54d1ac082",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633970,
+      "date": "2026-01-29 04:59:30",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 26085.33,
+      "usdcSize": 14086.0782,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x154d914296a6904f71498ea2a1715700131c9442f890f8bc1d569f6413a6fcf1",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633968,
+      "date": "2026-01-29 04:59:28",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 208,
+      "usdcSize": 110.24,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x1438575e9e79f31a0c51857dc9f91f880153ae3c8e5e711d6d79f57b9e86843c",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633966,
+      "date": "2026-01-29 04:59:26",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5300001222000904,
+      "size": 2.127658,
+      "usdcSize": 1.127659,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xfc3e3badaedb0438aebaf865624869edd9162be42cfee4c1398b40fc8a4a944e",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633962,
+      "date": "2026-01-29 04:59:22",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 1878.52,
+      "usdcSize": 1014.4008,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x88594283ebb1a2bc5b01dd2d8eebf9eab00e175fdbf1683f271b1a27fc6ad5c2",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633958,
+      "date": "2026-01-29 04:59:18",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5400000636170293,
+      "size": 8.173912,
+      "usdcSize": 4.413913,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xff8c971fad50307b43faa468bb98bb7c8a34917a30c0f93bcae2342cd565a043",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633954,
+      "date": "2026-01-29 04:59:14",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 236,
+      "usdcSize": 127.44,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xfd8ef6726548b8a84e328b7e5e259aaecb87fcffa8ac9c1320ac59abd26be931",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633954,
+      "date": "2026-01-29 04:59:14",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 1297.33,
+      "usdcSize": 700.5582,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x6ae90fe0597e3607100022b8bdf6fd942b7cf13840af402921a1c6012faa69f9",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633954,
+      "date": "2026-01-29 04:59:14",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 67,
+      "usdcSize": 36.18,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x04409f6af1bae785d51e1774c70f784a230666f3be7e3ebe5c12042c0e4f2268",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633952,
+      "date": "2026-01-29 04:59:12",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 3000.68,
+      "usdcSize": 1620.3672,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xe3cf2ccc0b11857f54fe7dee023baa9b02058745e78a76f77f4c4c7f9f667abf",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633952,
+      "date": "2026-01-29 04:59:12",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 5207.41,
+      "usdcSize": 2812.0014,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x36ad2fcceee6d855defceff193dd5cdc0043f7553cc06e99c2f2e39d6a7aeeb4",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633952,
+      "date": "2026-01-29 04:59:12",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 573,
+      "usdcSize": 309.42,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xbef5c10b8d86f2caf8914099ca928541e32a675b58a9fcc9537e2db8caf2ca93",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633952,
+      "date": "2026-01-29 04:59:12",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 1367,
+      "usdcSize": 738.18,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x70d7d81ae0f4455e76ec504e6c6ae86477f17b6b8a8052cae8a81139aa28f60e",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633950,
+      "date": "2026-01-29 04:59:10",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 213,
+      "usdcSize": 115.02,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xaf4e5d086614c1769439a11e46abdd2e82379f277fcd35ee621ea4ed781724c2",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633950,
+      "date": "2026-01-29 04:59:10",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 5503.7,
+      "usdcSize": 2971.998,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xb279ec1c23aa0340f1df1847c8bfd127ca675a55e7691e3a7bf75f5681f09725",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633950,
+      "date": "2026-01-29 04:59:10",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 189,
+      "usdcSize": 102.06,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x92e254751811dd908bdb8a2b920cb1625a540bd8425707d0d05df56bd6f2b5c7",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633950,
+      "date": "2026-01-29 04:59:10",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 8218,
+      "usdcSize": 4437.72,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x5fa9e0217d597d068190548d287fe2d40150b6081f79b63af2047a0d38ff7485",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633950,
+      "date": "2026-01-29 04:59:10",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 99,
+      "usdcSize": 53.46,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x5f8ca18e9621d1c76510f08f25809a293978593331c4a2eadc31086991c99a40",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633950,
+      "date": "2026-01-29 04:59:10",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 848,
+      "usdcSize": 457.92,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x0fc95b6e9bd5f82d161c74eacd08ef2e6c782732cb938558b6ad0869d8c74367",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633950,
+      "date": "2026-01-29 04:59:10",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.5400000885355849,
+      "size": 5.195651,
+      "usdcSize": 2.805652,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x1b1a9c168d13d8c2df15aa176d51c1057ad559e4d63c50700fef2321431a6b65",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633948,
+      "date": "2026-01-29 04:59:08",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 20824.44,
+      "usdcSize": 11245.1976,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xabe32bc0158571b2cd790afbc2fe2d82c2777fa3034c6f386d9a032116412303",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633948,
+      "date": "2026-01-29 04:59:08",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.54,
+      "size": 464.54,
+      "usdcSize": 250.8516,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xb741d95880b50eb58a6ea736d1b4371dbf42ece3029b9e4eee2b219d1b2f9c3e",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633940,
+      "date": "2026-01-29 04:59:00",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 37,
+      "usdcSize": 19.61,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x289cd35aac81b3e0d1f437a26c26ff351fac4ceaffa247be3e876213c0e1ec66",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633934,
+      "date": "2026-01-29 04:58:54",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 87,
+      "usdcSize": 46.11,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xc14e01af82777d0a79fce5ee5ab4a1600b288b206886fa8e039e3449bc3c66a5",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633928,
+      "date": "2026-01-29 04:58:48",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 9.03,
+      "usdcSize": 4.7859,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xaf19079b8015090a35864c560bc7912755bff762193efc709d368e1fc5a5c7cf",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633928,
+      "date": "2026-01-29 04:58:48",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 93,
+      "usdcSize": 49.29,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xf82d36f4b433fd4650659b2906db15edcbb973c3bb7700b89e60ced844509b20",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633926,
+      "date": "2026-01-29 04:58:46",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 2.17,
+      "usdcSize": 1.1501,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x93818a353df377df4a4e8368a0b0c0e4a490ad31ff7fbd105b86dd779ba87556",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633926,
+      "date": "2026-01-29 04:58:46",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 500,
+      "usdcSize": 265,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x2a05631a272185c743001425505bb98b1687d4955e3d386a227631172051415e",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633926,
+      "date": "2026-01-29 04:58:46",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 29,
+      "usdcSize": 15.37,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xdce2f624ea172e0e3178d94d69b2e85151bfe187e96f6e3c7b9d658868b266ca",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633922,
+      "date": "2026-01-29 04:58:42",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 855.81,
+      "usdcSize": 453.5793,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xc8603537d6636b7d23f0f9a541f6782075a62a3f76bfc26109f95f65c3e28d8c",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633910,
+      "date": "2026-01-29 04:58:30",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.538370698,
+      "size": 50000,
+      "usdcSize": 26918.5349,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x36142fa60bf54fb0d928d0c683c2f2f02a7b901b69466c38fd3c19d16d2e5c92",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633890,
+      "date": "2026-01-29 04:58:10",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 20000,
+      "usdcSize": 10600,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0xa7a3f05d608c2dc42d488bc36298b4d074811f6d986ed77885dd0e94eaaa0975",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633880,
+      "date": "2026-01-29 04:58:00",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 25000,
+      "usdcSize": 13250,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x0bbaa5c761bfdf26f43e01b745f4a7aa19f84459d816511ff51071243092fab4",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633876,
+      "date": "2026-01-29 04:57:56",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 10000,
+      "usdcSize": 5300,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x69f61e6ff6a6721c6c0ff3e9deeaf276563cf9c029363bb6b1cfadb7f1671696",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    },
+    {
+      "timestamp": 1769633842,
+      "date": "2026-01-29 04:57:22",
+      "type": "TRADE",
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.53,
+      "size": 25000,
+      "usdcSize": 13250,
+      "title": "Will Sport Lisboa e Benfica win on 2026-01-28?",
+      "tx_hash": "0x59044d553982ba7d7905bb0e4851aec7c6fbf281a9486cc2dcc5cbef2ad2077f",
+      "conditionId": "0xe986a6eb382842e20ef258af982525779d01a1d1a7d58700c42364da8c43e838"
+    }
+  ],
+  "matches": [
+    {
+      "tx_hash": "0xc7a4f8d80127ec3093dac49df9f832b1e4168202eab4cd4c051c51db2e481266",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 26605.76,
+        "usdcSize": 14899.2256
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 26605.76,
+        "volume_usd": 14899.2256
+      },
+      "matches": true
+    },
+    {
+      "tx_hash": "0x4eda29750fdbd1e267d708e7f164fd53b7b5eb3363738a46e32cc522b50467dc",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 11065.68,
+        "usdcSize": 6196.7808
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 11065.68,
+        "volume_usd": 6196.7808
+      },
+      "matches": true
+    },
+    {
+      "tx_hash": "0x07ac2961b3b5dd5b857550a89a75124d373046727c9f1bca78ae9026449fc36c",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 6930.51,
+        "usdcSize": 3811.7805
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 6930.51,
+        "volume_usd": 3811.7805000000003
+      },
+      "matches": true
+    },
+    {
+      "tx_hash": "0x8d8971843a31d4c3157c97fa52cb9add5627111e26e2fead0ddb7626bccfe565",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 7000,
+        "usdcSize": 3850
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 7000.0,
+        "volume_usd": 3850.0000000000005
+      },
+      "matches": true
+    },
+    {
+      "tx_hash": "0x741b0d27414ddd658f3278e12c475535a677c62d2862d146b4a9c379b5fc8c68",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 50000,
+        "usdcSize": 27500
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 50000.0,
+        "volume_usd": 27500.000000000004
+      },
+      "matches": true
+    },
+    {
+      "tx_hash": "0xc5966530d6c58c5be555edfebe8f64feb812fca6f709fefd19b7e4f86eb01c5c",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 6644.19,
+        "usdcSize": 3587.8626
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 6644.19,
+        "volume_usd": 3587.8626
+      },
+      "matches": true
+    },
+    {
+      "tx_hash": "0x4e9f347e8a943838ea9ef60c05167854f48341d42941f531d71193ba367501b1",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 9654.67,
+        "usdcSize": 5213.5218
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 9654.67,
+        "volume_usd": 5213.5218
+      },
+      "matches": true
+    },
+    {
+      "tx_hash": "0x3986b015dce634409d186d458d4b565bc191b3b42a25ddef465a047d9ad1930f",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 7744.64,
+        "usdcSize": 4182.1056
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 7744.64,
+        "volume_usd": 4182.105600000001
+      },
+      "matches": true
+    },
+    {
+      "tx_hash": "0x2b5a264500a589696c1b661869d653f34fa282043027539dd38abf5ebc164ff9",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 25000,
+        "usdcSize": 13500
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 25000.0,
+        "volume_usd": 13500.0
+      },
+      "matches": true
+    },
+    {
+      "tx_hash": "0x227f0c6eb42df9ad8b65a6ae45c27fa76f77bb81944df2f2eaad5595967bad6c",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 25000,
+        "usdcSize": 13500
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 25000.0,
+        "volume_usd": 13500.0
+      },
+      "matches": true
+    },
+    {
+      "tx_hash": "0x154d914296a6904f71498ea2a1715700131c9442f890f8bc1d569f6413a6fcf1",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 26085.33,
+        "usdcSize": 14086.0782
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 26085.33,
+        "volume_usd": 14086.078200000002
+      },
+      "matches": true
+    },
+    {
+      "tx_hash": "0xabe32bc0158571b2cd790afbc2fe2d82c2777fa3034c6f386d9a032116412303",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 20824.44,
+        "usdcSize": 11245.1976
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 20824.44,
+        "volume_usd": 11245.1976
+      },
+      "matches": true
+    },
+    {
+      "tx_hash": "0x36142fa60bf54fb0d928d0c683c2f2f02a7b901b69466c38fd3c19d16d2e5c92",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.538370698,
+        "size": 50000,
+        "usdcSize": 26918.5349
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.538370698,
+        "size": 50000.0,
+        "volume_usd": 26918.534900000002
+      },
+      "matches": true
+    },
+    {
+      "tx_hash": "0xa7a3f05d608c2dc42d488bc36298b4d074811f6d986ed77885dd0e94eaaa0975",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.53,
+        "size": 20000,
+        "usdcSize": 10600
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.53,
+        "size": 20000.0,
+        "volume_usd": 10600.0
+      },
+      "matches": true
+    },
+    {
+      "tx_hash": "0x0bbaa5c761bfdf26f43e01b745f4a7aa19f84459d816511ff51071243092fab4",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.53,
+        "size": 25000,
+        "usdcSize": 13250
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.53,
+        "size": 25000.0,
+        "volume_usd": 13250.0
+      },
+      "matches": true
+    },
+    {
+      "tx_hash": "0x69f61e6ff6a6721c6c0ff3e9deeaf276563cf9c029363bb6b1cfadb7f1671696",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.53,
+        "size": 10000,
+        "usdcSize": 5300
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.53,
+        "size": 10000.0,
+        "volume_usd": 5300.0
+      },
+      "matches": true
+    },
+    {
+      "tx_hash": "0x59044d553982ba7d7905bb0e4851aec7c6fbf281a9486cc2dcc5cbef2ad2077f",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.53,
+        "size": 25000,
+        "usdcSize": 13250
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.53,
+        "size": 25000.0,
+        "volume_usd": 13250.0
+      },
+      "matches": true
+    }
+  ],
+  "discrepancies": [
+    {
+      "tx_hash": "0x743703a738fdce79ce5d4bcbcc24758f1c09e3124ae447125f1ef82e9cc9fc6b",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 25000,
+        "usdcSize": 14000
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 25000.0,
+        "volume_usd": 11000.0
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x72d9ef4a5311680d98a77dac6f6e93b2187029bca9c1d81083e463c2e2187853",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 17110.99,
+        "usdcSize": 9582.1544
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 17110.99,
+        "volume_usd": 7528.8356
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0xdcdbadc6bf3fce24254d5ba1775d5be1da5784be891d3e913b9d3791578e41fa",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 4778,
+        "usdcSize": 2675.68
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 4778.0,
+        "volume_usd": 2102.32
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x8ce04f7bab19e1ee6c65981b531c7f7da8877ea16361c2a0c03de556645e93f7",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 5094.64,
+        "usdcSize": 2852.9984
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 5094.64,
+        "volume_usd": 2241.6416000000004
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x610781d8d2edde76618ab5558ad1c8a4c22e7a1926d8b7f95bff5dac49b256dc",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 27123.33,
+        "usdcSize": 15189.0648
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 27227.33,
+        "volume_usd": 11980.0252
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x13101376372f9fbf4788167d231c41e1af8637465cb12641918603019fb3cc10",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 15000,
+        "usdcSize": 8400
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 15000.0,
+        "volume_usd": 6600.0
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0xded75c8e937df529c22907e87c1211ee30a6c344b5ee45064dd2f158e5a78644",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 5366.07,
+        "usdcSize": 3004.9992
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 5366.07,
+        "volume_usd": 2361.0708
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0xc8b4d7ae74b5b2fba14cd3dcb03a318e98c4d937c85ff661fb710519ae66085a",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 5380.36,
+        "usdcSize": 3013.0016
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 5380.36,
+        "volume_usd": 2367.3584
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x62511fa132f72bae4432a1069a1453a485ebdf4db8fe25940dc19648adef9656",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 2937,
+        "usdcSize": 1644.72
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 2937.0,
+        "volume_usd": 1292.28
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x1c62feccd0846bd157bfcf845d4ca7ed1c3005187c405f52e798cff95b584aa5",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 14471,
+        "usdcSize": 8103.76
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 14471.0,
+        "volume_usd": 6367.24
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0xfe9d403142509f536d02045abf220a0cc2ea562bbb2d96f7ad912096dbbe8ca3",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 4957.14,
+        "usdcSize": 2775.9984
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 4957.14,
+        "volume_usd": 2181.1416000000004
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x86c3e9d073541365f8973e58dd7ad7ec1b56e826000c5a26c35cf2efaee515ff",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 5230.91,
+        "usdcSize": 2877.0005
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 5230.91,
+        "volume_usd": 2353.9095
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x87ec3d1a9953ba4dafb02f0914c84d9fca373555263fbe4ca6818b4901b75087",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 5025.45,
+        "usdcSize": 2763.9975
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 5025.45,
+        "volume_usd": 2261.4525
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x417ddec75d78689e5cc77390aa8534d296686b919f09d8e60cb3162625c61e6f",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 1982.3,
+        "usdcSize": 1090.265
+      },
+      "filtered_trades": {
+        "side": "SELL",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 1982.3,
+        "volume_usd": 1090.265
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x269411e84a2aa611ca1bb97fd939953e003df8fa50b86581b4fea39331035ac9",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 10605,
+        "usdcSize": 5832.75
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 14613.0,
+        "volume_usd": 6575.85
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x0b3516628d764462d03a5239976c110239f91b40406041d60b868ffc616cfb68",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 4958.18,
+        "usdcSize": 2726.999
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 4958.18,
+        "volume_usd": 2231.181
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x0ea5f8902dfdbcb5ffb5ab3ec9e44c22694932bc9b38addbd95173808b4af9e9",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 5350.91,
+        "usdcSize": 2943.0005
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 5350.91,
+        "volume_usd": 2407.9095
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0xba13e848e57d211c178b719c2d8accdb3e4b8903deb1d61fe484fba63eee2346",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 30000,
+        "usdcSize": 16500
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 30000.0,
+        "volume_usd": 13500.0
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x3db870f255844bdcf10370ec7c5279251aeecdb9f340d27e96ad4e8a4048712d",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 5410.91,
+        "usdcSize": 2976.0005
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 5410.91,
+        "volume_usd": 2434.9095
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x816db30a4cfe7f443ec4ad63e9558523cdf8012bc6e5664fac78a368a719fde8",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 25000,
+        "usdcSize": 13750
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 25000.0,
+        "volume_usd": 11250.0
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0xe1b0f4b1ee18941124d35a0d2a3e2899be70e9606290b2898bdb4c886d765f17",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 7826,
+        "usdcSize": 4304.3
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 7826.0,
+        "volume_usd": 3521.7000000000003
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0xd0543d0c8c11f97cf2dbfbf776a93aaa4f44a0cbfdf2028acdac984370486f26",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 5146.3,
+        "usdcSize": 2779.002
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.46,
+        "size": 5146.3,
+        "volume_usd": 2367.2980000000002
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x9efb82eab8b6f927e8ef29f921fe25a7b24cf6a71467a34846dbdbeffdc23f98",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 12514,
+        "usdcSize": 6757.56
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.46,
+        "size": 12514.0,
+        "volume_usd": 5756.4400000000005
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0xcd83770f176ef89c79fa67cbad1e5af815fddac6e59055c2688c87ef7e2680ad",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 5040,
+        "usdcSize": 2721.6
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.46,
+        "size": 5040.0,
+        "volume_usd": 2318.4
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0xc8d269335aa4ad8b36311b3395797169d1c615fcc5569bb9131268f530552015",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 5487.04,
+        "usdcSize": 2963.0016
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.46,
+        "size": 5487.04,
+        "volume_usd": 2524.0384
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x93615b384e9d5005d9b7603e6f38201f9002dbc0af2856690bda7b43ece2dd0a",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 2594.32,
+        "usdcSize": 1400.9328
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.46,
+        "size": 4998.15,
+        "volume_usd": 2299.149
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x93615b384e9d5005d9b7603e6f38201f9002dbc0af2856690bda7b43ece2dd0a",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 2227.83,
+        "usdcSize": 1203.0282
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.46,
+        "size": 4998.15,
+        "volume_usd": 2299.149
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0xb78176a56c7cd1669f952285b5614d99639a1e6333b525e48ad609f1cedb42cc",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 5414.81,
+        "usdcSize": 2923.9974
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.46,
+        "size": 5414.81,
+        "volume_usd": 2490.8126
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x805fd9a6a72abb4517788f96f045dc85e3ae298c9e14aa4af17bd40fdeed67fa",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 5000,
+        "usdcSize": 2700
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.46,
+        "size": 5000.0,
+        "volume_usd": 2300.0
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0xc009fd7641931ab9ac884de93a83ac01eb08b5c2bfb98a5b20d8e5a4bb7cb9b8",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 6030,
+        "usdcSize": 3256.2
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.46,
+        "size": 6030.0,
+        "volume_usd": 2773.8
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0xdebd83367120f986a9ea0e44a3400b84c7f73fd639de737e436661cbca75e0fb",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 23000,
+        "usdcSize": 12420
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.46,
+        "size": 23000.0,
+        "volume_usd": 10580.0
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0xe3cf2ccc0b11857f54fe7dee023baa9b02058745e78a76f77f4c4c7f9f667abf",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 3000.68,
+        "usdcSize": 1620.3672
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.46,
+        "size": 3000.68,
+        "volume_usd": 1380.3128
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x36ad2fcceee6d855defceff193dd5cdc0043f7553cc06e99c2f2e39d6a7aeeb4",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 5207.41,
+        "usdcSize": 2812.0014
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.46,
+        "size": 5207.41,
+        "volume_usd": 2395.4086
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0xb279ec1c23aa0340f1df1847c8bfd127ca675a55e7691e3a7bf75f5681f09725",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 5503.7,
+        "usdcSize": 2971.998
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.46,
+        "size": 5503.7,
+        "volume_usd": 2531.702
+      },
+      "matches": false
+    },
+    {
+      "tx_hash": "0x5fa9e0217d597d068190548d287fe2d40150b6081f79b63af2047a0d38ff7485",
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.54,
+        "size": 8218,
+        "usdcSize": 4437.72
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.46,
+        "size": 8218.0,
+        "volume_usd": 3780.28
+      },
+      "matches": false
+    }
+  ]
+}

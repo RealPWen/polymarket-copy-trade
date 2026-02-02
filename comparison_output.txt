@@ -1,0 +1,963 @@
+﻿Fetching activity for wallet: 0xd82079c0d6b837bad90abf202befc079da5819f6
+Markets: 3
+
+Total activity records: 200
+Total filtered trades: 535
+
+================================================================================
+WALLET ACTIVITY FROM API
+================================================================================
+
+Wallet trades in this event: 200
+Matches with filtered_trades.json: 17
+Discrepancies: 35
+
+================================================================================
+WALLET TRADES DETAIL
+================================================================================
+[2026-01-29 17:18:16] REDEEM |   @ 0.0000 | Size: 716172.96 | USDC: $716172.96
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x8fd723d8429ee3b738c32053659855168ec43fde76123de8843cc0b153d005cf
+
+[2026-01-29 05:16:48] TRADE | BUY Yes @ 0.5400 | Size: 11.98 | USDC: $6.47
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xc5da092370c85fe4cd4a5d650fcd8edcec30e83fb0d0aa4a8611505da33b7945
+
+[2026-01-29 05:10:04] TRADE | BUY Yes @ 0.5600 | Size: 17.12 | USDC: $9.59
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x7fc3753afbebb3a75b0fdf5c62a5b42b9214a0715d41885a3567cae07c26b884
+
+[2026-01-29 05:09:58] TRADE | BUY Yes @ 0.5600 | Size: 2.27 | USDC: $1.27
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x1c011f454d166d98ebacb5c96c3a6ef23652e6a6c921f86d409a2552c7b198ef
+
+[2026-01-29 05:09:52] TRADE | BUY Yes @ 0.5600 | Size: 31.25 | USDC: $17.50
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x5bb0d959cd42321738c4f3045cc74ad571d260b3cff97e7e6647210ac1fafc1f
+
+[2026-01-29 05:09:52] TRADE | BUY Yes @ 0.5600 | Size: 25000.00 | USDC: $14000.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x743703a738fdce79ce5d4bcbcc24758f1c09e3124ae447125f1ef82e9cc9fc6b
+
+[2026-01-29 05:09:46] TRADE | BUY Yes @ 0.5600 | Size: 5.50 | USDC: $3.08
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x737decf93794b3893205934fd92a7b42b34bde9967e389aaa16d8d71a4b5389e
+
+[2026-01-29 05:09:42] TRADE | BUY Yes @ 0.5600 | Size: 2.27 | USDC: $1.27
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x5b8bd5b6c15f7c93e1483ca130b62a19950854c74a43c27ea154497bae71b105
+
+[2026-01-29 05:09:40] TRADE | BUY Yes @ 0.5600 | Size: 2.27 | USDC: $1.27
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x31a343084e9df351b3f07aa3b34ec8889fac0f5f1f83b519096ca430fe5d32c1
+
+[2026-01-29 05:09:38] TRADE | BUY Yes @ 0.5600 | Size: 22.73 | USDC: $12.73
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x583bf05a37b9987c75d2417a5a4d180680351c696746ea759d4adf24a7906eb1
+
+[2026-01-29 05:09:36] TRADE | BUY Yes @ 0.5600 | Size: 1.25 | USDC: $0.70
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xf0a8e562ab495feb2dd268f0e83d7741fbf7f3ef843b4624c9f554ac3f03ab3c
+
+[2026-01-29 05:09:32] TRADE | BUY Yes @ 0.5600 | Size: 1378.16 | USDC: $771.77
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x755402f874d6bfbc826bcb07ffa01caf40259aae3136553331b743508379d0cb
+
+[2026-01-29 05:09:26] TRADE | BUY Yes @ 0.5600 | Size: 17110.99 | USDC: $9582.15
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x72d9ef4a5311680d98a77dac6f6e93b2187029bca9c1d81083e463c2e2187853
+
+[2026-01-29 05:09:24] TRADE | BUY Yes @ 0.5600 | Size: 99.00 | USDC: $55.44
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x8c84db5af140450dc6250e24fa0f0d1e96a1cb69d71433739eaea526e686db96
+
+[2026-01-29 05:09:24] TRADE | BUY Yes @ 0.5600 | Size: 337.00 | USDC: $188.72
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x9ce7a7208f507aec62e636394fbb5f0652a0034dad7c34129d2c1fa0ce56f3f9
+
+[2026-01-29 05:09:24] TRADE | BUY Yes @ 0.5600 | Size: 1038.00 | USDC: $581.28
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x029415cc043167c99b38e32c1a78327121ac0a8b83597075eeae2900ac5d3d65
+
+[2026-01-29 05:09:22] TRADE | BUY Yes @ 0.5600 | Size: 31.25 | USDC: $17.50
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x480074bfa45cc77d6c5227ed4cbeeb10a00e1dfe79925ea86d1b251a5cd7531c
+
+[2026-01-29 05:09:22] TRADE | BUY Yes @ 0.5600 | Size: 4778.00 | USDC: $2675.68
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xdcdbadc6bf3fce24254d5ba1775d5be1da5784be891d3e913b9d3791578e41fa
+
+[2026-01-29 05:09:20] TRADE | BUY Yes @ 0.5600 | Size: 26605.76 | USDC: $14899.23
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xc7a4f8d80127ec3093dac49df9f832b1e4168202eab4cd4c051c51db2e481266
+
+[2026-01-29 05:07:04] TRADE | BUY Yes @ 0.5600 | Size: 223.00 | USDC: $124.88
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xc223200ffd4c1d5e8cca1b34ecfb38c60b8a9cc300f3f386392a5d6db70b369d
+
+[2026-01-29 05:07:00] TRADE | BUY Yes @ 0.5600 | Size: 2.27 | USDC: $1.27
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x12127be52126b688ba2325e13f23c48dd08e1e2860eaa5572570482057a540de
+
+[2026-01-29 05:06:58] TRADE | BUY Yes @ 0.5600 | Size: 5094.64 | USDC: $2853.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x8ce04f7bab19e1ee6c65981b531c7f7da8877ea16361c2a0c03de556645e93f7
+
+[2026-01-29 05:06:56] TRADE | BUY Yes @ 0.5600 | Size: 3.68 | USDC: $2.06
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xba644d587a676a542bcba27d79289c867bff5f01a68cc7d37a656a4305311c77
+
+[2026-01-29 05:06:54] TRADE | BUY Yes @ 0.5600 | Size: 31.25 | USDC: $17.50
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x4a9f128ef9bc1c999b1882e269188fef7253152532aa6ad5a2d98a854ba49516
+
+[2026-01-29 05:06:54] TRADE | BUY Yes @ 0.5600 | Size: 99.00 | USDC: $55.44
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x3174e95eb17c7b5ae0fa55f25d6bd8f3bbbe858117d45c98a0a965b0019209bf
+
+[2026-01-29 05:06:52] TRADE | BUY Yes @ 0.5600 | Size: 14.06 | USDC: $7.87
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xbfcff35abe80bb061c52e43d8d727e5d10d625754fc6095021123804f31a835a
+
+[2026-01-29 05:06:42] TRADE | BUY Yes @ 0.5600 | Size: 27123.33 | USDC: $15189.06
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x610781d8d2edde76618ab5558ad1c8a4c22e7a1926d8b7f95bff5dac49b256dc
+
+[2026-01-29 05:06:40] TRADE | BUY Yes @ 0.5600 | Size: 447.73 | USDC: $250.73
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xc776dcf25badc87932d58db07e53d73c444a417e72027612e277b71015523d17
+
+[2026-01-29 05:06:40] TRADE | BUY Yes @ 0.5600 | Size: 31.25 | USDC: $17.50
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x7558a5dab2e663689f4d77c5f0cf662ec0feb195b18d7840ecd3145b046b4694
+
+[2026-01-29 05:06:40] TRADE | BUY Yes @ 0.5600 | Size: 15000.00 | USDC: $8400.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x13101376372f9fbf4788167d231c41e1af8637465cb12641918603019fb3cc10
+
+[2026-01-29 05:06:38] TRADE | BUY Yes @ 0.5600 | Size: 45.45 | USDC: $25.45
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x71856718adad2b5e86f9fee4fba42baa60a48d17b6e3adb1ea814aa75a2d9793
+
+[2026-01-29 05:06:38] TRADE | BUY Yes @ 0.5600 | Size: 5366.07 | USDC: $3005.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xded75c8e937df529c22907e87c1211ee30a6c344b5ee45064dd2f158e5a78644
+
+[2026-01-29 05:06:38] TRADE | BUY Yes @ 0.5600 | Size: 201.00 | USDC: $112.56
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x381baaa3afcc054f6ba88e2aec25786c85176f728a6ee58bf1a81fa7b4276241
+
+[2026-01-29 05:06:36] TRADE | BUY Yes @ 0.5600 | Size: 1732.00 | USDC: $969.92
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xf3187ade59b0abc5c75db814413b50cc42c9e3032b6ad3e5ec9be939544f4504
+
+[2026-01-29 05:06:36] TRADE | BUY Yes @ 0.5600 | Size: 3.16 | USDC: $1.77
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x26c446e9ecc161cb25ba707eeff7ad8f0c0cb152a194a4a4fd9e7dd75c21bb2c
+
+[2026-01-29 05:06:36] TRADE | BUY Yes @ 0.5600 | Size: 50.00 | USDC: $28.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xa10907cc40c2a359b8b0f489a9145ab845b21603a2e8426e85ba92dc7240f48c
+
+[2026-01-29 05:06:34] TRADE | BUY Yes @ 0.5600 | Size: 2036.00 | USDC: $1140.16
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xf9db01840b7c8934d47d21b9936a4de495e6e592f6c13b51f59e38b985214b51
+
+[2026-01-29 05:06:34] TRADE | BUY Yes @ 0.5600 | Size: 7.50 | USDC: $4.20
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x027005cc4871a20dc0ae333db77297e37fad54a52658f226c01d89fcfd78764c
+
+[2026-01-29 05:06:34] TRADE | BUY Yes @ 0.5600 | Size: 1529.00 | USDC: $856.24
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x6bfc29d4375f4aa04c15ae28146e6ba200e9214602fc3d50617ad99a941c7279
+
+[2026-01-29 05:06:32] TRADE | BUY Yes @ 0.5600 | Size: 1401.00 | USDC: $784.56
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x11ab956a6905412fe0146f0fa2820b4cac682bb16d690a457a5855f1061add7f
+
+[2026-01-29 05:06:30] TRADE | BUY Yes @ 0.5600 | Size: 2.27 | USDC: $1.27
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xc98a55fa83712901fdcad2d6834c4470a3dae78ef084fedfc4d1465428acffea
+
+[2026-01-29 05:06:28] TRADE | BUY Yes @ 0.5600 | Size: 2.43 | USDC: $1.36
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xa47ac86755f4c82625f0077433e47f2d182ef7ac1904ff0dabeb74dffe7910aa
+
+[2026-01-29 05:06:28] TRADE | BUY Yes @ 0.5600 | Size: 9.84 | USDC: $5.51
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xf7939c2c2b3f6a0b04c2ef0e1b2cf94200441c783f78a424bd5d3fa3afd9b984
+
+[2026-01-29 05:06:28] TRADE | BUY Yes @ 0.5600 | Size: 9.98 | USDC: $5.59
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x7f06f823f05cc94049f43169b669d9faf686448157aff6e332dd48fc351bdbec
+
+[2026-01-29 05:06:28] TRADE | BUY Yes @ 0.5600 | Size: 5380.36 | USDC: $3013.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xc8b4d7ae74b5b2fba14cd3dcb03a318e98c4d937c85ff661fb710519ae66085a
+
+[2026-01-29 05:06:28] TRADE | BUY Yes @ 0.5600 | Size: 2217.00 | USDC: $1241.52
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x7ebd4fa0b8537845e5906eaf08dca5579321bbfe8fc867ff145f73d69563e5f1
+
+[2026-01-29 05:06:26] TRADE | BUY Yes @ 0.5600 | Size: 237.00 | USDC: $132.72
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x6c4e113a8f99f78d75ac54247faed20a822f7f9d6dd765415593a40d779bb8db
+
+[2026-01-29 05:06:26] TRADE | BUY Yes @ 0.5600 | Size: 99.00 | USDC: $55.44
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x23b20a277dd4b56b1d52af027421ac01620be019fb349d16978f542c15d40974
+
+[2026-01-29 05:06:26] TRADE | BUY Yes @ 0.5600 | Size: 2937.00 | USDC: $1644.72
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x62511fa132f72bae4432a1069a1453a485ebdf4db8fe25940dc19648adef9656
+
+[2026-01-29 05:06:24] TRADE | BUY Yes @ 0.5600 | Size: 14471.00 | USDC: $8103.76
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x1c62feccd0846bd157bfcf845d4ca7ed1c3005187c405f52e798cff95b584aa5
+
+[2026-01-29 05:06:24] TRADE | BUY Yes @ 0.5600 | Size: 316.85 | USDC: $177.44
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x215219cc6469d11d05e81c16129e569bedfc66f8b6d5b98ce5953eaefe053d10
+
+[2026-01-29 05:06:24] TRADE | BUY Yes @ 0.5600 | Size: 4957.14 | USDC: $2776.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xfe9d403142509f536d02045abf220a0cc2ea562bbb2d96f7ad912096dbbe8ca3
+
+[2026-01-29 05:06:24] TRADE | BUY Yes @ 0.5600 | Size: 31.25 | USDC: $17.50
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x1db6ec8ecba18aeb15d8fb409818d70ae0bf95837bea4bd144c56958876a1aef
+
+[2026-01-29 05:06:24] TRADE | BUY Yes @ 0.5600 | Size: 45.45 | USDC: $25.45
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xbf66edb1e5e213f98c60bdaf8f654ab0ddf7b4fb1d41b11e7d553c83e03a650b
+
+[2026-01-29 05:06:22] TRADE | BUY Yes @ 0.5600 | Size: 11065.68 | USDC: $6196.78
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x4eda29750fdbd1e267d708e7f164fd53b7b5eb3363738a46e32cc522b50467dc
+
+[2026-01-29 05:06:18] TRADE | BUY Yes @ 0.5500 | Size: 17.42 | USDC: $9.58
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xf39297b95cb7010630aa664a2bec20df33245f4bfe02a9c9480b446e915325c8
+
+[2026-01-29 05:06:12] TRADE | BUY Yes @ 0.5500 | Size: 2.22 | USDC: $1.22
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x76282b090d862da9d623878fcdcef2335eb0c1b6ed2700f3037095e8071ecf1b
+
+[2026-01-29 05:06:10] TRADE | BUY Yes @ 0.5500 | Size: 500.00 | USDC: $275.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x81e0f1bcbc29c27ff39e93cb5701d8d7c2ba30242d169f26aebe322f261c172a
+
+[2026-01-29 05:06:10] TRADE | BUY Yes @ 0.5500 | Size: 7.15 | USDC: $3.93
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xf842357e4d3decdd2146f6a3eec14442932573846b812d679da521245be6482b
+
+[2026-01-29 05:06:10] TRADE | BUY Yes @ 0.5500 | Size: 5230.91 | USDC: $2877.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x86c3e9d073541365f8973e58dd7ad7ec1b56e826000c5a26c35cf2efaee515ff
+
+[2026-01-29 05:06:06] TRADE | BUY Yes @ 0.5500 | Size: 5025.45 | USDC: $2764.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x87ec3d1a9953ba4dafb02f0914c84d9fca373555263fbe4ca6818b4901b75087
+
+[2026-01-29 05:06:06] TRADE | BUY Yes @ 0.5500 | Size: 1352.00 | USDC: $743.60
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xac544f566b5758754ef66cda90e13c7ba070f5ac795345b3e078fd363aa74b3b
+
+[2026-01-29 05:06:06] TRADE | BUY Yes @ 0.5500 | Size: 1982.30 | USDC: $1090.27
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x417ddec75d78689e5cc77390aa8534d296686b919f09d8e60cb3162625c61e6f
+
+[2026-01-29 05:06:04] TRADE | BUY Yes @ 0.5500 | Size: 10605.00 | USDC: $5832.75
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x269411e84a2aa611ca1bb97fd939953e003df8fa50b86581b4fea39331035ac9
+
+[2026-01-29 05:06:04] TRADE | BUY Yes @ 0.5500 | Size: 30.60 | USDC: $16.83
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xd5f6b7d5b0f98ea485f49b3560c96e65e92c6b9532aaf09c8717ea33a3bf733a
+
+[2026-01-29 05:06:04] TRADE | BUY Yes @ 0.5500 | Size: 4958.18 | USDC: $2727.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x0b3516628d764462d03a5239976c110239f91b40406041d60b868ffc616cfb68
+
+[2026-01-29 05:05:54] TRADE | BUY Yes @ 0.5500 | Size: 13.16 | USDC: $7.24
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x7ad64943c37a8782703be9207990a1e3ded56f9a1fd75ca4bf13d17fcef5682e
+
+[2026-01-29 05:05:50] TRADE | BUY Yes @ 0.5500 | Size: 2.42 | USDC: $1.33
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x92e23b5a70487636862befd863a855d6c5d04f16759e2af63ce9d6683c7a6a84
+
+[2026-01-29 05:05:48] TRADE | BUY Yes @ 0.5500 | Size: 11.11 | USDC: $6.11
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xb9a70d03bff86199cbb9879b9ae4d8445f6269abc7f891bbe1a742ebb6059afc
+
+[2026-01-29 05:05:46] TRADE | BUY Yes @ 0.5500 | Size: 5350.91 | USDC: $2943.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x0ea5f8902dfdbcb5ffb5ab3ec9e44c22694932bc9b38addbd95173808b4af9e9
+
+[2026-01-29 05:05:46] TRADE | BUY Yes @ 0.5500 | Size: 6.67 | USDC: $3.67
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xefc461c65572320f0533cecee85a8b3a30d160cf913e976db82b9f12e681414c
+
+[2026-01-29 05:05:46] TRADE | BUY Yes @ 0.5500 | Size: 12.27 | USDC: $6.75
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xd6830f429930e70a58c7a241c4637fa555f239f749cc1ac590dc10843c973428
+
+[2026-01-29 05:05:46] TRADE | BUY Yes @ 0.5500 | Size: 2.22 | USDC: $1.22
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x31a28a3d84a37ad97e11d16c7a5b1bfa83eebcd0da114cdfc0e8aed78810eb26
+
+[2026-01-29 05:05:46] TRADE | BUY Yes @ 0.5500 | Size: 30000.00 | USDC: $16500.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xba13e848e57d211c178b719c2d8accdb3e4b8903deb1d61fe484fba63eee2346
+
+[2026-01-29 05:05:44] TRADE | BUY Yes @ 0.5500 | Size: 222.22 | USDC: $122.22
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xc2a81b532cecd4d33e050db22afe07aafb0bd1b23dd09eded5d97c93ce56688f
+
+[2026-01-29 05:05:42] TRADE | BUY Yes @ 0.5500 | Size: 2.22 | USDC: $1.22
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x58df4356b6aa75c74392406f75987fcf8e0a7eaa0f6db42d7f2f84e7553338ec
+
+[2026-01-29 05:05:42] TRADE | BUY Yes @ 0.5500 | Size: 5410.91 | USDC: $2976.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x3db870f255844bdcf10370ec7c5279251aeecdb9f340d27e96ad4e8a4048712d
+
+[2026-01-29 05:05:40] TRADE | BUY Yes @ 0.5500 | Size: 30.60 | USDC: $16.83
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x3b71be3681239ebf890f90abafd0c7a690d1ad1a8fa97a57acd2e508d96a37f8
+
+[2026-01-29 05:05:40] TRADE | BUY Yes @ 0.5500 | Size: 4.53 | USDC: $2.49
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x96d1b7eb4fc03f6444fb5dbb5dbcc6f1f5d77069235e726fe9b05e0a8f355d38
+
+[2026-01-29 05:05:34] TRADE | BUY Yes @ 0.5500 | Size: 1956.00 | USDC: $1075.80
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x9e8bb4fa539b2d6e625fc0db3dd32c2edab9a53ff97b952e69a9f8d83d685667
+
+[2026-01-29 05:05:32] TRADE | BUY Yes @ 0.5500 | Size: 2.22 | USDC: $1.22
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xd7a87393c9f3ebe527f54c21fbb2fcacefee51cece25ad75f3eedee31bf9ddea
+
+[2026-01-29 05:05:32] TRADE | BUY Yes @ 0.5500 | Size: 2.56 | USDC: $1.41
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x4c1c6bf1ceb5aa9b08e8a507f532e7d010486f18a42c462d2394b629a02f66de
+
+[2026-01-29 05:05:32] TRADE | BUY Yes @ 0.5500 | Size: 29.00 | USDC: $15.95
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x1ed0d8e10af8feccf98f1ae61e202c087bedf86055cc7d94d27fe63141ff4d45
+
+[2026-01-29 05:05:32] TRADE | BUY Yes @ 0.5500 | Size: 2.42 | USDC: $1.33
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x68890402722f0da7f433db81debcc6a0541a30eb5f3dfeb9a4a8ae01b2d8e4c2
+
+[2026-01-29 05:05:32] TRADE | BUY Yes @ 0.5500 | Size: 1827.00 | USDC: $1004.85
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x93c9d5930947a90e204ab02ba1fd9de16fe439b0048b5272187d458ddf57ee2b
+
+[2026-01-29 05:05:30] TRADE | BUY Yes @ 0.5500 | Size: 641.00 | USDC: $352.55
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x491e1e654f552cd7c782c29d93257c0478b7cf8e9a4b1521caa9b77c2890f95d
+
+[2026-01-29 05:05:30] TRADE | BUY Yes @ 0.5500 | Size: 1180.00 | USDC: $649.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x8da1d1bdff30370038b23a28ee350d5d422d9d610bc9ff7b30f289994f4e433e
+
+[2026-01-29 05:05:30] TRADE | BUY Yes @ 0.5500 | Size: 37.03 | USDC: $20.37
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x83d9b928b394f44a11631e65bf09a32020efb14ae44646880f527afc92462c31
+
+[2026-01-29 05:05:28] TRADE | BUY Yes @ 0.5500 | Size: 629.00 | USDC: $345.95
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xff2c0f421314f2bd1fefe80ae3b1a1b2ab3c1d40a40c89a762c8012a6490d00e
+
+[2026-01-29 05:05:28] TRADE | BUY Yes @ 0.5500 | Size: 25000.00 | USDC: $13750.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x816db30a4cfe7f443ec4ad63e9558523cdf8012bc6e5664fac78a368a719fde8
+
+[2026-01-29 05:05:28] TRADE | BUY Yes @ 0.5500 | Size: 10.02 | USDC: $5.51
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x103c1f3524947a8b072d59e96aea471241be78e190aa663b704de88885897475
+
+[2026-01-29 05:05:26] TRADE | BUY Yes @ 0.5500 | Size: 223.00 | USDC: $122.65
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xaa4199b1236eeeb3060c3195ad421d324da90f6e9817f3e2be9267ea0774aac1
+
+[2026-01-29 05:05:26] TRADE | BUY Yes @ 0.5500 | Size: 1083.00 | USDC: $595.65
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x42f33be3e0e0ae7a291c98adaf27a50a00a42fc49daa41c4a3c7604a2b6154a6
+
+[2026-01-29 05:05:26] TRADE | BUY Yes @ 0.5500 | Size: 2.40 | USDC: $1.32
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xdf9d6ef148eb7f48cfe1610a9da9ba6a738ff52d82961c9db8cb328e7ba8d846
+
+[2026-01-29 05:05:26] TRADE | BUY Yes @ 0.5500 | Size: 9.89 | USDC: $5.44
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x0209560eff28aef95b974fb182baac8d29f5561cf678b698d37e67ab943db5e6
+
+[2026-01-29 05:05:24] TRADE | BUY Yes @ 0.5500 | Size: 30.60 | USDC: $16.83
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xe356b2fa6a88f213fc5e3c984dc3aec977fa0cf5c72ba64822c9f4e3b30a7a55
+
+[2026-01-29 05:05:24] TRADE | BUY Yes @ 0.5500 | Size: 7826.00 | USDC: $4304.30
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xe1b0f4b1ee18941124d35a0d2a3e2899be70e9606290b2898bdb4c886d765f17
+
+[2026-01-29 05:05:22] TRADE | BUY Yes @ 0.5500 | Size: 6930.51 | USDC: $3811.78
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x07ac2961b3b5dd5b857550a89a75124d373046727c9f1bca78ae9026449fc36c
+
+[2026-01-29 05:05:12] TRADE | BUY Yes @ 0.5400 | Size: 41.91 | USDC: $22.63
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x867ddc9d8550863ed67d3005818241eae78aef2fd2609eff9b8aab4a762fd3e5
+
+[2026-01-29 05:05:12] TRADE | BUY Yes @ 0.5500 | Size: 7000.00 | USDC: $3850.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x8d8971843a31d4c3157c97fa52cb9add5627111e26e2fead0ddb7626bccfe565
+
+[2026-01-29 05:05:08] TRADE | BUY Yes @ 0.5400 | Size: 537.17 | USDC: $290.07
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xcd1ef013a8928100448e182870be34ddd544a96ae76adc2a80e8e69bb2d65ad2
+
+[2026-01-29 05:03:58] TRADE | BUY Yes @ 0.5400 | Size: 2.22 | USDC: $1.20
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x8f5c321d059a5a6b50114962090cd6de3f4595a8c82d5494110dec40a7157eea
+
+[2026-01-29 05:03:56] TRADE | BUY Yes @ 0.5400 | Size: 500.00 | USDC: $270.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xfb40f7aa77367439c71a6e86ef3bb839440c6e3ddedc47eec8e1592e0038004e
+
+[2026-01-29 05:03:42] TRADE | BUY Yes @ 0.5500 | Size: 50000.00 | USDC: $27500.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x741b0d27414ddd658f3278e12c475535a677c62d2862d146b4a9c379b5fc8c68
+
+[2026-01-29 05:03:24] TRADE | BUY Yes @ 0.5400 | Size: 2.17 | USDC: $1.17
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x685033a3b17a97265f5b1334fbf0b39f42f4d064612d9201a5e3276db578bb1c
+
+[2026-01-29 05:03:18] TRADE | BUY Yes @ 0.5400 | Size: 29.50 | USDC: $15.93
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xcc64b12ec33338b8ec0fafef9117cd1bb61a41452c980c3c6e8ab32f41285640
+
+[2026-01-29 05:03:18] TRADE | BUY Yes @ 0.5400 | Size: 400.00 | USDC: $216.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xeb43bdca31935498b1c9bcb46e4ab808d15a164c09085bf136d7d5002ac1dc21
+
+[2026-01-29 05:03:16] TRADE | BUY Yes @ 0.5400 | Size: 220.00 | USDC: $118.80
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xae22ad633d250817378264894169bbf1cdc22853ac3c2e64c205c4b49a27e63d
+
+[2026-01-29 05:03:16] TRADE | BUY Yes @ 0.5400 | Size: 5146.30 | USDC: $2779.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xd0543d0c8c11f97cf2dbfbf776a93aaa4f44a0cbfdf2028acdac984370486f26
+
+[2026-01-29 05:03:16] TRADE | BUY Yes @ 0.5400 | Size: 12514.00 | USDC: $6757.56
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x9efb82eab8b6f927e8ef29f921fe25a7b24cf6a71467a34846dbdbeffdc23f98
+
+[2026-01-29 05:03:10] TRADE | BUY Yes @ 0.5400 | Size: 231.00 | USDC: $124.74
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x733605bcd18f32614ed7bfbcf3348b434651651c9e4d3f83815eae31f939070c
+
+[2026-01-29 05:03:04] TRADE | BUY Yes @ 0.5400 | Size: 231.00 | USDC: $124.74
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x9706eed6efe84f48350d36925783a58dd1ca3f88befa9b66e2168e6321f75b2d
+
+[2026-01-29 05:03:00] TRADE | BUY Yes @ 0.5400 | Size: 9.09 | USDC: $4.91
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x23dbe99279bf26bc701b8e1ee54d1bb6173eebd47469a3835ef4408e45640c03
+
+[2026-01-29 05:03:00] TRADE | BUY Yes @ 0.5400 | Size: 17.09 | USDC: $9.23
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x4639ad712a41200ed5507270125748b4029a6ae5af4c9c5de3338c6aebee0141
+
+[2026-01-29 05:02:58] TRADE | BUY Yes @ 0.5400 | Size: 5040.00 | USDC: $2721.60
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xcd83770f176ef89c79fa67cbad1e5af815fddac6e59055c2688c87ef7e2680ad
+
+[2026-01-29 05:02:58] TRADE | BUY Yes @ 0.5400 | Size: 214.00 | USDC: $115.56
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x2b36d8ac152710140ce96985b23263d42a2bf17dc140a36ccf266fcbef56be56
+
+[2026-01-29 05:02:56] TRADE | BUY Yes @ 0.5400 | Size: 6644.19 | USDC: $3587.86
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xc5966530d6c58c5be555edfebe8f64feb812fca6f709fefd19b7e4f86eb01c5c
+
+[2026-01-29 05:01:54] TRADE | BUY Yes @ 0.5400 | Size: 5487.04 | USDC: $2963.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xc8d269335aa4ad8b36311b3395797169d1c615fcc5569bb9131268f530552015
+
+[2026-01-29 05:01:46] TRADE | BUY Yes @ 0.5400 | Size: 100.00 | USDC: $54.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x4ec98b81257e57a1904de8411aa74c7ecef16b0b840ff82dc048340451ce3c71
+
+[2026-01-29 05:01:44] TRADE | BUY Yes @ 0.5400 | Size: 182.00 | USDC: $98.28
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xddb26e2690581f0e9e123c0b53644c8eba8c1f92e56bdfb4297619fe80c5784b
+
+[2026-01-29 05:01:38] TRADE | BUY Yes @ 0.5400 | Size: 208.00 | USDC: $112.32
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x2a6ce6d5b7f19855c828eb949d8e9902f8d2bda9f12061299e6dd52347c22bd3
+
+[2026-01-29 05:01:38] TRADE | BUY Yes @ 0.5400 | Size: 6.54 | USDC: $3.53
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x735f05a34d41ab0daf7561ff2e0ff5a06abd668237dde3d2a590ab7eab6dc71b
+
+[2026-01-29 05:01:36] TRADE | BUY Yes @ 0.5400 | Size: 4.35 | USDC: $2.35
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x12e0da4d957e7df8619b41a76190523843c3093b71272181080db0f1af3b9071
+
+[2026-01-29 05:01:36] TRADE | BUY Yes @ 0.5400 | Size: 5.00 | USDC: $2.70
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x25b691ae55903dfec475c81aa395e5aee913aba927f759ba639360b94b87ace4
+
+[2026-01-29 05:01:34] TRADE | BUY Yes @ 0.5400 | Size: 18.52 | USDC: $10.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x230248e00c0f44147c529d812ae459d25013b73c476216aec3b31037bdffa796
+
+[2026-01-29 05:01:28] TRADE | BUY Yes @ 0.5400 | Size: 45.91 | USDC: $24.79
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x1907da3908c2137c94046890a8e8f82e14825b94c39d4e0fb02e9bf95b7b7cba
+
+[2026-01-29 05:01:28] TRADE | BUY Yes @ 0.5400 | Size: 2594.32 | USDC: $1400.93
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x93615b384e9d5005d9b7603e6f38201f9002dbc0af2856690bda7b43ece2dd0a
+
+[2026-01-29 05:01:28] TRADE | BUY Yes @ 0.5400 | Size: 2227.83 | USDC: $1203.03
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x93615b384e9d5005d9b7603e6f38201f9002dbc0af2856690bda7b43ece2dd0a
+
+[2026-01-29 05:01:28] TRADE | BUY Yes @ 0.5400 | Size: 25.00 | USDC: $13.50
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xe429cf455e361aa5b0aec2652258cb4698f5445f256f8f687e45a947cc94e0fb
+
+[2026-01-29 05:01:24] TRADE | BUY Yes @ 0.5400 | Size: 211.00 | USDC: $113.94
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xf38de9c1a631f50455ec064d24ec62071b0dacb6fa085fbe9176d4046a909633
+
+[2026-01-29 05:01:20] TRADE | BUY Yes @ 0.5400 | Size: 660.70 | USDC: $356.78
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xfed5a3821146c2b9606d188347d304ee90cc19be40790d5d2ef3acf4accafbb5
+
+[2026-01-29 05:01:14] TRADE | BUY Yes @ 0.5400 | Size: 236.00 | USDC: $127.44
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x155c6aedbcd56aadfd5b85b2433b15d637c86c01e4b4a5b71ff2bb20a8c614cc
+
+[2026-01-29 05:01:12] TRADE | BUY Yes @ 0.5400 | Size: 5414.81 | USDC: $2924.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xb78176a56c7cd1669f952285b5614d99639a1e6333b525e48ad609f1cedb42cc
+
+[2026-01-29 05:01:12] TRADE | BUY Yes @ 0.5400 | Size: 500.00 | USDC: $270.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x3d89991382c687a9c41dde70a08a46eb1d3bd25bc7a355595e8a951f26cde441
+
+[2026-01-29 05:01:10] TRADE | BUY Yes @ 0.5400 | Size: 29.20 | USDC: $15.77
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xb4e1a0dabdd4cf19e97de6f6b6068c68fbf6775b0ee608b9b4c67e02c8862dab
+
+[2026-01-29 05:01:08] TRADE | BUY Yes @ 0.5400 | Size: 5000.00 | USDC: $2700.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x805fd9a6a72abb4517788f96f045dc85e3ae298c9e14aa4af17bd40fdeed67fa
+
+[2026-01-29 05:01:06] TRADE | BUY Yes @ 0.5400 | Size: 200.00 | USDC: $108.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x2a82714b9ed61cfb9f10d77f31fff069b06bdb5ed3e0e3224a4b8654107d1f4b
+
+[2026-01-29 05:01:02] TRADE | BUY Yes @ 0.5400 | Size: 43.48 | USDC: $23.48
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xc2056252265fa76b6ed1350421458573a7a8396d3524c69ccf42051547cb1548
+
+[2026-01-29 05:01:02] TRADE | BUY Yes @ 0.5400 | Size: 220.00 | USDC: $118.80
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xcc2564f66277e2ea37962f4208d3936f23e5f0e65b517b8653a2b673f4a1adba
+
+[2026-01-29 05:00:58] TRADE | BUY Yes @ 0.5400 | Size: 9654.67 | USDC: $5213.52
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x4e9f347e8a943838ea9ef60c05167854f48341d42941f531d71193ba367501b1
+
+[2026-01-29 05:00:44] TRADE | BUY Yes @ 0.5400 | Size: 79.36 | USDC: $42.85
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x959f09088ae14a6bfc399281d4d2bda224831edee95b185d4522aa53a2e31390
+
+[2026-01-29 05:00:42] TRADE | BUY Yes @ 0.5400 | Size: 500.00 | USDC: $270.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x47eda286f6664aff119afae86189d7e988eaf224cf86ec6a0686aba55a7bfdd0
+
+[2026-01-29 05:00:40] TRADE | BUY Yes @ 0.5400 | Size: 547.00 | USDC: $295.38
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xf47f6eaf632657d9c2199bf3c5f56162dcd6c72e751fddf933da4ea39aa4953d
+
+[2026-01-29 05:00:38] TRADE | BUY Yes @ 0.5400 | Size: 99.00 | USDC: $53.46
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x5a8a50b7c847e7311f5face18ed394bc60cf99a06390c161a1998e74484f7a30
+
+[2026-01-29 05:00:38] TRADE | BUY Yes @ 0.5400 | Size: 6030.00 | USDC: $3256.20
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xc009fd7641931ab9ac884de93a83ac01eb08b5c2bfb98a5b20d8e5a4bb7cb9b8
+
+[2026-01-29 05:00:36] TRADE | BUY Yes @ 0.5400 | Size: 7744.64 | USDC: $4182.11
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x3986b015dce634409d186d458d4b565bc191b3b42a25ddef465a047d9ad1930f
+
+[2026-01-29 05:00:20] TRADE | BUY Yes @ 0.5300 | Size: 31.17 | USDC: $16.52
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xca0a0a89ad8042e87df0d37ab109ee3d4b58d1a3021c21451101144c3ed2a2b5
+
+[2026-01-29 05:00:06] TRADE | BUY Yes @ 0.5400 | Size: 25000.00 | USDC: $13500.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x2b5a264500a589696c1b661869d653f34fa282043027539dd38abf5ebc164ff9
+
+[2026-01-29 04:59:54] TRADE | BUY Yes @ 0.5400 | Size: 25000.00 | USDC: $13500.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x227f0c6eb42df9ad8b65a6ae45c27fa76f77bb81944df2f2eaad5595967bad6c
+
+[2026-01-29 04:59:48] TRADE | BUY Yes @ 0.5300 | Size: 460.00 | USDC: $243.80
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x11ef8a7a6405fdc7f302ae22eb2d12c3d241bc86342adffc04455d7b53ffcd5b
+
+[2026-01-29 04:59:48] TRADE | BUY Yes @ 0.5300 | Size: 9.03 | USDC: $4.79
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xb71e11390988470b0b097aec597b84b623aebe2c3759a251a2af73733afed5dd
+
+[2026-01-29 04:59:44] TRADE | BUY Yes @ 0.5300 | Size: 29.00 | USDC: $15.37
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xfad9d57feb672f4bbfe99d916fbb174bfcfa283a8102c7ad390a8a4f1d890d6f
+
+[2026-01-29 04:59:42] TRADE | BUY Yes @ 0.5400 | Size: 361.99 | USDC: $195.47
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x5d8026856fe6adf14f0b3ddcca049248301574bd81f429e6065752118043ab9e
+
+[2026-01-29 04:59:40] TRADE | BUY Yes @ 0.5400 | Size: 53.78 | USDC: $29.04
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x8989b7c70e59225752fbdd00b1443688b5bdf39069967623559c59f640a77168
+
+[2026-01-29 04:59:38] TRADE | BUY Yes @ 0.5400 | Size: 10.02 | USDC: $5.41
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xd59e7635bccfdf34f1a6c9fb64f301a91c6e1c49fdba12b0625a0256cb869358
+
+[2026-01-29 04:59:38] TRADE | BUY Yes @ 0.5400 | Size: 6.26 | USDC: $3.38
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x51c3ff3c5964cffa850c589877e0fd630cac0aaa379768f8b3ad40ac3735f28e
+
+[2026-01-29 04:59:38] TRADE | BUY Yes @ 0.5400 | Size: 185.00 | USDC: $99.90
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x333c1b981dd6037078e1f93dd4f463a0b7580cf64a2017579a6b3a8fa4db9279
+
+[2026-01-29 04:59:36] TRADE | BUY Yes @ 0.5400 | Size: 2.33 | USDC: $1.26
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x7bedefb9ba20dd2996eafd68b4bd0c8f4d514f81b1c2e09b9a21d4052337023e
+
+[2026-01-29 04:59:36] TRADE | BUY Yes @ 0.5400 | Size: 10.87 | USDC: $5.87
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xfe31916167a46bde471f68f0dc31d1695689a09f8be7fa044b4c9c67196ef226
+
+[2026-01-29 04:59:34] TRADE | BUY Yes @ 0.5400 | Size: 2.33 | USDC: $1.26
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x4858f817b74a87748e69cfd348edd46249eb628f96b52c7f21738aa4a6f87da9
+
+[2026-01-29 04:59:34] TRADE | BUY Yes @ 0.5400 | Size: 9.89 | USDC: $5.34
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xfb29f393b6d6219dd8bded41b40c092ff79492c76cbabbe132bcfe9bd1330e5c
+
+[2026-01-29 04:59:32] TRADE | BUY Yes @ 0.5400 | Size: 171.00 | USDC: $92.34
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x68a06e9963d6ec309524e5692f3039afbf9c49caf4f3ab89f83c518bcee79f5e
+
+[2026-01-29 04:59:32] TRADE | BUY Yes @ 0.5400 | Size: 23000.00 | USDC: $12420.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xdebd83367120f986a9ea0e44a3400b84c7f73fd639de737e436661cbca75e0fb
+
+[2026-01-29 04:59:32] TRADE | BUY Yes @ 0.5400 | Size: 99.00 | USDC: $53.46
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xf55a2ba283d96d281ab582da84cca96b8d5c1b16de3ee7993adee5b2530f0806
+
+[2026-01-29 04:59:30] TRADE | BUY Yes @ 0.5400 | Size: 2.17 | USDC: $1.17
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x520de76fb5a70568a990ec656234e15f54f17af9164f0a3a6042deedcf5fb44c
+
+[2026-01-29 04:59:30] TRADE | BUY Yes @ 0.5300 | Size: 66.07 | USDC: $35.02
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x4ffb2ddd4cedce73e152f6fed9031352ba4abcc03889b871e24ed5e54d1ac082
+
+[2026-01-29 04:59:30] TRADE | BUY Yes @ 0.5400 | Size: 26085.33 | USDC: $14086.08
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x154d914296a6904f71498ea2a1715700131c9442f890f8bc1d569f6413a6fcf1
+
+[2026-01-29 04:59:28] TRADE | BUY Yes @ 0.5300 | Size: 208.00 | USDC: $110.24
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x1438575e9e79f31a0c51857dc9f91f880153ae3c8e5e711d6d79f57b9e86843c
+
+[2026-01-29 04:59:26] TRADE | BUY Yes @ 0.5300 | Size: 2.13 | USDC: $1.13
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xfc3e3badaedb0438aebaf865624869edd9162be42cfee4c1398b40fc8a4a944e
+
+[2026-01-29 04:59:22] TRADE | BUY Yes @ 0.5400 | Size: 1878.52 | USDC: $1014.40
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x88594283ebb1a2bc5b01dd2d8eebf9eab00e175fdbf1683f271b1a27fc6ad5c2
+
+[2026-01-29 04:59:18] TRADE | BUY Yes @ 0.5400 | Size: 8.17 | USDC: $4.41
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xff8c971fad50307b43faa468bb98bb7c8a34917a30c0f93bcae2342cd565a043
+
+[2026-01-29 04:59:14] TRADE | BUY Yes @ 0.5400 | Size: 236.00 | USDC: $127.44
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xfd8ef6726548b8a84e328b7e5e259aaecb87fcffa8ac9c1320ac59abd26be931
+
+[2026-01-29 04:59:14] TRADE | BUY Yes @ 0.5400 | Size: 1297.33 | USDC: $700.56
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x6ae90fe0597e3607100022b8bdf6fd942b7cf13840af402921a1c6012faa69f9
+
+[2026-01-29 04:59:14] TRADE | BUY Yes @ 0.5400 | Size: 67.00 | USDC: $36.18
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x04409f6af1bae785d51e1774c70f784a230666f3be7e3ebe5c12042c0e4f2268
+
+[2026-01-29 04:59:12] TRADE | BUY Yes @ 0.5400 | Size: 3000.68 | USDC: $1620.37
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xe3cf2ccc0b11857f54fe7dee023baa9b02058745e78a76f77f4c4c7f9f667abf
+
+[2026-01-29 04:59:12] TRADE | BUY Yes @ 0.5400 | Size: 5207.41 | USDC: $2812.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x36ad2fcceee6d855defceff193dd5cdc0043f7553cc06e99c2f2e39d6a7aeeb4
+
+[2026-01-29 04:59:12] TRADE | BUY Yes @ 0.5400 | Size: 573.00 | USDC: $309.42
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xbef5c10b8d86f2caf8914099ca928541e32a675b58a9fcc9537e2db8caf2ca93
+
+[2026-01-29 04:59:12] TRADE | BUY Yes @ 0.5400 | Size: 1367.00 | USDC: $738.18
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x70d7d81ae0f4455e76ec504e6c6ae86477f17b6b8a8052cae8a81139aa28f60e
+
+[2026-01-29 04:59:10] TRADE | BUY Yes @ 0.5400 | Size: 213.00 | USDC: $115.02
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xaf4e5d086614c1769439a11e46abdd2e82379f277fcd35ee621ea4ed781724c2
+
+[2026-01-29 04:59:10] TRADE | BUY Yes @ 0.5400 | Size: 5503.70 | USDC: $2972.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xb279ec1c23aa0340f1df1847c8bfd127ca675a55e7691e3a7bf75f5681f09725
+
+[2026-01-29 04:59:10] TRADE | BUY Yes @ 0.5400 | Size: 189.00 | USDC: $102.06
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x92e254751811dd908bdb8a2b920cb1625a540bd8425707d0d05df56bd6f2b5c7
+
+[2026-01-29 04:59:10] TRADE | BUY Yes @ 0.5400 | Size: 8218.00 | USDC: $4437.72
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x5fa9e0217d597d068190548d287fe2d40150b6081f79b63af2047a0d38ff7485
+
+[2026-01-29 04:59:10] TRADE | BUY Yes @ 0.5400 | Size: 99.00 | USDC: $53.46
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x5f8ca18e9621d1c76510f08f25809a293978593331c4a2eadc31086991c99a40
+
+[2026-01-29 04:59:10] TRADE | BUY Yes @ 0.5400 | Size: 848.00 | USDC: $457.92
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x0fc95b6e9bd5f82d161c74eacd08ef2e6c782732cb938558b6ad0869d8c74367
+
+[2026-01-29 04:59:10] TRADE | BUY Yes @ 0.5400 | Size: 5.20 | USDC: $2.81
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x1b1a9c168d13d8c2df15aa176d51c1057ad559e4d63c50700fef2321431a6b65
+
+[2026-01-29 04:59:08] TRADE | BUY Yes @ 0.5400 | Size: 20824.44 | USDC: $11245.20
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xabe32bc0158571b2cd790afbc2fe2d82c2777fa3034c6f386d9a032116412303
+
+[2026-01-29 04:59:08] TRADE | BUY Yes @ 0.5400 | Size: 464.54 | USDC: $250.85
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xb741d95880b50eb58a6ea736d1b4371dbf42ece3029b9e4eee2b219d1b2f9c3e
+
+[2026-01-29 04:59:00] TRADE | BUY Yes @ 0.5300 | Size: 37.00 | USDC: $19.61
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x289cd35aac81b3e0d1f437a26c26ff351fac4ceaffa247be3e876213c0e1ec66
+
+[2026-01-29 04:58:54] TRADE | BUY Yes @ 0.5300 | Size: 87.00 | USDC: $46.11
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xc14e01af82777d0a79fce5ee5ab4a1600b288b206886fa8e039e3449bc3c66a5
+
+[2026-01-29 04:58:48] TRADE | BUY Yes @ 0.5300 | Size: 9.03 | USDC: $4.79
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xaf19079b8015090a35864c560bc7912755bff762193efc709d368e1fc5a5c7cf
+
+[2026-01-29 04:58:48] TRADE | BUY Yes @ 0.5300 | Size: 93.00 | USDC: $49.29
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xf82d36f4b433fd4650659b2906db15edcbb973c3bb7700b89e60ced844509b20
+
+[2026-01-29 04:58:46] TRADE | BUY Yes @ 0.5300 | Size: 2.17 | USDC: $1.15
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x93818a353df377df4a4e8368a0b0c0e4a490ad31ff7fbd105b86dd779ba87556
+
+[2026-01-29 04:58:46] TRADE | BUY Yes @ 0.5300 | Size: 500.00 | USDC: $265.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x2a05631a272185c743001425505bb98b1687d4955e3d386a227631172051415e
+
+[2026-01-29 04:58:46] TRADE | BUY Yes @ 0.5300 | Size: 29.00 | USDC: $15.37
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xdce2f624ea172e0e3178d94d69b2e85151bfe187e96f6e3c7b9d658868b266ca
+
+[2026-01-29 04:58:42] TRADE | BUY Yes @ 0.5300 | Size: 855.81 | USDC: $453.58
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xc8603537d6636b7d23f0f9a541f6782075a62a3f76bfc26109f95f65c3e28d8c
+
+[2026-01-29 04:58:30] TRADE | BUY Yes @ 0.5384 | Size: 50000.00 | USDC: $26918.53
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x36142fa60bf54fb0d928d0c683c2f2f02a7b901b69466c38fd3c19d16d2e5c92
+
+[2026-01-29 04:58:10] TRADE | BUY Yes @ 0.5300 | Size: 20000.00 | USDC: $10600.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0xa7a3f05d608c2dc42d488bc36298b4d074811f6d986ed77885dd0e94eaaa0975
+
+[2026-01-29 04:58:00] TRADE | BUY Yes @ 0.5300 | Size: 25000.00 | USDC: $13250.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x0bbaa5c761bfdf26f43e01b745f4a7aa19f84459d816511ff51071243092fab4
+
+[2026-01-29 04:57:56] TRADE | BUY Yes @ 0.5300 | Size: 10000.00 | USDC: $5300.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x69f61e6ff6a6721c6c0ff3e9deeaf276563cf9c029363bb6b1cfadb7f1671696
+
+[2026-01-29 04:57:22] TRADE | BUY Yes @ 0.5300 | Size: 25000.00 | USDC: $13250.00
+  Market: Will Sport Lisboa e Benfica win on 2026-01-28?...
+  TX: 0x59044d553982ba7d7905bb0e4851aec7c6fbf281a9486cc2dcc5cbef2ad2077f
+
+
+================================================================================
+DISCREPANCIES FOUND
+================================================================================
+TX: 0x743703a738fdce79ce5d4bcbcc24758f1c09e3124ae447125f1ef82e9cc9fc6b
+  Activity API: BUY Yes @ 0.5600
+  Filtered:     BUY No @ 0.4400
+
+TX: 0x72d9ef4a5311680d98a77dac6f6e93b2187029bca9c1d81083e463c2e2187853
+  Activity API: BUY Yes @ 0.5600
+  Filtered:     BUY No @ 0.4400
+
+TX: 0xdcdbadc6bf3fce24254d5ba1775d5be1da5784be891d3e913b9d3791578e41fa
+  Activity API: BUY Yes @ 0.5600
+  Filtered:     BUY No @ 0.4400
+
+TX: 0x8ce04f7bab19e1ee6c65981b531c7f7da8877ea16361c2a0c03de556645e93f7
+  Activity API: BUY Yes @ 0.5600
+  Filtered:     BUY No @ 0.4400
+
+TX: 0x610781d8d2edde76618ab5558ad1c8a4c22e7a1926d8b7f95bff5dac49b256dc
+  Activity API: BUY Yes @ 0.5600
+  Filtered:     BUY No @ 0.4400
+
+TX: 0x13101376372f9fbf4788167d231c41e1af8637465cb12641918603019fb3cc10
+  Activity API: BUY Yes @ 0.5600
+  Filtered:     BUY No @ 0.4400
+
+TX: 0xded75c8e937df529c22907e87c1211ee30a6c344b5ee45064dd2f158e5a78644
+  Activity API: BUY Yes @ 0.5600
+  Filtered:     BUY No @ 0.4400
+
+TX: 0xc8b4d7ae74b5b2fba14cd3dcb03a318e98c4d937c85ff661fb710519ae66085a
+  Activity API: BUY Yes @ 0.5600
+  Filtered:     BUY No @ 0.4400
+
+TX: 0x62511fa132f72bae4432a1069a1453a485ebdf4db8fe25940dc19648adef9656
+  Activity API: BUY Yes @ 0.5600
+  Filtered:     BUY No @ 0.4400
+
+TX: 0x1c62feccd0846bd157bfcf845d4ca7ed1c3005187c405f52e798cff95b584aa5
+  Activity API: BUY Yes @ 0.5600
+  Filtered:     BUY No @ 0.4400
+
+TX: 0xfe9d403142509f536d02045abf220a0cc2ea562bbb2d96f7ad912096dbbe8ca3
+  Activity API: BUY Yes @ 0.5600
+  Filtered:     BUY No @ 0.4400
+
+TX: 0x86c3e9d073541365f8973e58dd7ad7ec1b56e826000c5a26c35cf2efaee515ff
+  Activity API: BUY Yes @ 0.5500
+  Filtered:     BUY No @ 0.4500
+
+TX: 0x87ec3d1a9953ba4dafb02f0914c84d9fca373555263fbe4ca6818b4901b75087
+  Activity API: BUY Yes @ 0.5500
+  Filtered:     BUY No @ 0.4500
+
+TX: 0x417ddec75d78689e5cc77390aa8534d296686b919f09d8e60cb3162625c61e6f
+  Activity API: BUY Yes @ 0.5500
+  Filtered:     SELL Yes @ 0.5500
+
+TX: 0x269411e84a2aa611ca1bb97fd939953e003df8fa50b86581b4fea39331035ac9
+  Activity API: BUY Yes @ 0.5500
+  Filtered:     BUY No @ 0.4500
+
+TX: 0x0b3516628d764462d03a5239976c110239f91b40406041d60b868ffc616cfb68
+  Activity API: BUY Yes @ 0.5500
+  Filtered:     BUY No @ 0.4500
+
+TX: 0x0ea5f8902dfdbcb5ffb5ab3ec9e44c22694932bc9b38addbd95173808b4af9e9
+  Activity API: BUY Yes @ 0.5500
+  Filtered:     BUY No @ 0.4500
+
+TX: 0xba13e848e57d211c178b719c2d8accdb3e4b8903deb1d61fe484fba63eee2346
+  Activity API: BUY Yes @ 0.5500
+  Filtered:     BUY No @ 0.4500
+
+TX: 0x3db870f255844bdcf10370ec7c5279251aeecdb9f340d27e96ad4e8a4048712d
+  Activity API: BUY Yes @ 0.5500
+  Filtered:     BUY No @ 0.4500
+
+TX: 0x816db30a4cfe7f443ec4ad63e9558523cdf8012bc6e5664fac78a368a719fde8
+  Activity API: BUY Yes @ 0.5500
+  Filtered:     BUY No @ 0.4500
+
+TX: 0xe1b0f4b1ee18941124d35a0d2a3e2899be70e9606290b2898bdb4c886d765f17
+  Activity API: BUY Yes @ 0.5500
+  Filtered:     BUY No @ 0.4500
+
+TX: 0xd0543d0c8c11f97cf2dbfbf776a93aaa4f44a0cbfdf2028acdac984370486f26
+  Activity API: BUY Yes @ 0.5400
+  Filtered:     BUY No @ 0.4600
+
+TX: 0x9efb82eab8b6f927e8ef29f921fe25a7b24cf6a71467a34846dbdbeffdc23f98
+  Activity API: BUY Yes @ 0.5400
+  Filtered:     BUY No @ 0.4600
+
+TX: 0xcd83770f176ef89c79fa67cbad1e5af815fddac6e59055c2688c87ef7e2680ad
+  Activity API: BUY Yes @ 0.5400
+  Filtered:     BUY No @ 0.4600
+
+TX: 0xc8d269335aa4ad8b36311b3395797169d1c615fcc5569bb9131268f530552015
+  Activity API: BUY Yes @ 0.5400
+  Filtered:     BUY No @ 0.4600
+
+TX: 0x93615b384e9d5005d9b7603e6f38201f9002dbc0af2856690bda7b43ece2dd0a
+  Activity API: BUY Yes @ 0.5400
+  Filtered:     BUY No @ 0.4600
+
+TX: 0x93615b384e9d5005d9b7603e6f38201f9002dbc0af2856690bda7b43ece2dd0a
+  Activity API: BUY Yes @ 0.5400
+  Filtered:     BUY No @ 0.4600
+
+TX: 0xb78176a56c7cd1669f952285b5614d99639a1e6333b525e48ad609f1cedb42cc
+  Activity API: BUY Yes @ 0.5400
+  Filtered:     BUY No @ 0.4600
+
+TX: 0x805fd9a6a72abb4517788f96f045dc85e3ae298c9e14aa4af17bd40fdeed67fa
+  Activity API: BUY Yes @ 0.5400
+  Filtered:     BUY No @ 0.4600
+
+TX: 0xc009fd7641931ab9ac884de93a83ac01eb08b5c2bfb98a5b20d8e5a4bb7cb9b8
+  Activity API: BUY Yes @ 0.5400
+  Filtered:     BUY No @ 0.4600
+
+TX: 0xdebd83367120f986a9ea0e44a3400b84c7f73fd639de737e436661cbca75e0fb
+  Activity API: BUY Yes @ 0.5400
+  Filtered:     BUY No @ 0.4600
+
+TX: 0xe3cf2ccc0b11857f54fe7dee023baa9b02058745e78a76f77f4c4c7f9f667abf
+  Activity API: BUY Yes @ 0.5400
+  Filtered:     BUY No @ 0.4600
+
+TX: 0x36ad2fcceee6d855defceff193dd5cdc0043f7553cc06e99c2f2e39d6a7aeeb4
+  Activity API: BUY Yes @ 0.5400
+  Filtered:     BUY No @ 0.4600
+
+TX: 0xb279ec1c23aa0340f1df1847c8bfd127ca675a55e7691e3a7bf75f5681f09725
+  Activity API: BUY Yes @ 0.5400
+  Filtered:     BUY No @ 0.4600
+
+TX: 0x5fa9e0217d597d068190548d287fe2d40150b6081f79b63af2047a0d38ff7485
+  Activity API: BUY Yes @ 0.5400
+  Filtered:     BUY No @ 0.4600
+
+
+Results saved to wallet_comparison.json

@@ -1,0 +1,367 @@
+{
+  "wallet": "0xd82079c0d6b837bad90abf202befc079da5819f6",
+  "total_wallet_activity": 200,
+  "total_discrepancies": 35,
+  "discrepancies": [
+    {
+      "tx_hash": "0x743703a738fdce79ce5d4bcbcc24758f1c09e3124ae447125f1ef82e9cc9fc6b",
+      "timestamp": 1769634592,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 25000,
+        "usdcSize": 14000
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 25000.0,
+        "volume_usd": 11000.0
+      }
+    },
+    {
+      "tx_hash": "0x72d9ef4a5311680d98a77dac6f6e93b2187029bca9c1d81083e463c2e2187853",
+      "timestamp": 1769634566,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 17110.99,
+        "usdcSize": 9582.1544
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 17110.99,
+        "volume_usd": 7528.8356
+      }
+    },
+    {
+      "tx_hash": "0xdcdbadc6bf3fce24254d5ba1775d5be1da5784be891d3e913b9d3791578e41fa",
+      "timestamp": 1769634562,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 4778,
+        "usdcSize": 2675.68
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 4778.0,
+        "volume_usd": 2102.32
+      }
+    },
+    {
+      "tx_hash": "0x8ce04f7bab19e1ee6c65981b531c7f7da8877ea16361c2a0c03de556645e93f7",
+      "timestamp": 1769634418,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 5094.64,
+        "usdcSize": 2852.9984
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 5094.64,
+        "volume_usd": 2241.6416000000004
+      }
+    },
+    {
+      "tx_hash": "0x610781d8d2edde76618ab5558ad1c8a4c22e7a1926d8b7f95bff5dac49b256dc",
+      "timestamp": 1769634402,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 27123.33,
+        "usdcSize": 15189.0648
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 27227.33,
+        "volume_usd": 11980.0252
+      }
+    },
+    {
+      "tx_hash": "0x13101376372f9fbf4788167d231c41e1af8637465cb12641918603019fb3cc10",
+      "timestamp": 1769634400,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 15000,
+        "usdcSize": 8400
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 15000.0,
+        "volume_usd": 6600.0
+      }
+    },
+    {
+      "tx_hash": "0xded75c8e937df529c22907e87c1211ee30a6c344b5ee45064dd2f158e5a78644",
+      "timestamp": 1769634398,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 5366.07,
+        "usdcSize": 3004.9992
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 5366.07,
+        "volume_usd": 2361.0708
+      }
+    },
+    {
+      "tx_hash": "0xc8b4d7ae74b5b2fba14cd3dcb03a318e98c4d937c85ff661fb710519ae66085a",
+      "timestamp": 1769634388,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 5380.36,
+        "usdcSize": 3013.0016
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 5380.36,
+        "volume_usd": 2367.3584
+      }
+    },
+    {
+      "tx_hash": "0x62511fa132f72bae4432a1069a1453a485ebdf4db8fe25940dc19648adef9656",
+      "timestamp": 1769634386,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 2937,
+        "usdcSize": 1644.72
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 2937.0,
+        "volume_usd": 1292.28
+      }
+    },
+    {
+      "tx_hash": "0x1c62feccd0846bd157bfcf845d4ca7ed1c3005187c405f52e798cff95b584aa5",
+      "timestamp": 1769634384,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 14471,
+        "usdcSize": 8103.76
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 14471.0,
+        "volume_usd": 6367.24
+      }
+    },
+    {
+      "tx_hash": "0xfe9d403142509f536d02045abf220a0cc2ea562bbb2d96f7ad912096dbbe8ca3",
+      "timestamp": 1769634384,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.56,
+        "size": 4957.14,
+        "usdcSize": 2775.9984
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.44,
+        "size": 4957.14,
+        "volume_usd": 2181.1416000000004
+      }
+    },
+    {
+      "tx_hash": "0x86c3e9d073541365f8973e58dd7ad7ec1b56e826000c5a26c35cf2efaee515ff",
+      "timestamp": 1769634370,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 5230.91,
+        "usdcSize": 2877.0005
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 5230.91,
+        "volume_usd": 2353.9095
+      }
+    },
+    {
+      "tx_hash": "0x87ec3d1a9953ba4dafb02f0914c84d9fca373555263fbe4ca6818b4901b75087",
+      "timestamp": 1769634366,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 5025.45,
+        "usdcSize": 2763.9975
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 5025.45,
+        "volume_usd": 2261.4525
+      }
+    },
+    {
+      "tx_hash": "0x417ddec75d78689e5cc77390aa8534d296686b919f09d8e60cb3162625c61e6f",
+      "timestamp": 1769634366,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 1982.3,
+        "usdcSize": 1090.265
+      },
+      "filtered_trades": {
+        "side": "SELL",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 1982.3,
+        "volume_usd": 1090.265
+      }
+    },
+    {
+      "tx_hash": "0x269411e84a2aa611ca1bb97fd939953e003df8fa50b86581b4fea39331035ac9",
+      "timestamp": 1769634364,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 10605,
+        "usdcSize": 5832.75
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 14613.0,
+        "volume_usd": 6575.85
+      }
+    },
+    {
+      "tx_hash": "0x0b3516628d764462d03a5239976c110239f91b40406041d60b868ffc616cfb68",
+      "timestamp": 1769634364,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 4958.18,
+        "usdcSize": 2726.999
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 4958.18,
+        "volume_usd": 2231.181
+      }
+    },
+    {
+      "tx_hash": "0x0ea5f8902dfdbcb5ffb5ab3ec9e44c22694932bc9b38addbd95173808b4af9e9",
+      "timestamp": 1769634346,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 5350.91,
+        "usdcSize": 2943.0005
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 5350.91,
+        "volume_usd": 2407.9095
+      }
+    },
+    {
+      "tx_hash": "0xba13e848e57d211c178b719c2d8accdb3e4b8903deb1d61fe484fba63eee2346",
+      "timestamp": 1769634346,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 30000,
+        "usdcSize": 16500
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 30000.0,
+        "volume_usd": 13500.0
+      }
+    },
+    {
+      "tx_hash": "0x3db870f255844bdcf10370ec7c5279251aeecdb9f340d27e96ad4e8a4048712d",
+      "timestamp": 1769634342,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 5410.91,
+        "usdcSize": 2976.0005
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 5410.91,
+        "volume_usd": 2434.9095
+      }
+    },
+    {
+      "tx_hash": "0x816db30a4cfe7f443ec4ad63e9558523cdf8012bc6e5664fac78a368a719fde8",
+      "timestamp": 1769634328,
+      "activity_api": {
+        "side": "BUY",
+        "outcome": "Yes",
+        "price": 0.55,
+        "size": 25000,
+        "usdcSize": 13750
+      },
+      "filtered_trades": {
+        "side": "BUY",
+        "outcome": "No",
+        "price": 0.45,
+        "size": 25000.0,
+        "volume_usd": 11250.0
+      }
+    }
+  ]
+}

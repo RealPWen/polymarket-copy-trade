@@ -238,7 +238,7 @@ class PolymarketDataFetcher:
     # ==================== Data API - Market Activity ====================
     
     def get_trades(self, market_id: Optional[str] = None, wallet_address: Optional[str] = None,
-                   limit: int = 100, offset: int = 0, silent: bool = False) -> pd.DataFrame:
+                   limit: int = 100, offset: int = 0, silent: bool = False, taker_only: bool = None) -> pd.DataFrame:
         """
         获取交易记录 (支持自动分页)
         """
@@ -258,6 +258,8 @@ class PolymarketDataFetcher:
                 params["market"] = market_id
             if wallet_address:
                 params["user"] = wallet_address
+            if taker_only is not None:
+                params["takerOnly"] = str(taker_only).lower()
             
             try:
                 # 不直接用 _make_request 里面的打印，为了静默分页

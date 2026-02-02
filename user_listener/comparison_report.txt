@@ -1,0 +1,78 @@
+🔍 Analyzing Wallet: 0xd82079c0d6b837bad90abf202befc079da5819f6
+
+--- 1. Fetching Activity API (Generic) ---
+Fetched 20 activity records.
+    timestamp    type side           size                                         title
+0  1769759354  REDEEM       784989.960000              Will KRC Genk win on 2026-01-29?
+1  1769720702   TRADE  BUY       5.086204  Will FC Red Bull Salzburg win on 2026-01-29?
+2  1769720702   TRADE  BUY       5.000000  Will FC Red Bull Salzburg win on 2026-01-29?
+3  1769720700   TRADE  BUY     896.290000  Will FC Red Bull Salzburg win on 2026-01-29?
+4  1769720646   TRADE  BUY     100.000000  Will FC Red Bull Salzburg win on 2026-01-29?
+5  1769720644   TRADE  BUY      34.482757  Will FC Red Bull Salzburg win on 2026-01-29?
+6  1769720642   TRADE  BUY       2.000000  Will FC Red Bull Salzburg win on 2026-01-29?
+7  1769720638   TRADE  BUY       2.000000  Will FC Red Bull Salzburg win on 2026-01-29?
+8  1769720636   TRADE  BUY       5.000000  Will FC Red Bull Salzburg win on 2026-01-29?
+9  1769720634   TRADE  BUY      23.070000  Will FC Red Bull Salzburg win on 2026-01-29?
+
+--- 2. Fetching Trade API (takerOnly=true [Default]) ---
+Fetched 20 taker-only trades.
+    timestamp side      size                                         title
+0  1769720700  BUY    896.29  Will FC Red Bull Salzburg win on 2026-01-29?
+1  1769720578  BUY  12879.65  Will FC Red Bull Salzburg win on 2026-01-29?
+2  1769720574  BUY  50000.00  Will FC Red Bull Salzburg win on 2026-01-29?
+3  1769720566  BUY  50000.00  Will FC Red Bull Salzburg win on 2026-01-29?
+4  1769720556  BUY  50000.00  Will FC Red Bull Salzburg win on 2026-01-29?
+5  1769720552  BUY  50000.00  Will FC Red Bull Salzburg win on 2026-01-29?
+6  1769720516  BUY  50000.00  Will FC Red Bull Salzburg win on 2026-01-29?
+7  1769720490  BUY   9844.82  Will FC Red Bull Salzburg win on 2026-01-29?
+8  1769720468  BUY  20000.00  Will FC Red Bull Salzburg win on 2026-01-29?
+9  1769720452  BUY  50000.00  Will FC Red Bull Salzburg win on 2026-01-29?
+
+--- 3. Fetching Trade API (takerOnly=false [Full]) ---
+Fetched 20 full trades (Maker+Taker).
+    timestamp side        size                                         title
+0  1769720702  BUY    5.000000  Will FC Red Bull Salzburg win on 2026-01-29?
+1  1769720702  BUY    5.086204  Will FC Red Bull Salzburg win on 2026-01-29?
+2  1769720700  BUY  896.290000  Will FC Red Bull Salzburg win on 2026-01-29?
+3  1769720646  BUY  100.000000  Will FC Red Bull Salzburg win on 2026-01-29?
+4  1769720644  BUY   34.482757  Will FC Red Bull Salzburg win on 2026-01-29?
+5  1769720642  BUY    2.000000  Will FC Red Bull Salzburg win on 2026-01-29?
+6  1769720638  BUY    2.000000  Will FC Red Bull Salzburg win on 2026-01-29?
+7  1769720636  BUY    5.000000  Will FC Red Bull Salzburg win on 2026-01-29?
+8  1769720634  BUY    2.000000  Will FC Red Bull Salzburg win on 2026-01-29?
+9  1769720634  BUY   23.070000  Will FC Red Bull Salzburg win on 2026-01-29?
+
+==================================================
+COMPARING LAST 5 TRANSACTIONS
+==================================================
+
+⏰ Time: 2026-01-30 15:49:14 (1769759354)
+  [Activity API]: Found 1 records
+    - Type: REDEEM | Side:  | Size: 784989.96 | Price: 0
+  [Trade API]   : No records
+
+⏰ Time: 2026-01-30 05:05:02 (1769720702)
+  [Activity API]: Found 2 records
+    - Type: TRADE | Side: BUY | Size: 5.086204 | Price: 0.4200000629152901
+    - Type: TRADE | Side: BUY | Size: 5 | Price: 0.42
+  [Trade API]   : Found 2 records
+    - Role: MAKER | Side: BUY | Size: 5 | Price: 0.42
+    - Role: MAKER | Side: BUY | Size: 5.086204 | Price: 0.4200000629152901
+
+⏰ Time: 2026-01-30 05:05:00 (1769720700)
+  [Activity API]: Found 1 records
+    - Type: TRADE | Side: BUY | Size: 896.29 | Price: 0.42
+  [Trade API]   : Found 1 records
+    - Role: TAKER | Side: BUY | Size: 896.29 | Price: 0.42
+
+⏰ Time: 2026-01-30 05:04:06 (1769720646)
+  [Activity API]: Found 1 records
+    - Type: TRADE | Side: BUY | Size: 100 | Price: 0.42
+  [Trade API]   : Found 1 records
+    - Role: MAKER | Side: BUY | Size: 100 | Price: 0.42
+
+⏰ Time: 2026-01-30 05:04:04 (1769720644)
+  [Activity API]: Found 1 records
+    - Type: TRADE | Side: BUY | Size: 34.482757 | Price: 0.4200000017400001
+  [Trade API]   : Found 1 records
+    - Role: MAKER | Side: BUY | Size: 34.482757 | Price: 0.4200000017400001

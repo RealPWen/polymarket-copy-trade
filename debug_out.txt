@@ -1,0 +1,7 @@
+﻿Total trades fetched: 1000
+
+=== Trades around timestamp 1769634560 (05:09:20 - 05:09:30) ===
+
+
+=== All trades with size ~4778 ===
+

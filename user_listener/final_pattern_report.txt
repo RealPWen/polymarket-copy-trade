@@ -1,0 +1,27 @@
+Analyzing trading pattern for 0xd82079c0d6b837bad90abf202befc079da5819f6...
+
+Analyzing Top 3 Active Assets (Tokens):
+
+[TOKEN]: 4253923975... (lal-mad-mal-2026-01-25-mad [Yes])
+   - Buys:  33 trades | Vol: 558,692
+   - Sells: 0 trades | Vol: 0
+   - Net Position Change: 558,692
+   - Turnover Ratio: 0.00
+   [POSITIVE] Accumulation/Dump Pattern
+      They are mostly building or exiting a position. Safe to copy (directionally).
+
+[TOKEN]: 9186590033... (ucl-asm-juv-2026-01-28-juv [No])
+   - Buys:  30 trades | Vol: 271,906
+   - Sells: 0 trades | Vol: 0
+   - Net Position Change: 271,906
+   - Turnover Ratio: 0.00
+   [POSITIVE] Accumulation/Dump Pattern
+      They are mostly building or exiting a position. Safe to copy (directionally).
+
+[TOKEN]: 5448798248... (uel-ast4-rbs1-2026-01-29-rbs1 [Yes])
+   - Buys:  23 trades | Vol: 737,650
+   - Sells: 0 trades | Vol: 0
+   - Net Position Change: 737,650
+   - Turnover Ratio: 0.00
+   [POSITIVE] Accumulation/Dump Pattern
+      They are mostly building or exiting a position. Safe to copy (directionally).
