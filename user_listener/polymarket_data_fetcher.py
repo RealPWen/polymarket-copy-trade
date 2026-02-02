@@ -164,20 +164,21 @@ class PolymarketDataFetcher:
     
     # ==================== Data API - User Data ====================
     
-    def get_user_positions(self, wallet_address: str, limit: int = 100) -> pd.DataFrame:
+    def get_user_positions(self, wallet_address: str, limit: int = 100, silent: bool = False) -> pd.DataFrame:
         """
         获取用户当前持仓
         
         参数:
             wallet_address: 用户钱包地址
             limit: 返回结果数量限制
+            silent: 是否静默
         
         返回:
             pandas DataFrame 包含持仓数据
         """
         url = f"{self.data_api_base}/positions"
         params = {"user": wallet_address, "limit": limit}
-        return self._make_request(url, params, "用户持仓")
+        return self._make_request(url, params, "用户持仓", silent=silent)
     
     def get_user_activity(self, wallet_address: str, limit: int = 100, silent: bool = False) -> pd.DataFrame:
         """

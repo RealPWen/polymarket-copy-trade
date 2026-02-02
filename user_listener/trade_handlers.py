@@ -361,3 +361,71 @@ class RealExecutionHandler(BaseTradeHandler):
 
         except Exception as e:
             print(f"❌ [错误] 链上下单失败: {e}")
+
+    def check_stop_loss(self):
+        """
+        检查所有持仓是否触发止损
+        """
+        if not self.trader:
+            return
+
+        # 动态加载策略以获取最新止损设置
+        self._reload_strategy()
+        
+        # 如果策略里没有配置止损，直接返回
+        stop_loss_pct = self.strategy.get('stop_loss', 0)
+        try:
+            stop_loss_val = float(stop_loss_pct)
+        except:
+            stop_loss_val = 0
+            
+        if stop_loss_val <= 0:
+            return
+
+        threshold = stop_loss_val / 100.0  # e.g. 40 -> 0.4
+        
+        try:
+            # 获取我的持仓 (silent=True 避免刷屏)
+            positions = self.fetcher.get_user_positions(self.my_address, limit=50, silent=True)
+            
+            if positions.empty:
+                return
+            
+            # 这里的 print 稍微有点多，如果是高频检查建议去掉，或者每隔几次打印一次
+            # print(f"🔍 [风控] 检查止损 (阈值: {stop_loss_val}%) ...") 
+            
+            for _, pos in positions.iterrows():
+                size = float(pos.get('size', 0))
+                if size < 1: continue # 忽略极小残渣
+                
+                avg_price = float(pos.get('avgPrice', 0))
+                cur_price = float(pos.get('curPrice', 0))
+                token_id = pos.get('asset')
+                title = pos.get('title', 'Unknown')
+                
+                # 如果该市场已经完全卖出，size 会很小或者 API 不返回
+                # 如果 cur_price 为 0 (市场结束或无流动性)，可能无法止损，需谨慎
+                if avg_price <= 0 or cur_price <= 0: continue
+                
+                # 计算亏损比例: (买入价 - 现价) / 买入价
+                loss_ratio = (avg_price - cur_price) / avg_price
+                
+                if loss_ratio >= threshold:
+                    print(f"\n🚨 [止损触发] 市场: {title[:40]}...")
+                    print(f"   买入均价: ${avg_price:.3f} | 现价: ${cur_price:.3f}")
+                    print(f"   浮动亏损: {loss_ratio*100:.1f}% (阈值: {stop_loss_val}%)")
+                    print(f"   正在执行止损卖出: {size} 股")
+                    
+                    try:
+                        # 卖出价格稍微低一点点以确保成交 (Slippage)
+                        # 如果是 FOK，价格如果不匹配会失败。Market order 最好。
+                        # 这里用 FOK + 较大滑点
+                        sell_price = max(0.01, cur_price - 0.05) 
+                        result = self.trader.place_order(token_id, "SELL", size, sell_price, order_type="FOK")
+                        print(f"✅ [止损完成] 已抛售平仓: {json.dumps(result, ensure_ascii=False)}")
+                    except Exception as e:
+                        print(f"❌ [止损失败] 下单出错: {e}")
+                        
+        except Exception as e:
+            # 静默错误，防止刷屏
+            pass

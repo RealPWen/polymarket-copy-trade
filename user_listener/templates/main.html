@@ -1237,6 +1237,25 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label>风险控制 (可选)</label>
+                        <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                <div style="font-size: 13px;">止损阈值 (Stop Loss)</div>
+                                <div style="font-size: 11px; color: var(--text-muted);">亏损达到此比例时抛售</div>
+                            </div>
+                            <div style="position: relative;">
+                                <input type="number" class="form-input" id="stop-loss-input" placeholder="0" value="0"
+                                    min="0" max="100" style="padding-right: 30px;">
+                                <span
+                                    style="position: absolute; right: 12px; top: 14px; font-size: 14px; color: var(--text-muted);">%</span>
+                            </div>
+                            <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">设置为 0 表示不启用止损。推荐
+                                30%-50%。</p>
+                        </div>
+                    </div>
+
                     <div
                         style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 12px; border-radius: 8px; margin-bottom: 20px;">
                         <p style="margin: 0; font-size: 12px; color: var(--warning);">
@@ -2232,11 +2251,18 @@
             if (selectedMode === 1) param = parseFloat(document.getElementById('param-1').value) || 1.0;
             if (selectedMode === 3) param = parseFloat(document.getElementById('param-3').value) || 5.0;
 
+            let stopLoss = 0;
+            const stopLossInput = document.getElementById('stop-loss-input');
+            if (stopLossInput) {
+                stopLoss = parseFloat(stopLossInput.value) || 0;
+            }
+
             monitorConfig = {
                 address: targetAddr,
                 mode: selectedMode,
                 param: param,
                 orderType: selectedOrderType,
+                stopLoss: stopLoss,
                 walletId: execWalletId,
                 walletName: execWallet.name,
                 walletAddress: execWallet.address
@@ -2253,7 +2279,12 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         addresses: [targetAddr],
-                        strategy: { mode: selectedMode, param: param, order_type: selectedOrderType },
+                        strategy: {
+                            mode: selectedMode,
+                            param: param,
+                            order_type: selectedOrderType,
+                            stop_loss: stopLoss
+                        },
                         wallet: {
                             address: execWallet.address,
                             privateKey: execWallet.privateKey,
@@ -2280,52 +2311,86 @@
         let lastKnownMyBalance = null;
         let lastKnownTargetTradeCount = 0;
 
+        // 哨兵模式变量
+        let lastPositionFingerprint = "";
+        let sentinelInterval = null;
+        let targetStreamInterval = null;
+        let isUpdatingDetails = false;
+
         function startMonitoring() {
             if (!monitorConfig) return;
 
             document.getElementById('target-display').innerText =
                 monitorConfig.address.slice(0, 8) + '...' + monitorConfig.address.slice(-6);
 
-            // 重置状态，确保加载新钱包的数据
+            // 重置状态
             myWalletAddress = null;
             lastKnownMyBalance = null;
             lastKnownTargetTradeCount = 0;
+            lastPositionFingerprint = "";
 
-            // 🔄 清除目标用户的缓存数据（解决切换策略时显示相同数据的问题）
+            // 🔄 清除目标用户的缓存数据
             targetDataCache = null;
             knownHashes.clear();
             initialLoad = true;
 
-            // 清空图表显示，等待新数据
+            // 清空 UI 显示
             const pnlEl = document.getElementById('target-pnl-total');
             if (pnlEl) {
                 pnlEl.innerText = '加载中...';
                 pnlEl.style.color = 'var(--text-muted)';
             }
-
-            // 🧹 完全清空 Plotly 图表 (避免显示其他用户数据)
             const chartEl = document.getElementById('target-pnl-chart');
             if (chartEl) {
-                Plotly.purge(chartEl);  // 完全移除图表
+                Plotly.purge(chartEl);
                 chartEl.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-muted);">加载中...</div>';
             }
-
             const streamContainer = document.getElementById('target-stream');
             if (streamContainer) streamContainer.innerHTML = '<div style="color: var(--text-muted); text-align: center; padding: 16px;">加载中...</div>';
 
-            fetchMyBalance();
-            fetchMyPositions();
-            fetchMyExecutions();
+            // 1. 立即执行一次全量刷新
+            updateDashboardDetails();
             fetchTargetStream();
             fetchTargetAnalysis();
 
-            if (monitorInterval) clearInterval(monitorInterval);
-            monitorInterval = setInterval(() => {
-                fetchMyBalance();
-                fetchMyPositions();
-                fetchMyExecutions();
-                fetchTargetStream();
-            }, 5000);
+            // 清理旧定时器
+            if (monitorInterval) clearInterval(monitorInterval); // 停止旧的大循环
+            if (sentinelInterval) clearInterval(sentinelInterval);
+            if (targetStreamInterval) clearInterval(targetStreamInterval);
+
+            // 2. 启动“目标流”独立高频轮询 (1.5s) - 让你看戏不卡顿
+            targetStreamInterval = setInterval(fetchTargetStream, 1500);
+
+            // 3. 启动“持仓哨兵” (1s) - 极速发现并触发更新
+            sentinelInterval = setInterval(positionSentinelLoop, 1000);
+
+            // 4. 低频兜底 (30s) - 防止指纹逻辑漏网
+            monitorInterval = setInterval(updateDashboardDetails, 30000);
+        }
+
+        // 哨兵循环：只查持仓，变了才刷新其他
+        async function positionSentinelLoop() {
+            if (isUpdatingDetails) return; // 正在更新中，跳过
+            await fetchMyPositions(true); // true = 哨兵模式，检查指纹
+        }
+
+        // 全量更新仪表盘细节 (成交、余额、PnL图表)
+        async function updateDashboardDetails() {
+            if (isUpdatingDetails) return;
+            isUpdatingDetails = true;
+            try {
+                // 并行请求以提高速度
+                await Promise.all([
+                    fetchMyBalance(),
+                    fetchMyPositions(false), // false = 强制刷新渲染
+                    fetchMyExecutions(),
+                    fetchMyPnL()
+                ]);
+            } catch (e) {
+                console.error("Dashboard update failed:", e);
+            } finally {
+                isUpdatingDetails = false;
+            }
         }
 
         async function fetchMyBalance() {
@@ -2359,17 +2424,46 @@
             } catch (e) { }
         }
 
-        async function fetchMyPositions() {
+        async function fetchMyPositions(isSentinel = false) {
             try {
                 let url = '/api/my-positions';
                 if (monitorConfig && monitorConfig.walletAddress) {
                     url += `?address=${monitorConfig.walletAddress}`;
                 }
-                const res = await fetch(url);
-                const positions = await res.json();
-                const container = document.getElementById('my-positions');
+                // 加入时间戳防缓存
+                url += `&_t=${Date.now()}`;
 
-                if (positions.length === 0) {
+                const res = await fetch(url, { cache: 'no-store' });
+                const positions = await res.json();
+
+                // 1. 计算指纹 (用于哨兵检查)
+                if (isSentinel) {
+                    let sorted = [];
+                    if (Array.isArray(positions)) {
+                        sorted = [...positions].sort((a, b) => (a.asset || '').localeCompare(b.asset || ''));
+                    }
+                    // 构建精简指纹: asset+size
+                    const currentFingerprint = JSON.stringify(sorted.map(p => ({ a: p.asset, s: p.size })));
+
+                    if (currentFingerprint !== lastPositionFingerprint) {
+                        console.log("⚡ [哨兵] 持仓指纹变化，触发全量刷新!");
+                        lastPositionFingerprint = currentFingerprint;
+                        // 发现变化，触发详细更新
+                        updateDashboardDetails();
+                    }
+                    // 哨兵模式下，如果不变化，我们不渲染 UI，直接返回
+                    return;
+                }
+
+                // 2. 非哨兵模式 (UI渲染)
+                // 更新指纹以同步
+                if (Array.isArray(positions)) {
+                    let sorted = [...positions].sort((a, b) => (a.asset || '').localeCompare(b.asset || ''));
+                    lastPositionFingerprint = JSON.stringify(sorted.map(p => ({ a: p.asset, s: p.size })));
+                }
+
+                const container = document.getElementById('my-positions');
+                if (!Array.isArray(positions) || positions.length === 0) {
                     container.innerHTML = '<div style="color: var(--text-muted); text-align: center; padding: 16px;">暂无持仓</div>';
                     return;
                 }

@@ -210,9 +210,22 @@ class AccountListener:
             time.sleep(0.5) # 错峰启动
             
         try:
-            # 主线程保持运行
+            # 主线程保持运行并执行全局风控
+            last_risk_check = 0
             while True:
                 time.sleep(1)
+                
+                # 每3秒执行一次全局风控检查 (高频止损)
+                # 只在主线程检查，无需每个监听子线程都排查一遍
+                now = time.time()
+                if now - last_risk_check > 3:
+                    try:
+                        for handler in self.handlers:
+                            if hasattr(handler, 'check_stop_loss'):
+                                handler.check_stop_loss()
+                    except Exception as e:
+                        print(f"⚠️ 风控检查异常: {e}")
+                    last_risk_check = now
         except KeyboardInterrupt:
             print("\n🛑 正在停止所有监听线程...")
             self.running = False
