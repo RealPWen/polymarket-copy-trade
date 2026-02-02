@@ -2446,8 +2446,12 @@
                     }], {
                         paper_bgcolor: 'transparent', plot_bgcolor: 'transparent',
                         font: { color: '#6b7280', size: 10 },
-                        margin: { t: 8, r: 16, l: 40, b: 24 },
-                        xaxis: { gridcolor: '#2d2d3a', showgrid: true },
+                        margin: { t: 8, r: 5, l: 35, b: 20 }, // 减小边距
+                        xaxis: {
+                            gridcolor: '#2d2d3a',
+                            showgrid: true,
+                            range: [x[0], x[x.length - 1]] // 强制填满横向空间
+                        },
                         yaxis: { gridcolor: '#2d2d3a', showgrid: true, tickprefix: '$' }
                     }, { responsive: true, displayModeBar: false });
                 }
@@ -2487,8 +2491,12 @@
                 }], {
                     paper_bgcolor: 'transparent', plot_bgcolor: 'transparent',
                     font: { color: '#6b7280', size: 10 },
-                    margin: { t: 8, r: 16, l: 40, b: 24 },
-                    xaxis: { gridcolor: '#2d2d3a', showgrid: true },
+                    margin: { t: 8, r: 5, l: 35, b: 20 }, // 减小边距
+                    xaxis: {
+                        gridcolor: '#2d2d3a',
+                        showgrid: true,
+                        range: [x[0], x[x.length - 1]] // 强制填满横向空间
+                    },
                     yaxis: { gridcolor: '#2d2d3a', showgrid: true, tickprefix: '$' }
                 }, { responsive: true, displayModeBar: false });
             }
