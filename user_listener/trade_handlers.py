@@ -107,13 +107,50 @@ class RealExecutionHandler(BaseTradeHandler):
             self.my_address = funder_address
             # 24小时市场去重: {condition_id: last_trade_timestamp}
             self.market_trade_cache = {}
+            self.cache_file = "market_cooldown_cache.json"
+            self._load_cooldown_cache()
+            
             self.MARKET_COOLDOWN_SECONDS = 24 * 60 * 60  # 24小时冷却期
             print(f"🚀 [系统] 实盘下单处理器已就绪 | 模式: {self.strategy['mode']} | 参数: {self.strategy['param']}")
         except Exception as e:
             print(f"❌ [系统] 初始化交易模块失败: {e}")
             self.trader = None
             self.market_trade_cache = {}
+            self.cache_file = "market_cooldown_cache.json"
             self.MARKET_COOLDOWN_SECONDS = 24 * 60 * 60
+
+    def _load_cooldown_cache(self):
+        """从磁盘加载冷却缓存"""
+        try:
+            import os
+            if os.path.exists(self.cache_file):
+                with open(self.cache_file, 'r') as f:
+                    self.market_trade_cache = json.load(f)
+                # 清理超过24小时的旧缓存，防止文件无限膨胀
+                import time
+                current_time = time.time()
+                keys_to_delete = []
+                for cid, ts in self.market_trade_cache.items():
+                    if current_time - ts > 24 * 60 * 60:
+                        keys_to_delete.append(cid)
+                
+                if keys_to_delete:
+                    for k in keys_to_delete:
+                        del self.market_trade_cache[k]
+                    self._save_cooldown_cache()
+                    
+                print(f"📂 [系统] 已加载市场冷却缓存，包含 {len(self.market_trade_cache)} 个市场")
+        except Exception as e:
+            print(f"⚠️ 加载冷却缓存失败: {e}")
+            self.market_trade_cache = {}
+
+    def _save_cooldown_cache(self):
+        """保存冷却缓存到磁盘"""
+        try:
+            with open(self.cache_file, 'w') as f:
+                json.dump(self.market_trade_cache, f)
+        except Exception as e:
+            print(f"⚠️ 保存冷却缓存失败: {e}")
 
     def _reload_strategy(self):
         """尝试从文件加载最新的策略配置 (带缓存优化)"""
@@ -319,6 +356,7 @@ class RealExecutionHandler(BaseTradeHandler):
             # --- 更新 24 小时市场去重缓存 (仅 BUY 操作) ---
             if side == "BUY" and condition_id:
                 self.market_trade_cache[condition_id] = time.time()
+                self._save_cooldown_cache() # 保存到磁盘
                 print(f"🔒 [缓存] 市场已加入 24 小时冷却: {condition_id[:20]}...")
 
         except Exception as e:
