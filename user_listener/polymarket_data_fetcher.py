@@ -10,22 +10,34 @@ import pandas as pd
 import json
 from typing import Optional, Dict, List, Any
 from datetime import datetime
+import time as time_module
 
 
 class PolymarketDataFetcher:
     """Polymarket API 数据获取工具类（Gamma API + Data API）"""
     
-    def __init__(self):
+    def __init__(self, check_clob=True):
         self.gamma_api_base = "https://gamma-api.polymarket.com"
         self.data_api_base = "https://data-api.polymarket.com"
+        self.clob_api_base = "https://clob.polymarket.com"
+        self._init_session()
+        self.check_clob = check_clob
+
+    def _init_session(self):
+        """初始化或重置 Session"""
+        if hasattr(self, 'session'):
+            try:
+                self.session.close()
+            except: 
+                pass
         
-        # 初始化带重试的 Session
         self.session = requests.Session()
+        # 配置重试策略
         retries = Retry(
             total=3,
-            backoff_factor=1,
+            backoff_factor=0.5,
             status_forcelist=[429, 500, 502, 503, 504],
-            allowed_methods=["GET"]
+            allowed_methods=["GET", "POST"]
         )
         adapter = HTTPAdapter(max_retries=retries)
         self.session.mount("https://", adapter)
@@ -344,7 +356,7 @@ class PolymarketDataFetcher:
     
     # ==================== Helper Methods ====================
     
-    def _make_request(self, url: str, params: Dict, data_type: str, silent: bool = False) -> pd.DataFrame:
+    def _make_request(self, url: str, params: Dict, data_type: str, silent: bool = False, raise_error: bool = False) -> pd.DataFrame:
         """发送请求并返回 DataFrame"""
         try:
             # 添加时间戳参数破坏缓存 (如果尚未存在)
@@ -380,6 +392,13 @@ class PolymarketDataFetcher:
             return df
             
         except requests.exceptions.RequestException as e:
+            # 🔴 网络连接异常，正在重置 Session
+            # if not silent:
+            #     print(f"⚠️ 网络连接异常，正在重置 Session... ({e})")
+            self._init_session()
+
+            if raise_error:
+                raise e
             if not silent:
                 print(f"❌ 获取{data_type}数据失败: {e}")
             return pd.DataFrame()
