@@ -129,6 +129,20 @@ def _start_listener_process(project_root, listener_script, python_path,
         subprocess.run(['osascript', '-e', applescript])
         return True, "macOS Terminal 窗口已启动"
 
+def _is_process_running(pattern: str) -> bool:
+    """检查包含指定模式的进程是否在运行"""
+    try:
+        if platform.system() == 'Windows':
+            cmd = f"Get-WmiObject Win32_Process | Where-Object {{ $_.CommandLine -like '*{pattern}*' }}"
+            result = subprocess.run(["powershell", "-Command", cmd], capture_output=True, text=True)
+            return bool(result.stdout.strip())
+        else:
+            find_cmd = f"ps aux | grep '{pattern}' | grep -v grep"
+            result = subprocess.run(find_cmd, shell=True, capture_output=True, text=True)
+            return bool(result.stdout.strip())
+    except Exception:
+        return False
+
 tester = None # 提前声明，防止 NameError
 
 # --- Session 配置 ---
@@ -494,154 +508,12 @@ def update_copy_trade_clients():
         print(f"Client update error: {e}")
         return jsonify({"error": str(e)}), 500
 
-@app.route('/api/copy-trade/start', methods=['POST'])
-def start_copy_trade():
-    address = request.json.get('address')
-    if not address:
-        return jsonify({"error": "Address is required"}), 400
-    
-    address = address.lower()
-    
-    # 先检查是否已经在运行
-    try:
-        if platform.system() == 'Windows':
-            cmd = f"Get-WmiObject Win32_Process | Where-Object {{ $_.CommandLine -like '*account_listener.py* {address}*' }}"
-            result = subprocess.run(["powershell", "-Command", cmd], capture_output=True, text=True)
-            if result.stdout.strip():
-                return jsonify({
-                    "status": "already_running",
-                    "message": "监听器已经在运行中"
-                }), 200
-        else:
-            find_cmd = f"ps aux | grep 'account_listener.py {address}' | grep -v grep"
-            result = subprocess.run(find_cmd, shell=True, capture_output=True, text=True)
-            if result.stdout.strip():
-                return jsonify({
-                    "status": "already_running",
-                    "message": "监听器已经在运行中"
-                }), 200
-    except Exception as e:
-        print(f"检查进程状态失败: {e}")
-
-    try:
-        # 获取钱包配置
-        wallet_info = request.json.get('wallet', {})
-        exec_address = wallet_info.get('address', '')
-        exec_private_key = wallet_info.get('privateKey', '')
-        
-        exec_args = ""
-        if exec_address and exec_private_key:
-             exec_args = f"--exec-address {exec_address} --exec-key {exec_private_key}"
-        
-        # 获取项目根目录和 Python 路径
-        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-        python_path = _get_python_path()
-        listener_script = os.path.join(project_root, 'user_listener', 'account_listener.py')
-        
-        # 使用统一的启动函数 (strategy_b64 为空字符串使用默认策略)
-        success, msg = _start_listener_process(
-            project_root, listener_script, python_path,
-            address, "", exec_args  # address 单一地址, 无策略配置
-        )
-        
-        # 等待一小会儿，确保监听器进程已经启动
-        import time
-        time.sleep(2)
-        
-        # 验证监听器是否成功启动
-        if platform.system() == 'Windows':
-            verify_cmd = f"Get-WmiObject Win32_Process | Where-Object {{ $_.CommandLine -like '*account_listener.py* {address}*' }}"
-            verify_result = subprocess.run(["powershell", "-Command", verify_cmd], capture_output=True, text=True)
-            if not verify_result.stdout.strip():
-                raise Exception("监听器启动失败，请检查终端输出")
-        else:
-            verify_cmd = f"ps aux | grep 'account_listener.py' | grep '{address}' | grep -v grep"
-            verify_result = subprocess.run(verify_cmd, shell=True, capture_output=True, text=True)
-            
-            if not verify_result.stdout.strip():
-                # 在服务器模式下不报错，可能进程在后台运行
-                if not _is_server_mode():
-                    raise Exception("监听器启动失败，请检查终端输出")
-        
-        return jsonify({
-            "status": "started",
-            "message": f"监听器已启动，监听地址: {address}。{msg}",
-            "server_mode": _is_server_mode()
-        })
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-@app.route('/api/copy-trade/stop', methods=['POST'])
-def stop_copy_trade():
-    address = request.json.get('address')
-    if not address:
-        return jsonify({"error": "Address is required"}), 400
-    
-    address = address.lower()
-    
-    try:
-        # 1. 终止监听进程
-        try:
-            if platform.system() == 'Windows':
-                cmd = f"Get-WmiObject Win32_Process | Where-Object {{ $_.CommandLine -like '*account_listener.py* {address}*' }} | Stop-Process -Force"
-                subprocess.run(["powershell", "-Command", cmd], capture_output=True)
-                print(f"成功终止监听进程 for {address}")
-            else:
-                find_cmd = f"ps aux | grep 'account_listener.py {address}' | grep -v grep | awk '{{print $2}}'"
-                result = subprocess.run(
-                    find_cmd,
-                    shell=True,
-                    capture_output=True,
-                    text=True
-                )
-                
-                pids = result.stdout.strip().split('\n')
-                pids = [pid for pid in pids if pid]
-                
-                for pid in pids:
-                    try:
-                        os.kill(int(pid), signal.SIGTERM)
-                        print(f"成功终止监听进程 PID: {pid}")
-                    except Exception as e:
-                        print(f"终止进程 {pid} 失败: {e}")
-        except Exception as e:
-            print(f"查找监听进程时出错: {e}")
-        
-        return jsonify({
-            "status": "stopped",
-            "message": f"跟单已停止"
-        })
-        
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
 @app.route('/api/copy-trade/status/<address>')
 def get_copy_trade_status(address):
     address = address.lower()
-    is_running = False
-    
     # 通过查找进程来判断是否在运行
-    # 通过查找进程来判断是否在运行
-    try:
-        if platform.system() == 'Windows':
-            cmd = f"Get-WmiObject Win32_Process | Where-Object {{ $_.CommandLine -like '*account_listener.py* {address}*' }}"
-            result = subprocess.run(["powershell", "-Command", cmd], capture_output=True, text=True)
-            if result.stdout.strip():
-                is_running = True
-        else:
-            find_cmd = f"ps aux | grep 'account_listener.py {address}' | grep -v grep"
-            result = subprocess.run(
-                find_cmd,
-                shell=True,
-                capture_output=True,
-                text=True
-            )
-            
-            # 如果找到进程，说明正在运行
-            if result.stdout.strip():
-                is_running = True
-    except Exception as e:
-        print(f"检查状态时出错: {e}")
+    is_running = _is_process_running(f"account_listener.py* {address}") or \
+                 _is_process_running(f"account_listener.py .* {address}") # 兼容不同的参数格式
     
     return jsonify({
         "is_running": is_running
