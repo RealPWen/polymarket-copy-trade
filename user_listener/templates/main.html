@@ -2358,11 +2358,11 @@
             if (sentinelInterval) clearInterval(sentinelInterval);
             if (targetStreamInterval) clearInterval(targetStreamInterval);
 
-            // 2. 启动“目标流”独立高频轮询 (1.5s) - 让你看戏不卡顿
-            targetStreamInterval = setInterval(fetchTargetStream, 1500);
+            // 2. 启动“目标流”独立高频轮询 (3s) - 降低频率防限流
+            targetStreamInterval = setInterval(fetchTargetStream, 3000);
 
-            // 3. 启动“持仓哨兵” (1s) - 极速发现并触发更新
-            sentinelInterval = setInterval(positionSentinelLoop, 1000);
+            // 3. 启动“持仓哨兵” (2s) - 极速发现并触发更新
+            sentinelInterval = setInterval(positionSentinelLoop, 2000);
 
             // 4. 低频兜底 (30s) - 防止指纹逻辑漏网
             monitorInterval = setInterval(updateDashboardDetails, 30000);
