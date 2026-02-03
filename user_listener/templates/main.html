@@ -2271,6 +2271,7 @@
             // 添加到策略列表
             const newStrategy = addStrategy(monitorConfig);
             activeStrategyId = newStrategy.id;
+            localStorage.setItem('lastActiveStrategyId', activeStrategyId);
 
             // 尝试启动后端跟单进程
             try {
@@ -2432,6 +2433,8 @@
                 }
                 // 加入时间戳防缓存
                 url += `&_t=${Date.now()}`;
+
+                console.log(`🔍 [调试] 查询持仓 URL: ${url}`); // <--- 添加这行调试日志
 
                 const res = await fetch(url, { cache: 'no-store' });
                 const positions = await res.json();
@@ -2688,11 +2691,54 @@
         setInterval(pollSystemLogs, 2000); // 2秒轮询一次日志
 
         // 初次加载
-        checkHealth();
-        fetchTargetStream();
-        pollSystemLogs();
-        // 初始化默认选择策略3（恒定金额）
-        selectStrategy(3);
+        // ========== 页面初始化与状态恢复 ==========
+        (async function init() {
+            checkHealth();
+            fetchTargetStream();
+            pollSystemLogs();
+            selectStrategy(3);
+
+            // 尝试恢复上次的监控状态
+            // 注意：loadStrategies 在 document load 时可能已经被调用过，这里再次确保数据存在
+            if (strategies.length === 0) {
+                try { await loadStrategies(); } catch (e) { }
+            }
+
+            const savedActiveId = localStorage.getItem('lastActiveStrategyId');
+            if (savedActiveId && strategies.length > 0) {
+                const strategy = strategies.find(s => s.id === savedActiveId && s.status === 'running');
+                if (strategy) {
+                    console.log("🔄 [AutoRestore] 恢复中断的监控会话:", strategy.id);
+                    activeStrategyId = savedActiveId;
+
+                    monitorConfig = {
+                        address: strategy.address,
+                        mode: strategy.mode,
+                        param: strategy.param,
+                        orderType: strategy.orderType,
+                        stopLoss: strategy.stop_loss || strategy.stopLoss || 0,
+                        walletAddress: strategy.walletAddress || ''
+                    };
+
+                    // 恢复界面状态
+                    const addrDisplay = document.getElementById('target-address-display');
+                    if (addrDisplay) addrDisplay.innerText = monitorConfig.address;
+
+                    const modeDisplay = document.getElementById('strategy-mode-display');
+                    if (modeDisplay) {
+                        modeDisplay.innerText =
+                            monitorConfig.mode === 1 ? `跟投 ${(monitorConfig.param * 100).toFixed(0)}%` :
+                                monitorConfig.mode === 2 ? `占比 ${(monitorConfig.param * 100).toFixed(0)}%` :
+                                    `固定 $${monitorConfig.param}`;
+                    }
+
+                    switchPage('monitor-dashboard');
+                    startMonitoring();
+                } else {
+                    localStorage.removeItem('lastActiveStrategyId');
+                }
+            }
+        })();
     </script>
 </body>
 
