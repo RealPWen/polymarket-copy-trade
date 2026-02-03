@@ -2436,6 +2436,12 @@
                 const res = await fetch(url, { cache: 'no-store' });
                 const positions = await res.json();
 
+                // 安全检查：如果不是数组（说明可能报错了），保留现有状态，不更新
+                if (!Array.isArray(positions)) {
+                    if (positions.error) console.warn("⚠️ 获取持仓异常:", positions.error);
+                    return;
+                }
+
                 // 1. 计算指纹 (用于哨兵检查)
                 if (isSentinel) {
                     let sorted = [];
