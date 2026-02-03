@@ -2432,7 +2432,8 @@
                     url += `?address=${monitorConfig.walletAddress}`;
                 }
                 // 加入时间戳防缓存
-                url += `&_t=${Date.now()}`;
+                const separator = url.includes('?') ? '&' : '?';
+                url += `${separator}_t=${Date.now()}`;
 
                 console.log(`🔍 [调试] 查询持仓 URL: ${url}`); // <--- 添加这行调试日志
 
