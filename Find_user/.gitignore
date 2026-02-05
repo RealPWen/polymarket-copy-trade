@@ -40,3 +40,7 @@ simulation_temp_progress.csv
 # IDE
 .vscode/
 .idea/
+
+# Crawler State
+Market_Scanner/goldsky_crawler/cursor_state.json
+Market_Scanner/goldsky_crawler/status.txt
