@@ -19,6 +19,7 @@ Usage:
 import os
 import sys
 import json
+import time
 import random
 import argparse
 import pandas as pd
@@ -362,7 +363,7 @@ def analyze_single_market(
         
         # === KEY OPTIMIZATION: Build cache ONCE ===
         analysis_config = AnalysisConfig(
-            min_insider_score=int(strategy_config.insider_min_score * 100),
+            min_insider_score=strategy_config.insider_min_score,  # Already int (80)
             lookback_days=strategy_config.insider_lookback_days
         )
         
@@ -498,7 +499,8 @@ def run_parallel_backtest(
     min_insiders: int,
     min_volume: float,
     seed: int,
-    num_threads: int
+    num_threads: int,
+    max_scan: int = 0  # 0 means no limit
 ) -> Dict:
     """Run optimized backtest."""
     print("=" * 80)
@@ -527,8 +529,13 @@ def run_parallel_backtest(
     random.seed(seed)
     random.shuffle(valid_ids)
     
+    # Apply max_scan limit
+    if max_scan > 0:
+        valid_ids = valid_ids[:max_scan]
+    
     print(f"[INFO] Cached markets: {len(cached_ids)}")
     print(f"[INFO] High-volume cached: {len(valid_ids)}")
+    print(f"[INFO] Will scan: {len(valid_ids)} markets")
     
     results = []
     skipped = {}
@@ -538,6 +545,9 @@ def run_parallel_backtest(
     hours_before_stats = []
     
     print(f"\n[STEP 1] Analyzing markets...")
+    scanned_count = 0
+    total_to_scan = len(valid_ids)
+    scan_start_time = time.time()
     
     with ThreadPoolExecutor(max_workers=num_threads) as executor:
         futures = {
@@ -555,9 +565,25 @@ def run_parallel_backtest(
         
         for future in as_completed(futures):
             if len(results) >= target_results:
+                # Cancel remaining futures and exit
+                for f in futures:
+                    f.cancel()
+                print(f"\n  [DONE] Target {target_results} results reached, stopping scan...")
                 break
             
             market_id = futures[future]
+            scanned_count += 1
+            
+            # Progress output every 50 markets
+            if scanned_count % 50 == 0:
+                elapsed = time.time() - scan_start_time
+                speed = scanned_count / elapsed if elapsed > 0 else 0
+                remaining = total_to_scan - scanned_count
+                eta_seconds = remaining / speed if speed > 0 else 0
+                print(f"  [PROGRESS] {scanned_count}/{total_to_scan} | "
+                      f"Speed: {speed:.1f}/s | ETA: {eta_seconds:.0f}s | "
+                      f"Found: {len(results)} signals")
+            
             try:
                 result, skip_reason = future.result()
                 
@@ -668,6 +694,7 @@ if __name__ == "__main__":
     parser.add_argument("--min-insiders", type=int, default=3, help="Min insiders")
     parser.add_argument("--volume", type=float, default=100000, help="Min volume")
     parser.add_argument("--score", type=float, default=0.15, help="Min direction score")
+    parser.add_argument("--max-scan", type=int, default=0, help="Max markets to scan (0=no limit)")
     args = parser.parse_args()
     
     strategy_config = StrategyConfig(min_direction_score=args.score)
@@ -681,5 +708,6 @@ if __name__ == "__main__":
         min_insiders=args.min_insiders,
         min_volume=args.volume,
         seed=args.seed,
-        num_threads=args.threads
+        num_threads=args.threads,
+        max_scan=args.max_scan
     )

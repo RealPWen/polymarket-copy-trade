@@ -4,7 +4,18 @@
 
 This strategy detects insider trading activity before market close. Insiders with privileged information tend to act with high conviction close to resolution time.
 
-## Latest Results (2025-02-05)
+## Latest Results (2026-02-05)
+
+### V6 Backtest (Large Scale - 369 trades)
+
+| Metric | Value |
+|--------|-------|
+| **Win Rate** | 74.3% (274/369) |
+| **ROI** | +61.5% |
+| **P-value** | 1.53 × 10⁻²¹ (extremely significant) |
+| **Total PnL** | +$154,360 |
+| **Max Drawdown** | 2.3% ($3,837) |
+| **Max Consec Losses** | 6 |
 
 ### V3b Backtest (Real-world Simulation with endDate variance)
 
@@ -32,7 +43,7 @@ Entry is based on `endDate` (API estimate) with ±12h variance.
 |---------|-------------|-------|---------|
 | V3 | Entry at `closedTime - N hours` | Fast | Low (uses future knowledge) |
 | V3b | Entry at `endDate - N hours` (with variance) | Fast | **High** (simulates real trading) |
-| V6 | Incremental cache + exponential sampling | Medium | High |
+| V6 | Incremental cache + exponential sampling | **Fast** | **High** (best for production) |
 
 ## Strategy Logic
 
@@ -100,7 +111,33 @@ python strategy_backtest_v3b.py --target 1000 --threads 12 --hours 1 --score 0.3
 
 ## Next Steps
 
-1. [ ] Implement real-time scanner for live markets
-2. [ ] Add alerts for high-confidence signals  
+1. [x] Implement real-time scanner for live markets (see `live_scanner/`)
+2. [x] Add alerts for high-confidence signals  
 3. [ ] Integrate with copy_trader for automated execution
 4. [ ] Test V6 with incremental caching for faster multi-scan
+
+## Live Scanner System (NEW)
+
+See `LIVE_SCANNER_DESIGN.md` for full design documentation.
+
+### Quick Start
+```powershell
+# Single scan
+python live_scanner.py --once
+
+# Continuous scanning (every 15 minutes)
+python live_scanner.py --interval 15
+
+# With custom parameters
+python live_scanner.py --interval 15 --min-volume 100000 --min-score 0.30
+```
+
+### Modules
+| Module | Description |
+|--------|-------------|
+| `live_scanner/market_discovery.py` | Fetch active markets from Polymarket API |
+| `live_scanner/trade_fetcher.py` | Fetch real-time trades from Goldsky |
+| `live_scanner/live_analyzer.py` | Run insider analysis on live data |
+| `live_scanner/signal_generator.py` | Generate trading signals |
+| `live_scanner/state_manager.py` | Track scan state and history |
+| `live_scanner/alert_system.py` | Output alerts and notifications |
