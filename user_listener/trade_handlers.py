@@ -123,28 +123,21 @@ class RealExecutionHandler(BaseTradeHandler):
             self.MARKET_COOLDOWN_SECONDS = 24 * 60 * 60
 
     def _load_cooldown_cache(self):
-        """从磁盘加载冷却缓存"""
+        """从磁盘加载方向缓存"""
         try:
             import os
             if os.path.exists(self.cache_file):
                 with open(self.cache_file, 'r') as f:
                     self.market_trade_cache = json.load(f)
-                # 清理超过24小时的旧缓存，防止文件无限膨胀
-                import time
-                current_time = time.time()
-                keys_to_delete = []
-                for cid, ts in self.market_trade_cache.items():
-                    if current_time - ts > 24 * 60 * 60:
-                        keys_to_delete.append(cid)
                 
-                if keys_to_delete:
-                    for k in keys_to_delete:
-                        del self.market_trade_cache[k]
-                    self._save_cooldown_cache()
-                    
-                print(f"📂 [系统] 已加载市场冷却缓存，包含 {len(self.market_trade_cache)} 个市场")
+                # 如果旧数据是浮点数(旧版本时间戳)，自动转换为新格式(方向列表)
+                for cid in list(self.market_trade_cache.keys()):
+                    if isinstance(self.market_trade_cache[cid], (int, float)):
+                        self.market_trade_cache[cid] = ["BUY"] # 兼容处理：假设以前记录的都是买入
+                
+                print(f"📂 [系统] 已加载市场方向缓存，包含 {len(self.market_trade_cache)} 个市场记录")
         except Exception as e:
-            print(f"⚠️ 加载冷却缓存失败: {e}")
+            print(f"⚠️ 加载缓存失败: {e}")
             self.market_trade_cache = {}
 
     def _save_cooldown_cache(self):
@@ -199,18 +192,13 @@ class RealExecutionHandler(BaseTradeHandler):
             print(f"⚠️ [跳过] 执行层无效数据 (Asset: {token_id}, Price: {price})")
             return
 
-        # --- 24小时市场去重检查 (仅限 BUY 操作) ---
-        if side == "BUY" and condition_id:
-            current_time = time.time()
-            last_trade_time = self.market_trade_cache.get(condition_id, 0)
-            time_since_last = current_time - last_trade_time
-            
-            if time_since_last < self.MARKET_COOLDOWN_SECONDS:
-                remaining_hours = (self.MARKET_COOLDOWN_SECONDS - time_since_last) / 3600
+        # --- 同方向去重检查 ---
+        if condition_id:
+            executed_sides = self.market_trade_cache.get(condition_id, [])
+            if side in executed_sides:
                 market_title = trade_data.get('title', 'Unknown')[:40]
-                print(f"\n⏳ [冷却中] 该市场 24 小时内已交易过，跳过")
+                print(f"\n🚫 [拦截] 该市场历史已执行过 {side} 操作，跳过重复方向")
                 print(f"   市场: {market_title}")
-                print(f"   剩余冷却: {remaining_hours:.1f} 小时")
                 return
 
         # 1. 余额预检 (即时预警)
@@ -356,11 +344,15 @@ class RealExecutionHandler(BaseTradeHandler):
             except Exception as le:
                 print(f"⚠️ 日志写入失败: {le}")
             
-            # --- 更新 24 小时市场去重缓存 (仅 BUY 操作) ---
-            if side == "BUY" and condition_id:
-                self.market_trade_cache[condition_id] = time.time()
-                self._save_cooldown_cache() # 保存到磁盘
-                print(f"🔒 [缓存] 市场已加入 24 小时冷却: {condition_id[:20]}...")
+            # --- 更新市场方向记录记录 (防止同方向重复) ---
+            if condition_id:
+                if condition_id not in self.market_trade_cache:
+                    self.market_trade_cache[condition_id] = []
+                
+                if side not in self.market_trade_cache[condition_id]:
+                    self.market_trade_cache[condition_id].append(side)
+                    self._save_cooldown_cache() # 保存到磁盘
+                    print(f"🔒 [锁定] 该市场已加入 {side} 屏蔽名单")
 
         except Exception as e:
             print(f"❌ [错误] 链上下单失败: {e}")

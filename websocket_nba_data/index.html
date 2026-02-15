@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Pulse | 毫秒级实时量化看板</title>
+    <!-- 引入 Google 字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono&display=swap"
+        rel="stylesheet">
+    <!-- 引入 ECharts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #050a14;
+            --card-bg: rgba(16, 24, 48, 0.7);
+            --primary: #1d4ed8;
+            --secondary: #e11d48;
+            --accent: #f59e0b;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
+            --success: #22c55e;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            overflow: hidden;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(29, 78, 216, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(225, 29, 72, 0.1) 0%, transparent 40%);
+            height: 100vh;
+        }
+
+        /* 布局 */
+        .app-container {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            grid-template-rows: 70px 1fr;
+            height: 100vh;
+            gap: 1px;
+            background: var(--border);
+        }
+
+        /* 顶部栏 */
+        header {
+            grid-column: 1 / -1;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+            font-style: italic;
+        }
+
+        .status-pill {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* 侧边栏 */
+        aside {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 1px solid var(--border);
+        }
+
+        .sidebar-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .category-header {
+            padding: 10px 12px;
+            margin-bottom: 4px;
+            cursor: pointer;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            transition: all 0.2s;
+        }
+
+        .category-header:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--accent);
+        }
+
+        .cat-badge {
+            font-size: 10px;
+            color: var(--text-dim);
+            font-weight: 400;
+        }
+
+        .pre-market-tag {
+            color: #22c55e;
+            font-size: 10px;
+            margin-left: 4px;
+        }
+
+        .market-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .market-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary);
+        }
+
+        .market-item.active {
+            background: linear-gradient(135deg, rgba(29, 78, 216, 0.2), rgba(16, 24, 48, 0.1));
+            border-color: var(--primary);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .market-q {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            line-height: 1.3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .market-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .price-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* 主视口 */
+        main {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .chart-card {
+            flex: 1;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            min-height: 450px;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .chart-title h1 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .current-stat {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 16px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .stat-value.bid {
+            color: var(--success);
+        }
+
+        .stat-value.ask {
+            color: var(--danger);
+        }
+
+        #main-chart {
+            width: 100%;
+            flex: 1;
+            min-height: 300px;
+        }
+
+        /* 自动回滚日志列表 */
+        .logs-panel {
+            margin-top: 24px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 16px;
+            padding: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+        }
+
+        .log-entry {
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            display: flex;
+            gap: 15px;
+        }
+
+        .log-time {
+            color: var(--text-dim);
+        }
+
+        .log-action {
+            font-weight: 700;
+        }
+
+        .log-action.成交 {
+            color: var(--success);
+        }
+
+        .log-action.报价 {
+            color: var(--primary);
+        }
+
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-container">
+        <header>
+            <div class="logo">NBA <span>PULSE</span></div>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <button id="filter-btn" onclick="toggleFilter()" style="
+                background: rgba(255,255,255,0.05);
+                border: 1px solid var(--border);
+                color: var(--text-main);
+                padding: 8px 16px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-family: inherit;
+                font-size: 13px;
+                transition: all 0.2s;
+            ">🔍 全部数据</button>
+                <div class="status-pill" id="conn-status">
+                    <div class="status-dot"></div>
+                    <span>准备就绪</span>
+                </div>
+            </div>
+        </header>
+
+        <aside id="market-list">
+            <div class="sidebar-title">活跃市场 (已归一化)</div>
+            <div id="list-container"></div>
+        </aside>
+
+        <main>
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">
+                        <h1 id="active-q">正在等待数据...</h1>
+                        <p id="active-a" style="color: var(--accent); font-size: 14px; font-weight: 600;">归一化视图 (Yes
+                            Equiv)</p>
+                    </div>
+                    <div class="price-tag" style="font-size: 32px;" id="last-price">0.000</div>
+                </div>
+
+                <div id="main-chart"></div>
+
+                <div class="current-stat">
+                    <div class="stat-box">
+                        <div class="stat-label">最佳买入 (Normalized Bid)</div>
+                        <div class="stat-value bid" id="best-bid">0.000</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">最佳卖出 (Normalized Ask)</div>
+                        <div class="stat-value ask" id="best-ask">0.000</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">数据包热度/s</div>
+                        <div class="stat-value" id="msg-count">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="logs-panel" id="log-list">
+                <!-- 实时日志 -->
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- 状态管理 ---
+        let socket;
+        let markets = new Map(); // asset_id -> data
+        let categories = new Map(); // event_title -> { markets: Map, expanded: bool }
+        let activeAssetId = null;
+        let msgCount = 0;
+        let filterTradesOnly = false; // 过滤开关
+
+        // 图表数据
+        const MAX_DATA_POINTS = 2000;
+
+        // --- 初始化图表 ---
+        const chart = echarts.init(document.getElementById('main-chart'));
+        const option = {
+            animation: false,
+            backgroundColor: 'transparent',
+            tooltip: { trigger: 'axis', backgroundColor: 'rgba(16, 24, 48, 0.9)', borderColor: '#1d4ed8', textStyle: { color: '#fff' } },
+            grid: { top: 40, bottom: 40, left: 50, right: 30 },
+            xAxis: {
+                type: 'time',
+                splitLine: { show: true, lineStyle: { color: 'rgba(255,255,255,0.05)' } },
+                axisLabel: { color: '#94a3b8' }
+            },
+            yAxis: {
+                type: 'value',
+                scale: true,
+                min: 0,
+                max: 1,
+                splitLine: { show: true, lineStyle: { color: 'rgba(255,255,255,0.05)' } },
+                axisLabel: { color: '#94a3b8' }
+            },
+            series: [{
+                name: '胜率',
+                type: 'line',
+                showSymbol: true,
+                symbolSize: 4,
+                data: [],
+                lineStyle: { width: 3, color: '#1d4ed8' },
+                areaStyle: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: 'rgba(29, 78, 216, 0.4)' },
+                        { offset: 1, color: 'rgba(29, 78, 216, 0)' }
+                    ])
+                }
+            }]
+        };
+        chart.setOption(option);
+
+        function toggleFilter() {
+            filterTradesOnly = !filterTradesOnly;
+            const btn = document.getElementById('filter-btn');
+            if (filterTradesOnly) {
+                btn.innerText = '🎯 仅看成交';
+                btn.style.borderColor = 'var(--success)';
+                btn.style.background = 'rgba(34, 197, 94, 0.1)';
+            } else {
+                btn.innerText = '🔍 全部数据';
+                btn.style.borderColor = 'var(--border)';
+                btn.style.background = 'rgba(255,255,255,0.05)';
+            }
+            addLog('SYSTEM', '切换模式', filterTradesOnly ? '已开启成交过滤' : '显示完整数据流');
+        }
+
+        // --- WebSocket 逻辑 ---
+        function connect() {
+            socket = new WebSocket('ws://localhost:8081');
+
+            socket.onopen = () => {
+                document.getElementById('conn-status').innerHTML = '<div class="status-dot"></div><span>实时数据流已连接</span>';
+                document.getElementById('conn-status').style.color = '#22c55e';
+                addLog('SYSTEM', '连接成功', '🚀 开始接收归一化数据');
+            };
+
+            socket.onmessage = (event) => {
+                const msg = JSON.parse(event.data);
+
+                if (msg.type === 'init') {
+                    console.log(`📥 收到历史数据，共 ${msg.data.length} 条记录`);
+                    // 按时间排序确保绘图连续
+                    msg.data.sort((a, b) => a.timestamp - b.timestamp).forEach(d => updateMarket(d));
+                    renderMarketList();
+                    addLog('SYSTEM', '历史加载', `已恢复 ${msg.data.length} 条成交记录`);
+                } else if (msg.type === 'update') {
+                    updateMarket(msg.data);
+                    msgCount++;
+                    document.getElementById('msg-count').innerText = msgCount;
+                }
+            };
+
+            socket.onclose = () => {
+                document.getElementById('conn-status').innerHTML = '<div style="background:red" class="status-dot"></div><span>系统离线 (尝试重连...)</span>';
+                document.getElementById('conn-status').style.color = '#ef4444';
+                setTimeout(connect, 2000);
+            };
+        }
+
+        function updateMarket(data) {
+            const id = data.asset_id;
+            const isTrade = data.event_type === 'last_trade_price' || (data.event_type === 'book' && data.price > 0);
+
+            // 更新 Map
+            if (!markets.has(id)) {
+                markets.set(id, { ...data, history: [] });
+
+                // 分组逻辑
+                const cat = data.event_title || '未分类';
+                if (!categories.has(cat)) {
+                    categories.set(cat, { markets: new Map(), expanded: false });
+                }
+                categories.get(cat).markets.set(id, markets.get(id));
+
+                renderMarketList();
+            }
+
+            const m = markets.get(id);
+            m.price = data.price;
+            m.best_bid = data.best_bid || m.best_bid || 0;
+            m.best_ask = data.best_ask || m.best_ask || 0;
+
+            // 核心修改：仅在成交时更新折线图历史，确保趋势线纯净
+            if (isTrade) {
+                // 使用数据自带的时间戳转换为毫秒
+                const ts = data.timestamp ? data.timestamp * 1000 : new Date().getTime();
+                m.history.push([ts, data.price]);
+                if (m.history.length > MAX_DATA_POINTS) m.history.shift();
+            }
+
+            // 如果是当前激活的市场
+            if (id === activeAssetId || activeAssetId === null) {
+                if (activeAssetId === null) setActiveMarket(id);
+                // 更新视觉展示（包括 Best Bid/Ask 数字和图表）
+                updateVisuals(data, m);
+            }
+
+            // 列表中的价格小字始终保持最新状态
+            const priceEl = document.getElementById(`price-${id}`);
+            if (priceEl) priceEl.innerText = data.price.toFixed(4);
+
+            // 日志列表逻辑：如果开启了“仅成交”过滤，则不记录报价日志
+            if (filterTradesOnly && !isTrade) return;
+
+            const action = isTrade ? '成交' : '报价';
+            addLog(action, data.question.substring(0, 25), `${data.price.toFixed(3)}`);
+        }
+
+        function updateVisuals(data, market) {
+            if (!data || !market) return;
+            document.getElementById('active-q').innerText = data.question;
+            document.getElementById('last-price').innerText = data.price.toFixed(4);
+
+            document.getElementById('best-bid').innerText = market.best_bid.toFixed(4);
+            document.getElementById('best-ask').innerText = market.best_ask.toFixed(4);
+
+            // 更新图表
+            chart.setOption({
+                series: [{ data: market.history }]
+            });
+
+            // 刷新列表中的价格小字
+            const el = document.getElementById(`price-${id_for_el(data)}`);
+            if (el) el.innerText = data.price.toFixed(3);
+        }
+
+        function id_for_el(data) {
+            return data.asset_id || activeAssetId;
+        }
+
+        function extractShortName(question) {
+            const match = question.match(/Will (.+?) win/);
+            if (match) return match[1];
+            // 尝试匹配 'Will the X' 模式
+            const match2 = question.match(/Will the (.+?) /);
+            if (match2) return match2[1];
+            return question.substring(0, 30);
+        }
+
+        function renderMarketList() {
+            const container = document.getElementById('list-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            // 按大类中最高价格排序
+            const sortedCats = Array.from(categories.entries())
+                .map(([name, cat]) => {
+                    const prices = Array.from(cat.markets.values()).map(m => m.price);
+                    const maxPrice = prices.length ? Math.max(...prices) : 0;
+                    return { name, cat, maxPrice };
+                })
+                .sort((a, b) => b.maxPrice - a.maxPrice);
+
+            sortedCats.forEach(({ name, cat }) => {
+                // 渲染大类标题（可折叠）
+                const catDiv = document.createElement('div');
+                catDiv.className = 'category-header';
+                const marketCount = cat.markets.size;
+                const arrow = cat.expanded ? '▾' : '▸';
+                catDiv.innerHTML = `
+                    <span>${arrow} ${name}</span>
+                    <span class="cat-badge">${marketCount} 个</span>
+                `;
+                catDiv.onclick = () => {
+                    cat.expanded = !cat.expanded;
+                    renderMarketList();
+                };
+                container.appendChild(catDiv);
+
+                // 展开时渲染子市场
+                if (cat.expanded) {
+                    const sortedMarkets = Array.from(cat.markets.values())
+                        .sort((a, b) => b.price - a.price);
+
+                    sortedMarkets.forEach(m => {
+                        const div = document.createElement('div');
+                        div.className = `market-item ${m.asset_id === activeAssetId ? 'active' : ''}`;
+                        div.style.marginLeft = '10px';
+                        div.onclick = () => setActiveMarket(m.asset_id);
+
+                        const shortName = extractShortName(m.question);
+
+                        div.innerHTML = `
+                            <div class="market-q" title="${m.question}">${shortName}</div>
+                            <div class="market-meta">
+                                <span>Yes Equiv</span>
+                                <span class="price-tag" id="price-${m.asset_id}">${m.price.toFixed(3)}</span>
+                            </div>
+                        `;
+                        container.appendChild(div);
+                    });
+                }
+            });
+        }
+
+        function setActiveMarket(id) {
+            activeAssetId = id;
+            const m = markets.get(id);
+            if (!m) return;
+
+            addLog('SELECT', '切换市场', m.question);
+            renderMarketList();
+            updateVisuals(m, m);
+        }
+
+        function addLog(action, target, detail) {
+            const list = document.getElementById('log-list');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            const time = new Date().toLocaleTimeString();
+            entry.innerHTML = `
+            <span class="log-time">${time}</span>
+            <span class="log-action ${action}">${action}</span>
+            <span style="color:var(--text-dim)">${target}</span>
+            <span>${detail}</span>
+        `;
+            list.insertBefore(entry, list.firstChild);
+            if (list.childNodes.length > 50) list.lastChild.remove();
+        }
+
+        // 窗口自适应
+        window.onresize = () => chart.resize();
+
+        // 启动
+        connect();
+    </script>
+
+</body>
+
+</html>

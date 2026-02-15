@@ -99,6 +99,31 @@ python3.9 user_listener/app.py
 - **资金去向**: 实时查看每一笔跟单的消耗。
 - **调整参数**: 觉得跟少了？直接在右上角编辑参数，下一单立即生效！
 
+## 📁 数据存储与系统逻辑 (Data Storage & Logic)
+
+为了保证系统的稳定运行与多端同步，本项目采用了“文件数据库”式的轻量化存储方案。
+
+### 1. 核心存储分布
+- **📂 配置与同步 (`user_listener/sync_data/`)**
+  - `strategies.json`: 存储所有预设的策略配置。
+  - `targets.json`: 存储你关注（正在监听）的交易员地址列表。
+  - `wallets.json`: 存储你绑定的执行钱包信息。
+- **📂 运行配置与状态 (`user_listener/monitored_trades/`)**
+  - `strategy_config.json`: **策略热更新文件**。监听器每单下单前都会读取此文件，确保网页端修改参数后即刻生效。
+  - `heartbeat.log`: 监听器心跳，用于确认后台进程存活。
+  - `multi_session/`: 以哈希命名的独立 JSON 文件，保存捕捉到的每一笔交易详情。
+- **📂 交易审计与缓存**
+  - `my_executions.jsonl`: **实盘成交总账**。记录你自己钱包的所有成交历史，是 Dashboard “成交历史”的数据源。
+  - `market_cooldown_cache.json`: **方向去重缓存**。记录每个市场已执行过的交易方向（BUY/SELL），防止针对同一市场进行重复的方向性操作（例如：买入过则不再重复买入，但允许卖出）。
+- **📂 系统日志 (`user_listener/logs/`)**
+  - `copy_trade.log`: 监听进程的完整终端输出，排查下单失败、API 报错的首要入口。
+
+### 2. 重启说明 (Lifecycle)
+| 类别 | 状态 | 说明 |
+| :--- | :--- | :--- |
+| **持久化保留** | ✅ | 所有配置、钱包、监听目标、实盘成交历史、市场冷却缓存。重启不丢失。 |
+| **重置/过期** | ❌ | **登录 Session**: 每次重启 Web 程序，浏览器登录状态会失效，需重新输入密码。<br>**后台进程**: 系统重启后，监听进程不会自动启动，需在仪表盘手动点击“启动”。 |
+
 ---
 
 ## ⚠️ 风险提示与声明
@@ -107,3 +132,12 @@ python3.9 user_listener/app.py
 *   **仅供技术研究**：本项目旨在展示如何利用 Polymarket API 进行自动化套利与跟随，不构成任何投资建议。
 
 **Happy Profiting! 💹**
+
+---
+
+## 🗒️ 任务逻辑存储 (Task Logic Archive)
+
+### 2026-02-08 | 存储路径优化与方向去重
+1. **方向性去重**: 废弃了 24 小时冷却逻辑，改为记录每个市场的操作方向（BUY/SELL），防止同市场同方向重复下单，但允许反向平仓。
+2. **根目录清理**: 将原本散落在根目录的 `market_cooldown_cache.json` 和 `my_executions.jsonl` 统一收纳进 `user_listener/monitored_trades/` 文件夹中。
+3. **文件更名**: 冷却缓存文件正式更名为 `market_direction_cache.json` 以匹配其逻辑。
